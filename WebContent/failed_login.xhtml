@@ -3,27 +3,23 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
-   <h:head>
-      <title>Login - Course Project</title>
-      <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-      <h:outputStylesheet library="css" name="login_page.css"></h:outputStylesheet>
-      <h:outputScript></h:outputScript>
-   </h:head>
-   <h:body>
-        <nav class="navbar navbar-inverse navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand">CS4451</a>
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+      
+ <ui:composition template="main_layout.xhtml">
+        <ui:define name="css"> 
+            <h:outputStylesheet library="css" name="failed_login.css"></h:outputStylesheet>
+        </ui:define>
+        <ui:define name="content">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h1><i class="material-icons md-48">error</i> Login Failed</h1>
+                </div>
+                <div class="panel-body">
+                    <p>Email and password pair was not found</p>
                 </div>
             </div>
-        </nav>
-        <div class="content">
-            
-
-        </div>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-      <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-   </h:body>
+        </ui:define>
+ </ui:composition>
+ 
 </html>

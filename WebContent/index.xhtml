@@ -3,23 +3,14 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
-   <h:head>
-      <title>Login - Course Project</title>
-      <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="main_layout.xhtml">
+   <ui:define name="css">
       <h:outputStylesheet library="css" name="login_page.css"></h:outputStylesheet>
       <h:outputScript></h:outputScript>
-   </h:head>
-   <h:body>
-        <nav class="navbar navbar-inverse navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand">CS4451</a>
-                </div>
-            </div>
-        </nav>
-   		<div class="content">
+   </ui:define>
+   <ui:define name="content">
 	   		<div class="panel">
 	   			<div class="panel-heading">
 	   				<h2>Login</h2>
@@ -33,25 +24,20 @@
 	      				</div>
 	      				<div class="form-group">
 	      					<label class="control-label" for="email">Password</label>
-	      					<h:inputText  value="#{loginBean.password}" name="password" class="form-control" 
-	      					              type="password" placeholder="Your Password"></h:inputText>
+	      					<h:inputSecret  value="#{loginBean.password}" name="password" class="form-control" 
+	      					              type="password" placeholder="Your Password"></h:inputSecret>
 	      				</div>
 	      				<div class="form-group">
                             <div class="button-group">
-	      					    <h:button action="#{loginBean.logIn}" value="Login" class="btn btn-success" ></h:button>
-                                <h:button action="#{loginBean.password}" value="Forgot your Password ?" class="btn btn-info" ></h:button>
+	      					    <h:commandButton action="#{loginBean.logIn}" value="Login" class="btn btn-success" ></h:commandButton>
+                                <h:commandButton action="#" value="Forgot your Password ?" class="btn btn-info" ></h:commandButton>
 	      				     </div>
                         </div>
 	      			</h:form>
 	      		</div>
 	      	</div>
-      	</div>
-        <!--  <footer class="footer">
-            <div class="container">
-                <p class="text-muted">Course project for CS4451</p>
-            </div>
-        </footer>-->
       	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
       <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-   </h:body>
+   </ui:define>
+</ui:composition>
 </html>

@@ -3,7 +3,6 @@ package edu.tarleton;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 
 public class LoginBean {
@@ -28,15 +27,19 @@ public class LoginBean {
     
     public String logIn(){
         // check if users file exists
-        File userFile = new File(this.email);
+        File userFile = new File("C:\\tmp\\"+this.email+".txt");
         if(userFile.exists()){
+            System.out.println("opening file");
             try{
                 FileInputStream fis = new FileInputStream(userFile);
                 BufferedReader bf =  new BufferedReader(new InputStreamReader(fis));
                 String password = bf.readLine();
                 if(password.equals(this.password)){
+                      System.out.println("found password");
+                      bf.close();
                       return "menu_page";
                 }
+                bf.close();
             }
             catch(Exception ex){
                 ex.printStackTrace();
