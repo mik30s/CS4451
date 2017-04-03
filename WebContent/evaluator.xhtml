@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+      
+ <ui:composition template="main_layout.xhtml">
+        <ui:define name="menu">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right"> 
+                <li><a href="#"><i class="material-icons">face</i> Profile</a></li>
+                <li><a href="#"><i class="material-icons">lock_open</i> Logout</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+        </ui:define>
+        <ui:define name="css"> 
+            <h:outputStylesheet library="css" name="data_entry.css"></h:outputStylesheet>
+        </ui:define>
+        <ui:define name="content">
+            <div class="content">
+                Evaluator
+            </div>
+        </ui:define>
+ </ui:composition>
+ 
+</html>

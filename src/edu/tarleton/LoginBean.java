@@ -34,10 +34,19 @@ public class LoginBean {
                 FileInputStream fis = new FileInputStream(userFile);
                 BufferedReader bf =  new BufferedReader(new InputStreamReader(fis));
                 String password = bf.readLine();
+                String mode = bf.readLine();
                 if(password.equals(this.password)){
                       System.out.println("found password");
                       bf.close();
-                      return "menu_page";
+                      if(mode.equals("admin")){
+                          return "admin";
+                      }
+                      else if(mode.equals("data_entry")){
+                          return "data_entry";
+                      }
+                      else if(mode.equals("evaluator")){
+                          return "evaluator";
+                      }
                 }
                 bf.close();
             }

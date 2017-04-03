@@ -1,4 +1,34 @@
-.content {
-  background-color: #f03232; }
+.btn, input, .form-control, .panel {
+  border-radius: 0px; }
+
+body, html {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  background-image: url("/CourseProject/faces/javax.faces.resource/img/debut-light.png");
+  font-family: 'Lato'; }
+  body .panel, html .panel {
+    border-radius: 0px;
+    background: transparent; }
+  body .panel-body, html .panel-body {
+    padding: 5px;
+    background: #fd866c;
+    color: white;
+    text-align: center;
+    font-size: 1.2em; }
+  body .panel-heading, html .panel-heading {
+    background: transparent;
+    text-align: center;
+    color: white; }
+  body .content, html .content {
+    background: linear-gradient(#fb3408 0%, #fb3408 100%);
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 400px;
+    box-shadow: 0px 0px 20px 2px rgba(197, 197, 197, 0.8);
+    padding: 0px;
+    height: auto; }
+    body .content .button-group, html .content .button-group {
+      text-align: center; }
 
 /*# sourceMappingURL=failed_login.css.map */

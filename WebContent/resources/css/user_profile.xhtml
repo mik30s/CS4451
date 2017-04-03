@@ -7,6 +7,14 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
       
  <ui:composition template="main_layout.xhtml">
+        <ui:define name="menu">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><i class="materials-icon">face</i>Profile</a></li>
+                    <li><a href="#"><i class="materials-icon">key</i>Logout</a></li>
+                  </ul>
+                </div><!-- /.navbar-collapse -->
+        </ui:define>
         <ui:define name="css"> 
             <h:outputStylesheet library="css" name="failed_login.css"></h:outputStylesheet>
         </ui:define>
@@ -18,9 +26,6 @@
                     </div>
                     <div class="panel-body">
                         <p>Email and password pair was not found</p>
-                        <div class="button-group">
-                            <h:link value = "Try again" class="btn btn-danger" outcome = "login.xhtml" />
-                        </div>
                     </div>
                 </div>
             </div>
