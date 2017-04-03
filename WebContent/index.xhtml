@@ -5,13 +5,20 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
    <h:head>
-      <title>Welcome</title>
+      <title>Login - Course Project</title>
       <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
       <h:outputStylesheet library="css" name="login_page.css"></h:outputStylesheet>
       <h:outputScript></h:outputScript>
    </h:head>
    <h:body>
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand">CS4451</a>
+                </div>
+            </div>
+        </nav>
    		<div class="content">
 	   		<div class="panel">
 	   			<div class="panel-heading">
@@ -30,12 +37,20 @@
 	      					              type="password" placeholder="Your Password"></h:inputText>
 	      				</div>
 	      				<div class="form-group">
-	      					<h:button action="#{loginBean.password}" value="Login" class="btn btn-success" ></h:button>
-	      				</div>
+                            <div class="button-group">
+	      					    <h:button action="#{loginBean.logIn}" value="Login" class="btn btn-success" ></h:button>
+                                <h:button action="#{loginBean.password}" value="Forgot your Password ?" class="btn btn-info" ></h:button>
+	      				     </div>
+                        </div>
 	      			</h:form>
 	      		</div>
 	      	</div>
       	</div>
+        <!--  <footer class="footer">
+            <div class="container">
+                <p class="text-muted">Course project for CS4451</p>
+            </div>
+        </footer>-->
       	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
       <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    </h:body>
