@@ -27,7 +27,7 @@ public class LoginBean {
     
     public String logIn(){
         // check if users file exists
-        File userFile = new File("C:\\tmp\\"+this.email+".txt");
+        File userFile = new File("C:\\tmp\\course-project\\"+this.email+".txt");
         if(userFile.exists()){
             System.out.println("opening file");
             try{
