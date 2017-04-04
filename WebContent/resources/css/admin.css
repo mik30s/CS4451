@@ -1,3 +1,8 @@
+.btn, input, .form-control, .panel, .list-group, .list-group-item {
+  border-radius: 0px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px; }
+
 .navbar {
   margin: 0px; }
 
@@ -8,7 +13,8 @@ body {
   body .content {
     position: relative;
     height: auto;
-    width: 100%; }
+    width: 100%;
+    padding: 0px; }
     body .content .backdrop {
       position: absolute;
       width: 100%;
@@ -17,15 +23,6 @@ body {
       z-index: 0;
       left: 0px;
       top: 0px; }
-    @media (min-width: 1200px) {
-      body .content .dash-content {
-        width: 1170px; } }
-    @media (min-width: 992px) {
-      body .content .dash-content {
-        width: 970px; } }
-    @media (min-width: 768px) {
-      body .content .dash-content {
-        width: 750px; } }
     body .content .dash-content {
       margin-left: auto;
       margin-right: auto;
