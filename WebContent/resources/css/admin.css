@@ -19,16 +19,31 @@ body {
       position: absolute;
       width: 100%;
       height: 5em;
-      background: rgba(24, 197, 45, 0.6);
+      background: linear-gradient(#18c52d 0%, #12b323 100%);
       z-index: 0;
       left: 0px;
       top: 0px; }
     body .content .dash-content {
+      top: 5em;
       margin-left: auto;
       margin-right: auto;
       height: auto;
       position: relative; }
+      body .content .dash-content #admin-tabs {
+        background: white;
+        height: auto;
+        width: 100%;
+        padding: 0px;
+        /* remove border radius for the tab */ }
+        body .content .dash-content #admin-tabs .tab-content {
+          color: white;
+          background-color: #428bca;
+          padding: 5px 15px; }
+        body .content .dash-content #admin-tabs .nav-pills > li > a {
+          border-radius: 0; }
   body .page-header {
-    margin: 0px; }
+    margin: 0px;
+    border-bottom: 0px;
+    color: white; }
 
 /*# sourceMappingURL=admin.css.map */
