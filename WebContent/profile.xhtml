@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+      
+ <ui:composition template="main_layout.xhtml">
+        <f:metadata>
+            <f:viewParam name="id" value="#{profile.user.email}"></f:viewParam>
+        </f:metadata>
+        <ui:define name="title">
+            Admin Page - Swine Project
+        </ui:define>
+        <ui:define name="menu">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right"> 
+                <li><a href="#"><span class="fa fa-user"></span> Profile</a></li>
+                <li><a href="/CourseProject/faces/login.xhtml"><span class="fa fa-sign-out"></span> Logout</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+        </ui:define>
+        <ui:define name="css"> 
+            <h:outputStylesheet library="css" name="profile.css"></h:outputStylesheet>
+        </ui:define>
+        <ui:define name="content">
+            <div class="animated fadeIn content">
+                <div class="container">
+                    <div class="backdrop">
+                    <div class="page-header">
+                            <div class="container"><h3> <span class="fa fa-user"></span> User Profile</h3></div>
+                        </div>
+                    </div>
+                    <div class="dash-content">
+                        
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+ </ui:composition>
+ 
+</html>

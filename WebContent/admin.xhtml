@@ -24,7 +24,7 @@
         <ui:define name="content">
             <div class="animated fadeIn content">
                 <div class="container">
-                    <div class="backdrop">
+                    <div class="animated slideInDown backdrop">
                     <div class="page-header">
 	                    	<div class="container"><h3> <span class="fa fa-cogs"></span> Admin Dashboard</h3></div>
 	                    </div>
@@ -62,9 +62,9 @@
                                                 <h:column>
                                                     <f:facet name="header">Actions</f:facet>
                                                     <div class="btn-group">
-                                                        <a class="btn btn-sm btn-info"><i class="fa fa-trash"></i> Edit</a>
-                                                        <a class="btn btn-sm btn-success"><i class="fa fa-eye"></i> Profile</a>
-                                                        <a class="btn btn-sm btn-danger"><i class="fa fa-remove"></i> Delete</a>
+                                                        <a href="" class="btn btn-sm btn-info"><i class="fa fa-trash"></i> Edit</a>
+                                                        <a href="profile.xhtml?id=#{user.email}" class="btn btn-sm btn-success"><i class="fa fa-eye"></i> Profile</a>
+                                                        <a href="" class="btn btn-sm btn-danger"><i class="fa fa-remove"></i> Delete</a>
                                                     </div>
                                                 </h:column>
                                             </h:dataTable>
