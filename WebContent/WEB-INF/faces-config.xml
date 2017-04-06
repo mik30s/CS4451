@@ -9,5 +9,15 @@
 		<managed-bean-class>edu.tarleton.LoginBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>adminBean</managed-bean-name>
+		<managed-bean-class>edu.tarleton.AdminBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>profileBean</managed-bean-name>
+		<managed-bean-class>edu.tarleton.ProfileBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
 
 </faces-config>

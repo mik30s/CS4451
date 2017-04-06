@@ -6,9 +6,10 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
    <h:head>
-      <title>Login - Course Project</title>
+      <title><ui:insert name="title"></ui:insert></title>
       <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       <h:outputStylesheet library="css" name="animate.css"></h:outputStylesheet>
       <ui:insert name="css" />
@@ -17,10 +18,9 @@
         <nav class="navbar navbar-inverse navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand">CS4451</a>
+                    <a class="navbar-brand">Swine Project</a>
                 </div>
-                <ui:insert name="menu">
-                </ui:insert>
+                <ui:insert name="menu"></ui:insert>
             </div>
         </nav>
          <ui:insert name="content"> 

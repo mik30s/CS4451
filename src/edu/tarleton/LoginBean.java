@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 
 public class LoginBean {
     private String email;
@@ -27,28 +28,27 @@ public class LoginBean {
     
     public String logIn(){
         // check if users file exists
-        File userFile = new File("C:\\tmp\\course-project\\"+this.email+".txt");
+        File userFile = new File("C:\\tmp\\course-project\\userdata\\"+this.email);
         if(userFile.exists()){
             System.out.println("opening file");
             try{
                 FileInputStream fis = new FileInputStream(userFile);
-                BufferedReader bf =  new BufferedReader(new InputStreamReader(fis));
-                String password = bf.readLine();
-                String mode = bf.readLine();
-                if(password.equals(this.password)){
+                ObjectInputStream of =  new ObjectInputStream(fis);
+                User user = (User)of.readObject();
+                if(password.equals(user.getPassword())){
                       System.out.println("found password");
-                      bf.close();
-                      if(mode.equals("admin")){
+                      of.close();
+                      if(user.getType().equals("admin")){
                           return "admin";
                       }
-                      else if(mode.equals("data_entry")){
+                      else if(user.getType().equals("data_entry")){
                           return "data_entry";
                       }
-                      else if(mode.equals("evaluator")){
+                      else if(user.getType().equals("evaluator")){
                           return "evaluator";
                       }
                 }
-                bf.close();
+                of.close();
             }
             catch(Exception ex){
                 ex.printStackTrace();

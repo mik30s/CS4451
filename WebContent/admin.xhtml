@@ -7,11 +7,14 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
       
  <ui:composition template="main_layout.xhtml">
+        <ui:define name="title">
+            Admin Page - Swine Project
+        </ui:define>
         <ui:define name="menu">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-right"> 
-                <li><a href="#"><i class="material-icons">face</i> Profile</a></li>
-                <li><a href="/CourseProject/faces/login.xhtml"><i class="material-icons">lock_open</i> Logout</a></li>
+                <li><a href="#"><span class="fa fa-user"></span> Profile</a></li>
+                <li><a href="/CourseProject/faces/login.xhtml"><span class="fa fa-sign-out"></span> Logout</a></li>
               </ul>
             </div><!-- /.navbar-collapse -->
         </ui:define>
@@ -23,29 +26,56 @@
                 <div class="container">
                     <div class="backdrop">
                     <div class="page-header">
-	                    	<div class="container"><h3>Admin Dashboard</h3></div>
+	                    	<div class="container"><h3> <span class="fa fa-cogs"></span> Admin Dashboard</h3></div>
 	                    </div>
                     </div>
                     <div class="dash-content">
 	                    <div id="admin-tabs" class="container">
 	                    	<ul class="nav nav-pills">
-	                    		<li class="active">
-	                    			<a href="#manage-users-tab" data-toggle="tab">Manage Users</a>
-	                    		</li>
-	                    		<li>
-	                    			<a href="#tbd1" data-toggle="tab">TBD</a>
-	                    		</li>
+	                    		<li class="active"><a href="#manage-users-tab" data-toggle="tab">Manage Users</a></li>
+	                    		<li><a href="#tbd1" data-toggle="tab">TBD</a></li>
+                                <li><a href="#tbd1" data-toggle="tab">TBD</a></li>
+                                <li><a href="#tbd1" data-toggle="tab">TBD</a></li>
 	                    	</ul>
 	                    	<div class="tab-content clearfix">
 		                    	<div class="tab-pane active" id="manage-users-tab">
-		                    		<h3>Manage your users here.</h3>
+		                    		<h4>Change user options here</h4>
+                                    <div class="panel">
+                                        <div class="panel-body">
+                                            <h:dataTable value="#{adminBean.users}" var="user" class="table">
+                                                <h:column>
+                                                    <f:facet name="header">Full Name</f:facet>
+                                                    #{user.fullName}
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">Email</f:facet>
+                                                    #{user.email}
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">Type</f:facet>
+                                                    #{user.type}
+                                                </h:column> 
+                                                <h:column>
+                                                    <f:facet name="header">Password</f:facet>
+                                                    <input class="form-control" type="password" disabled="true"  value="#{user.password}"></input>
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">Actions</f:facet>
+                                                    <div class="btn-group">
+                                                        <a class="btn btn-sm btn-info"><i class="fa fa-trash"></i> Edit</a>
+                                                        <a class="btn btn-sm btn-success"><i class="fa fa-eye"></i> Profile</a>
+                                                        <a class="btn btn-sm btn-danger"><i class="fa fa-remove"></i> Delete</a>
+                                                    </div>
+                                                </h:column>
+                                            </h:dataTable>
+                                        </div>
+                                    </div>
 		                    	</div>
 		                    	<div class="tab-pane" id="tbd1">
 		                    		<h3>TBD.</h3>
 		                    	</div>
 	                    	</div>
 	                    </div>
-	                    
                     </div>
                 </div>
             </div>
