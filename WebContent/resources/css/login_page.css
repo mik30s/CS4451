@@ -5,6 +5,10 @@ a.btn, button, input, input[type="submit"], input[type="text"], input[type="pass
   border-top-left-radius: 0px !important;
   border-top-right-radius: 0px !important; }
 
+* {
+  -moz-animation-duration: 1s;
+  -webkit-animation-delay: 0.25s; }
+
 body, html {
   width: 100%;
   height: 100%;
@@ -35,6 +39,7 @@ body, html {
     padding: 0px;
     height: auto; }
   body .content, html .content {
+    margin-top: 2em;
     background: -webkit-linear-gradient(#18c52d 0%, #12b323 100%);
     background: -moz-linear-gradient(#18c52d 0%, #12b323 100%);
     background: -o-linear-gradient(#18c52d 0%, #12b323 100%);

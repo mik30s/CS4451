@@ -5,3 +5,10 @@ a.btn, button, input, input[type="submit"], input[type="text"], input[type="pass
     border-top-left-radius: 0px !important;
     border-top-right-radius: 0px !important;
 }
+
+* {
+  -moz-animation-duration: 1s;
+  -webkit-animation-delay: 0.25s;
+  // -webkit-animation-iteration-count: infinite;
+  // animation-iteration-count: infinite;
+}
