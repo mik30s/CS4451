@@ -7,11 +7,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
       
  <ui:composition template="main_layout.xhtml">
-        <f:metadata>
-            <f:viewParam name="id" value="#{profile.user.email}"></f:viewParam>
-        </f:metadata>
         <ui:define name="title">
-            Admin Page - Swine Project
+             Profile - Swine Project
         </ui:define>
         <ui:define name="menu">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -29,11 +26,12 @@
                 <div class="container">
                     <div class="backdrop">
                     <div class="page-header">
-                            <div class="container"><h3> <span class="fa fa-user"></span> User Profile</h3></div>
+                            <div class="container"><h3> <span class="fa fa-user"></span>#{profileBean.user.fullName} User Profile</h3></div>
                         </div>
                     </div>
                     <div class="dash-content">
-                        
+                    <p>Profile</p>
+                        <h:outputText value="#{profileBean.user.fullName}"></h:outputText>
                     </div>
                 </div>
             </div>

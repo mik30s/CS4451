@@ -38,10 +38,12 @@
                                 <li><a href="#tbd1" data-toggle="tab">TBD</a></li>
 	                    	</ul>
 	                    	<div class="tab-content clearfix">
+	                    		
 		                    	<div class="tab-pane active" id="manage-users-tab">
 		                    		<h4>Change user options here</h4>
                                     <div class="panel">
                                         <div class="panel-body">
+                                        	<h:form>
                                             <h:dataTable value="#{adminBean.users}" var="user" class="table">
                                                 <h:column>
                                                     <f:facet name="header">Full Name</f:facet>
@@ -62,12 +64,19 @@
                                                 <h:column>
                                                     <f:facet name="header">Actions</f:facet>
                                                     <div class="btn-group">
-                                                        <a href="" class="btn btn-sm btn-info"><i class="fa fa-trash"></i> Edit</a>
-                                                        <a href="profile.xhtml?id=#{user.email}" class="btn btn-sm btn-success"><i class="fa fa-eye"></i> Profile</a>
-                                                        <a href="" class="btn btn-sm btn-danger"><i class="fa fa-remove"></i> Delete</a>
+                                                        <h:commandLink action="#" class="btn btn-sm btn-info">
+                                                        	<i class="fa fa-trash"></i> Edit
+                                                        </h:commandLink>
+                                                        <h:commandLink action="#{profileBean.getUserProfile(user)}" class="btn btn-sm btn-success">
+                                                        	<i class="fa fa-eye"></i> Profile
+                                                       	</h:commandLink>
+                                                        <h:commandLink href="" class="btn btn-sm btn-danger">
+                                                        	<i class="fa fa-remove"></i> Delete
+                                                        </h:commandLink>
                                                     </div>
                                                 </h:column>
                                             </h:dataTable>
+                                            </h:form>
                                         </div>
                                     </div>
 		                    	</div>

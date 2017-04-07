@@ -30,7 +30,7 @@ public class LoginBean {
         // check if users file exists
         File userFile = new File("C:\\tmp\\course-project\\userdata\\"+this.email);
         if(userFile.exists()){
-            System.out.println("opening file");
+            //System.out.println("opening file");
             try{
                 FileInputStream fis = new FileInputStream(userFile);
                 ObjectInputStream of =  new ObjectInputStream(fis);
