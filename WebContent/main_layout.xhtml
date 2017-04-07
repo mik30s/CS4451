@@ -8,11 +8,14 @@
    <h:head>
       <title><ui:insert name="title"></ui:insert></title>
       <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+      <h:outputStylesheet library="css" name="main_layout.css"></h:outputStylesheet>
+      <h:outputStylesheet library="css" name="animate.css"></h:outputStylesheet>
+      
+      <ui:insert name="css" />
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-      <h:outputStylesheet library="css" name="animate.css"></h:outputStylesheet>
-      <ui:insert name="css" />
    </h:head>
    <h:body>
         <nav class="navbar navbar-inverse navbar-static-top">
@@ -20,7 +23,22 @@
                 <div class="navbar-header">
                     <a class="navbar-brand">Swine Project</a>
                 </div>
-                <ui:insert name="menu"></ui:insert>
+                <ul class="nav navbar-nav navbar-right">
+                	<ui:insert name="menu">
+               	
+              	    </ui:insert>
+                	<li><h:link outcome="profile">
+		    			<f:param name="id" value="#{user.email}" />
+                        <f:param name="edit" value="true" />  	
+         		        <span class="fa fa-user"></span> Profile
+			   			</h:link>
+			   		</li>
+			   		<li><h:link outcome="login">
+         		        <span class="fa fa-sign-out"></span> Logout
+			   			</h:link>
+			   		</li>
+		   			
+                </ul>
             </div>
         </nav>
          <ui:insert name="content"> 

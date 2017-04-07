@@ -1,7 +1,9 @@
-.btn, input, .form-control, .panel, .list-group, .list-group-item {
-  border-radius: 0px;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px; }
+.form, .form-horizontal,
+a.btn, button, input, input[type="submit"], input[type="text"], input[type="password"],
+.alert, .alert-warning, .btn, input, .btn-success, .btn-danger, .btn-info, .form-control, .panel, .list-group, .list-group-item {
+  border-radius: 0px !important;
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important; }
 
 body, html {
   width: 100%;

@@ -1,4 +1,4 @@
-@import '_all.scss'; 
+@import 'all'; 
 
 body, html{
 	width: 100%;
@@ -6,6 +6,10 @@ body, html{
 	background-color: #ffffff;
 	background-image: url("/CourseProject/faces/javax.faces.resource/img/debut-light.png");
 	font-family: 'Lato';
+
+	nav.navbar{
+		margin: 0px;
+	}
 	
 	.panel{
 		border-radius: 0px;
@@ -21,19 +25,6 @@ body, html{
 		background: transparent;
 		text-align:center;
 		color: white;
-	}
-
-	.content {
-		background: -webkit-linear-gradient(#18c52d 0%, #12b323 100%);
-		background: -moz-linear-gradient(#18c52d 0%, #12b323 100%);
-		background: -o-linear-gradient(#18c52d 0%, #12b323 100%);
-		background: linear-gradient(#18c52d 0%, #12b323 100%);
-		margin-left: auto;
-		margin-right: auto;
-		max-width: 400px;
-		box-shadow: 0px 0px 20px 2px rgba(197,197,197, 0.8);
-		padding: 0px;
-		height: auto;
 	}
 }
 

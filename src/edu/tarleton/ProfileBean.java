@@ -2,12 +2,35 @@ package edu.tarleton;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.Map;
+
+import javax.faces.context.FacesContext;
 
 public class ProfileBean {
     User user;
+    String id;
+    boolean editAllowed;
     
-    public User getUser(){
+    public boolean isEditAllowed() {
+		return editAllowed;
+	}
+
+	public void setEditAllowed(boolean editAllowed) {
+		this.editAllowed = editAllowed;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public User getUser(){
         return this.user;
     }
     
@@ -16,14 +39,24 @@ public class ProfileBean {
         System.out.println(user.getEmail());
     }
     
-    public String getUserProfile(User user) throws Exception {
+    public String getUserProfile() throws Exception {
         // get use information from files and database tables
-        File file = new File("C:\\tmp\\course-project\\userdata\\"+user.getEmail());
+        File file = new File("C:\\tmp\\course-project\\userdata\\"+id);
         FileInputStream fis = new FileInputStream(file);
         ObjectInputStream ois = new ObjectInputStream(fis);
         user = (User)ois.readObject();
-        System.out.println(user.getFullName());
+        System.out.println("User is "+user.getFullName());
         
         return "profile";
+    }
+    
+    public void modifyUserProfile() throws Exception {
+    	 // get use information from files and database tables
+        File file = new File("C:\\tmp\\course-project\\userdata\\"+id);
+        FileOutputStream fis = new FileOutputStream(file);
+        ObjectOutputStream ois = new ObjectOutputStream(fis);
+        ois.writeObject(this.user);
+        System.out.println("updated  "+user.getFullName());
+        
     }
 }

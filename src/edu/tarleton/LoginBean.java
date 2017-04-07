@@ -9,8 +9,17 @@ import java.io.ObjectInputStream;
 public class LoginBean {
     private String email;
     private String password;
+    private User user;
     
-    public  String getEmail(){
+    public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public  String getEmail(){
         return email;
     }
     
@@ -34,17 +43,17 @@ public class LoginBean {
             try{
                 FileInputStream fis = new FileInputStream(userFile);
                 ObjectInputStream of =  new ObjectInputStream(fis);
-                User user = (User)of.readObject();
+                this.user = (User)of.readObject();
                 if(password.equals(user.getPassword())){
                       System.out.println("found password");
                       of.close();
                       if(user.getType().equals("admin")){
                           return "admin";
                       }
-                      else if(user.getType().equals("data_entry")){
+                      else if(user.getType().equals("data")){
                           return "data_entry";
                       }
-                      else if(user.getType().equals("evaluator")){
+                      else if(user.getType().equals("user")){
                           return "evaluator";
                       }
                 }

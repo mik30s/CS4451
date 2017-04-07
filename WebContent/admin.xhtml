@@ -10,16 +10,11 @@
         <ui:define name="title">
             Admin Page - Swine Project
         </ui:define>
-        <ui:define name="menu">
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav navbar-right"> 
-                <li><a href="#"><span class="fa fa-user"></span> Profile</a></li>
-                <li><a href="/CourseProject/faces/login.xhtml"><span class="fa fa-sign-out"></span> Logout</a></li>
-              </ul>
-            </div><!-- /.navbar-collapse -->
-        </ui:define>
         <ui:define name="css"> 
             <h:outputStylesheet library="css" name="admin.css"></h:outputStylesheet>
+        </ui:define>
+        <ui:define name="menu">
+        	<li><h:link outcome="admin"><span class="fa fa-cogs"></span> Dashboard</h:link></li>
         </ui:define>
         <ui:define name="content">
             <div class="animated fadeIn content">
@@ -64,15 +59,19 @@
                                                 <h:column>
                                                     <f:facet name="header">Actions</f:facet>
                                                     <div class="btn-group">
-                                                        <h:commandLink action="#" class="btn btn-sm btn-info">
-                                                        	<i class="fa fa-trash"></i> Edit
-                                                        </h:commandLink>
-                                                        <h:commandLink action="#{profileBean.getUserProfile(user)}" class="btn btn-sm btn-success">
-                                                        	<i class="fa fa-eye"></i> Profile
-                                                       	</h:commandLink>
-                                                        <h:commandLink href="" class="btn btn-sm btn-danger">
+                                                        <h:link outcome="profile" class="btn btn-sm btn-info">
+                                                        	<i class="fa fa-edit"></i> Edit
+                                                        	<f:param name="id" value="#{user.email}" />
+                                                            <f:param name="edit" value="true" />  	
+                                                        </h:link>
+                                                        <h:link outcome="profile" class="btn btn-sm btn-success">
+                                                        	<i class='fa fa-eye'></i> View Profile
+                                                        	<f:param name="id" value="#{user.email}" />
+                                                            <f:param name="edit" value="false" />  	
+                                                       	</h:link>
+                                                        <h:link href="" class="btn btn-sm btn-danger">
                                                         	<i class="fa fa-remove"></i> Delete
-                                                        </h:commandLink>
+                                                        </h:link>
                                                     </div>
                                                 </h:column>
                                             </h:dataTable>
