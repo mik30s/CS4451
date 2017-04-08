@@ -3,6 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
    <h:head>
@@ -27,17 +28,20 @@
                 	<ui:insert name="menu">
                	
               	    </ui:insert>
-                	<li><h:link outcome="profile">
-		    			<f:param name="id" value="#{user.email}" />
-                        <f:param name="edit" value="true" />  	
-         		        <span class="fa fa-user"></span> Profile
+                	<li>
+                        <h:link outcome="profile">
+    		    			<f:param name="id" value="#{loginBean.user.email}" />
+                            <f:param name="edit" value="true" />  	
+             		        <span class="fa fa-user"></span> Profile
 			   			</h:link>
 			   		</li>
-			   		<li><h:link outcome="login">
-         		        <span class="fa fa-sign-out"></span> Logout
-			   			</h:link>
+			   		<li>
+                        <h:form>
+                            <b:navCommandLink action="#{loginBean.logout}">
+             		             <span class="fa fa-sign-out"></span> Logout
+    			   			</b:navCommandLink>
+                        </h:form>
 			   		</li>
-		   			
                 </ul>
             </div>
         </nav>

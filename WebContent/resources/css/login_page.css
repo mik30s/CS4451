@@ -1,3 +1,4 @@
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mosei\/Documents\/Code\/CourseProject\/WebContent\/resources\/css\/_all\.scss}line{font-family:\000031}}
 .form, .form-horizontal,
 a.btn, button, input, input[type="submit"], input[type="text"], input[type="password"],
 .alert, .alert-warning, .btn, input, .btn-success, .btn-danger, .btn-info, .form-control, .panel, .list-group, .list-group-item {
@@ -5,28 +6,42 @@ a.btn, button, input, input[type="submit"], input[type="text"], input[type="pass
   border-top-left-radius: 0px !important;
   border-top-right-radius: 0px !important; }
 
-* {
-  -moz-animation-duration: 1s;
-  -webkit-animation-delay: 0.25s; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mosei\/Documents\/Code\/CourseProject\/WebContent\/resources\/css\/_all\.scss}line{font-family:\000039}}
+.alert {
+  margin: 0px; }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mosei\/Documents\/Code\/CourseProject\/WebContent\/resources\/css\/_all\.scss}line{font-family:\0000313}}
+* {
+  -moz-animation-duration: 0.25s;
+  -webkit-animation-duration: 0.25s;
+  animation-duration: 0.25s;
+  -webkit-animation-delay: 0.25s;
+  animation-delay: 0.25s; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mosei\/Documents\/Code\/CourseProject\/WebContent\/resources\/css\/login_page\.scss}line{font-family:\000033}}
 body, html {
   width: 100%;
   height: 100%;
   background-color: #ffffff;
   background-image: url("/CourseProject/faces/javax.faces.resource/img/debut-light.png");
   font-family: 'Lato'; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mosei\/Documents\/Code\/CourseProject\/WebContent\/resources\/css\/login_page\.scss}line{font-family:\0000310}}
   body .panel, html .panel {
     border-radius: 0px;
     background: transparent; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mosei\/Documents\/Code\/CourseProject\/WebContent\/resources\/css\/login_page\.scss}line{font-family:\0000315}}
   body .nav, html .nav {
     margin: 0px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mosei\/Documents\/Code\/CourseProject\/WebContent\/resources\/css\/login_page\.scss}line{font-family:\0000319}}
   body .panel-body, html .panel-body {
     padding: 5px;
     background: white; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mosei\/Documents\/Code\/CourseProject\/WebContent\/resources\/css\/login_page\.scss}line{font-family:\0000324}}
   body .panel-heading, html .panel-heading {
     background: transparent;
     text-align: center;
     color: white; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mosei\/Documents\/Code\/CourseProject\/WebContent\/resources\/css\/login_page\.scss}line{font-family:\0000330}}
   body .content, html .content {
     background: -webkit-linear-gradient(#18c52d 0%, #12b323 100%);
     background: -moz-linear-gradient(#18c52d 0%, #12b323 100%);
@@ -38,6 +53,7 @@ body, html {
     box-shadow: 0px 0px 20px 2px rgba(197, 197, 197, 0.8);
     padding: 0px;
     height: auto; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mosei\/Documents\/Code\/CourseProject\/WebContent\/resources\/css\/login_page\.scss}line{font-family:\0000343}}
   body .content, html .content {
     margin-top: 2em;
     background: -webkit-linear-gradient(#18c52d 0%, #12b323 100%);
@@ -50,6 +66,7 @@ body, html {
     box-shadow: 0px 0px 20px 2px rgba(197, 197, 197, 0.8);
     padding: 0px;
     height: auto; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mosei\/Documents\/Code\/CourseProject\/WebContent\/resources\/css\/login_page\.scss}line{font-family:\0000357}}
     body .content .button-group, html .content .button-group {
       text-align: center; }
 

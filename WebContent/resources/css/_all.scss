@@ -6,9 +6,13 @@ a.btn, button, input, input[type="submit"], input[type="text"], input[type="pass
     border-top-right-radius: 0px !important;
 }
 
-* {
-  -moz-animation-duration: 1s;
-  -webkit-animation-delay: 0.25s;
-  // -webkit-animation-iteration-count: infinite;
-  // animation-iteration-count: infinite;
+.alert{
+  margin: 0px;
 }
+
+* {
+  -moz-animation-duration: 0.25s;
+  -webkit-animation-duration: 0.25s;
+  animation-duration: 0.25s;
+  -webkit-animation-delay: 0.25s;
+  animation-delay: 0.25s; }

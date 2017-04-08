@@ -6,20 +6,70 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 
+import javax.faces.context.FacesContext;
+
 public class LoginBean {
     private String email;
     private String password;
     private User user;
     
+    public String logIn(){
+        // check if users file exists
+        File userFile = new File("C:\\tmp\\course-project\\userdata\\"+this.email);
+        if(userFile.exists()){
+            //System.out.println("opening file");
+            try{
+                if(this.user == null){
+                    FileInputStream fis = new FileInputStream(userFile);
+                    ObjectInputStream of =  new ObjectInputStream(fis);
+                    this.user = (User)of.readObject();
+                    if(password.equals(user.getPassword())){
+                          System.out.println("found password");
+                          of.close();
+                          if(user.getType().equals("admin")) {
+                              // create user session
+                              FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", this.user);
+                              FacesContext.getCurrentInstance().getExternalContext().redirect("admin.xhtml");
+                          }
+                          else if(user.getType().equals("data")){
+                              FacesContext.getCurrentInstance().getExternalContext().redirect("data_entry.xhtml");
+                          }
+                          else if(user.getType().equals("user")){
+                              FacesContext.getCurrentInstance().getExternalContext().redirect("evaluator.xhtml");
+                          }
+                    }
+                    of.close();
+                }
+                else{
+                    return "failed_login";
+                }
+            }
+            catch(Exception ex){
+                ex.printStackTrace();
+            }
+        }
+        
+        return "failed_login";
+    }
+    
+    // Performs a user log out.
+    // Will invalidate the current session on the server
+    // and redirect to the login page.
+    public String logout(){
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "login?faces-redirect=true";
+    }
+    
+    // Annoying java stuff.
     public User getUser() {
-		return user;
-	}
+        return user;
+    }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-	public  String getEmail(){
+    public  String getEmail(){
         return email;
     }
     
@@ -33,37 +83,5 @@ public class LoginBean {
     
     public void setPassword(String pass){
         this.password = pass;
-    }
-    
-    public String logIn(){
-        // check if users file exists
-        File userFile = new File("C:\\tmp\\course-project\\userdata\\"+this.email);
-        if(userFile.exists()){
-            //System.out.println("opening file");
-            try{
-                FileInputStream fis = new FileInputStream(userFile);
-                ObjectInputStream of =  new ObjectInputStream(fis);
-                this.user = (User)of.readObject();
-                if(password.equals(user.getPassword())){
-                      System.out.println("found password");
-                      of.close();
-                      if(user.getType().equals("admin")){
-                          return "admin";
-                      }
-                      else if(user.getType().equals("data")){
-                          return "data_entry";
-                      }
-                      else if(user.getType().equals("user")){
-                          return "evaluator";
-                      }
-                }
-                of.close();
-            }
-            catch(Exception ex){
-                ex.printStackTrace();
-            }
-        }
-        
-        return "failed_login";
     }
 }

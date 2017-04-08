@@ -39,24 +39,46 @@ public class ProfileBean {
         System.out.println(user.getEmail());
     }
     
-    public String getUserProfile() throws Exception {
+    public String get() throws Exception {
         // get use information from files and database tables
-        File file = new File("C:\\tmp\\course-project\\userdata\\"+id);
-        FileInputStream fis = new FileInputStream(file);
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        user = (User)ois.readObject();
-        System.out.println("User is "+user.getFullName());
+        if(id != null) {
+            File file = new File("C:\\tmp\\course-project\\userdata\\"+id);
+            FileInputStream fis = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            user = (User)ois.readObject();
+            System.out.println("User is "+user.getFullName());
+            
+            return "profile";
+        }
         
-        return "profile";
+        return "session_over";
     }
     
-    public void modifyUserProfile() throws Exception {
+    public String modify() throws Exception {
     	 // get use information from files and database tables
-        File file = new File("C:\\tmp\\course-project\\userdata\\"+id);
-        FileOutputStream fis = new FileOutputStream(file);
-        ObjectOutputStream ois = new ObjectOutputStream(fis);
-        ois.writeObject(this.user);
-        System.out.println("updated  "+user.getFullName());
+        if(id != null){
+            File file = new File("C:\\tmp\\course-project\\userdata\\"+id);
+            FileOutputStream fis = new FileOutputStream(file);
+            ObjectOutputStream ois = new ObjectOutputStream(fis);
+            ois.writeObject(this.user);
+            System.out.println("updated  "+user.getFullName());
+            
+            return "profile";
+        }
         
+        return "session_over";
+    }
+    
+    public String delete() throws Exception {
+        if(id != null) {
+            File file = new File("C:\\tmp\\course-project\\userdata\\"+id);
+            if(file.exists()){
+                file.delete();
+                
+                return "admin";
+            }
+        }
+        
+        return "session_over";
     }
 }

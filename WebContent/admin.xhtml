@@ -54,7 +54,7 @@
                                                 </h:column> 
                                                 <h:column>
                                                     <f:facet name="header">Password</f:facet>
-                                                    <input class="form-control" type="password" disabled="true"  value="#{user.password}"></input>
+                                                    <input class="form-control" type="password" disabled="true"  value="#{user.password}">
                                                 </h:column>
                                                 <h:column>
                                                     <f:facet name="header">Actions</f:facet>
@@ -69,9 +69,9 @@
                                                         	<f:param name="id" value="#{user.email}" />
                                                             <f:param name="edit" value="false" />  	
                                                        	</h:link>
-                                                        <h:link href="" class="btn btn-sm btn-danger">
+                                                        <h:commandButton action="#{profileBean.delete}" class="btn btn-sm btn-danger">
                                                         	<i class="fa fa-remove"></i> Delete
-                                                        </h:link>
+                                                        </h:commandButton>
                                                     </div>
                                                 </h:column>
                                             </h:dataTable>
