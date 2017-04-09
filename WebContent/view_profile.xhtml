@@ -17,7 +17,8 @@
              Profile - Swine Project
         </ui:define>
         <ui:define name="menu">
-            <li><h:link rendered="#{profileBean.user.type == 'admin'}" outcome="admin"><span class="fa fa-cogs"></span> Dashboard</h:link></li>
+            <li><h:link rendered="#{loginBean.user.type == 'admin'}"
+                        outcome="admin"><span class="fa fa-cogs"></span> Dashboard</h:link></li>
         </ui:define>
         <ui:define name="css"> 
             <h:outputStylesheet library="css" name="profile.css"></h:outputStylesheet>
@@ -32,12 +33,7 @@
                     </div>
                     <div class="dash-content">
                     	<div class="page-header">
-                    		<b:alert rendered="#{profileBean.editAllowed == true}" severity="warning">
-                    			<strong>Warning!</strong> You are editting #{profileBean.user.fullName}'s profile.
-                    		</b:alert>
-                    		<b:alert id="edit_success_alert" rendered="#{profileBean.editAllowed == true}" class="animated fadeInDownBig" severity="success">
-                    			<strong>Done!</strong> #{profileBean.user.fullName}'s profile has been updated.
-                    		</b:alert>
+                  
                     	</div>
                     	<div class="container">
                     		<div class="row">
@@ -72,10 +68,7 @@
 			                 		    </div>
 			                 		    <div class="form-group">
 			                 		    	<div class="col-sm-8">
-			                 		    		<b:commandButton  disabled="#{not profileBean.editAllowed}" ajax="true" 
-			                 		    						  update="edit_success_alert" look="success" value="Update" 
-			                 		    						  action="#{profileBean.modify}" />
-			                 		    		<h:link  disabled="#{ profileBean.editAllowed}" class="btn btn-success" outcome="profile">
+			                 		    		<h:link class="btn btn-success" outcome="edit_profile">
 			                 		    			<f:param name="id" value="#{profileBean.user.email}" />
                                                     <f:param name="edit" value="true" />  	
 			                 		    			Edit profile

@@ -10,6 +10,11 @@ a.btn, button, input, input[type="submit"], input[type="text"], input[type="pass
   margin: 0px;
 }
 
+.animated{
+  -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
 * {
   -moz-animation-duration: 0.25s;
   -webkit-animation-duration: 0.25s;

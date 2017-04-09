@@ -42,5 +42,11 @@ public class User implements Serializable {
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
+    public void clearFields(){
+        this.email = "";
+        this.fullName = "";
+        this.password = "";
+        this.type = "";
+    }
 }
 

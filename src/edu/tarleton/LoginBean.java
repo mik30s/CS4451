@@ -14,10 +14,11 @@ public class LoginBean {
     private User user;
     
     public String logIn(){
+        System.out.println("loggin in");
         // check if users file exists
         File userFile = new File("C:\\tmp\\course-project\\userdata\\"+this.email);
         if(userFile.exists()){
-            //System.out.println("opening file");
+            System.out.println("opening file");
             try{
                 if(this.user == null){
                     FileInputStream fis = new FileInputStream(userFile);
@@ -26,9 +27,9 @@ public class LoginBean {
                     if(password.equals(user.getPassword())){
                           System.out.println("found password");
                           of.close();
+                          FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", this.user);
                           if(user.getType().equals("admin")) {
                               // create user session
-                              FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", this.user);
                               FacesContext.getCurrentInstance().getExternalContext().redirect("admin.xhtml");
                           }
                           else if(user.getType().equals("data")){
@@ -37,6 +38,8 @@ public class LoginBean {
                           else if(user.getType().equals("user")){
                               FacesContext.getCurrentInstance().getExternalContext().redirect("evaluator.xhtml");
                           }
+                          
+                          return null;
                     }
                     of.close();
                 }

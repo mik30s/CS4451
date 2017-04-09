@@ -8,6 +8,10 @@ a.btn, button, input, input[type="submit"], input[type="text"], input[type="pass
 .alert {
   margin: 0px; }
 
+.animated {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0); }
+
 * {
   -moz-animation-duration: 0.25s;
   -webkit-animation-duration: 0.25s;
@@ -50,6 +54,13 @@ body {
         width: 100%;
         padding: 0px;
         /* remove border radius for the tab */ }
+        body .content .dash-content #admin-tabs .tab-header {
+          display: inline-flex;
+          flex-direction: row;
+          width: 100%;
+          position: relative;
+          align-content: flex-start;
+          flex-wrap: wrap; }
         body .content .dash-content #admin-tabs .tab-content {
           color: white;
           background-color: #428bca;

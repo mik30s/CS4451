@@ -11,16 +11,16 @@
             <h:outputStylesheet library="css" name="failed_login.css"></h:outputStylesheet>
         </ui:define>
        <ui:define name="error_title">
-       		<h1>Session Over</h1>
+       		<h1>Operation Failed.</h1>
        </ui:define>
        <ui:define name="error_message">
-            <p>You session has ended.</p>
-            <p>Please try loggin in again to resolve the problem.</p>
+       		<p>Failed to add user</p>
+            <p>Please check all fields for valid information.</p>
+            <p>Click the button below to start again. Click the browsers back button to check fields.</p>
             <div class="button-group">
-                <h:link value = "login" class="btn btn-info" outcome = "login" />
+                <h:link value = "login" class="btn btn-info" outcome = "add_profile" />
             </div>
        </ui:define>
  </ui:composition>
- 
  
 </html>

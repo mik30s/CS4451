@@ -8,16 +8,13 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
       
  <ui:composition template="main_layout.xhtml">
- 	    <f:metadata>
- 	    	<f:viewParam name="id" value="#{profileBean.id}"></f:viewParam>
- 	    	<f:viewParam name="edit" value="#{profileBean.editAllowed}"></f:viewParam>
- 	    	<f:viewAction action="#{profileBean.get}"></f:viewAction>
- 	    </f:metadata>
         <ui:define name="title">
-             Profile - Swine Project
+             Add User - Swine Project
         </ui:define>
         <ui:define name="menu">
-            <li><h:link rendered="#{profileBean.user.type == 'admin'}" outcome="admin"><span class="fa fa-cogs"></span> Dashboard</h:link></li>
+            <li><h:link rendered="#{loginBean.user.type == 'admin'}" outcome="admin">
+            	<span class="fa fa-cogs"></span> Dashboard</h:link>
+            </li>
         </ui:define>
         <ui:define name="css"> 
             <h:outputStylesheet library="css" name="profile.css"></h:outputStylesheet>
@@ -27,16 +24,14 @@
                 <div class="container">
                     <div class="backdrop">
                     	<div class="page-header">
-                            <div class="container"><h3> <span class="fa fa-user"></span> User Profile</h3></div>
+                            <div class="container"><h3> <i class="material-icons">assignment_ind</i> Add User Profile</h3></div>
                         </div>
                     </div>
                     <div class="dash-content">
                     	<div class="page-header">
-                    		<b:alert rendered="#{profileBean.editAllowed == true}" severity="warning">
-                    			<strong>Warning!</strong> You are editting #{profileBean.user.fullName}'s profile.
-                    		</b:alert>
-                    		<b:alert id="edit_success_alert" rendered="#{profileBean.editAllowed == true}" class="animated fadeInDownBig" severity="success">
-                    			<strong>Done!</strong> #{profileBean.user.fullName}'s profile has been updated.
+                    		<b:alert rendered="#{profileBean.editAllowed == true}" severity="info">
+                    			<strong>Info!</strong> You are about to create a new user. 
+                    			Please fill out all fields before submitting the form.
                     		</b:alert>
                     	</div>
                     	<div class="container">
@@ -49,37 +44,30 @@
 			                    		<div class="form-group">
 			                    			<label class="control-label col-sm-2">Full Name </label>
 			                    			<div class="col-sm-6">
-			                 		    		<b:inputText id="fullName" type="text" value="#{profileBean.user.fullName}" disabled="#{not profileBean.editAllowed}" class="form-control" />
+			                 		    		<b:inputText id="fullName" type="text" value="#{profileBean.user.fullName}" class="form-control" />
 			                 		    	</div>
 			                    		</div>
 			                    		<div class="form-group">
 			                    			<label class="control-label col-sm-2">Email </label>
 			                    			<div class="col-sm-6">
-			                 		    		<b:inputText id="email" type="email" value="#{profileBean.user.email}" disabled="#{not profileBean.editAllowed}" class="form-control" />
+			                 		    		<b:inputText id="email" type="email" value="#{profileBean.user.email}"  class="form-control" />
 			                 		    	</div>
 			                 		    </div>
 			                 		    <div class="form-group">
 			                    			<label class="control-label col-sm-2">Password </label>
 			                    			<div class="col-sm-6">
-			                 		    		<b:inputText type="password" value="#{profileBean.user.password}" disabled="#{not profileBean.editAllowed}" class="form-control" />
+			                 		    		<b:inputText type="password" value="#{profileBean.user.password}"  class="form-control" />
 			                 		    	</div>
 			                 		    </div>
 			                 		    <div class="form-group">
 			                    			<label class="control-label col-sm-2">Type </label>
 			                    			<div class="col-sm-6">
-			                 		    		<b:inputText value="#{profileBean.user.type}" disabled="#{not profileBean.editAllowed}" class="form-control" />
+			                 		    		<b:inputText value="#{profileBean.user.type}"  class="form-control" />
 			                 		    	</div>
 			                 		    </div>
 			                 		    <div class="form-group">
 			                 		    	<div class="col-sm-8">
-			                 		    		<b:commandButton  disabled="#{not profileBean.editAllowed}" ajax="true" 
-			                 		    						  update="edit_success_alert" look="success" value="Update" 
-			                 		    						  action="#{profileBean.modify}" />
-			                 		    		<h:link  disabled="#{ profileBean.editAllowed}" class="btn btn-success" outcome="profile">
-			                 		    			<f:param name="id" value="#{profileBean.user.email}" />
-                                                    <f:param name="edit" value="true" />  	
-			                 		    			Edit profile
-			                 		    		</h:link>
+			                 		    		<b:commandButton look="success" value="Update" action="#{profileBean.add}" />
 			                 		    	</div>
 			                 		    </div>
 			                    	</h:form>

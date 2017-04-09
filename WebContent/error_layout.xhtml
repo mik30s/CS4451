@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+      
+ <ui:composition template="main_layout.xhtml">
+        <ui:define name="css"> 
+            <h:outputStylesheet library="css" name="failed_login.css"></h:outputStylesheet>
+        </ui:define>
+        <ui:define name="content">
+            <div class="animated bounceIn content">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h1><i class="material-icons md-48">error</i> 
+                        	<ui:insert name="error_title"></ui:insert>
+                        </h1>
+                    </div>
+                    <div class="panel-body">
+                        <ui:insert name="error_message"></ui:insert>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+ </ui:composition>
+ 
+</html>

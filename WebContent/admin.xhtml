@@ -35,7 +35,12 @@
 	                    	<div class="tab-content clearfix">
 	                    		
 		                    	<div class="tab-pane active" id="manage-users-tab">
-		                    		<h4>Change user options here</h4>
+		                    		<div class="container tab-header" >
+		                    			<h4>Manage user profiles here.</h4>
+		                    			<h:link class="btn btn-success btn-sm" outcome="add_profile">
+		                    				<span class="fa fa-plus"></span> Add User
+		                    			</h:link>
+                                    </div>
                                     <div class="panel">
                                         <div class="panel-body">
                                         	<h:form>
@@ -54,24 +59,25 @@
                                                 </h:column> 
                                                 <h:column>
                                                     <f:facet name="header">Password</f:facet>
-                                                    <input class="form-control" type="password" disabled="true"  value="#{user.password}">
+                                                    <input class="form-control" type="password" disabled="true"  value="#{user.password}" />
                                                 </h:column>
                                                 <h:column>
                                                     <f:facet name="header">Actions</f:facet>
                                                     <div class="btn-group">
-                                                        <h:link outcome="profile" class="btn btn-sm btn-info">
+                                                        <h:link outcome="edit_profile" class="btn btn-sm btn-info">
                                                         	<i class="fa fa-edit"></i> Edit
                                                         	<f:param name="id" value="#{user.email}" />
                                                             <f:param name="edit" value="true" />  	
                                                         </h:link>
-                                                        <h:link outcome="profile" class="btn btn-sm btn-success">
+                                                        <h:link outcome="view_profile" class="btn btn-sm btn-success">
                                                         	<i class='fa fa-eye'></i> View Profile
                                                         	<f:param name="id" value="#{user.email}" />
                                                             <f:param name="edit" value="false" />  	
                                                        	</h:link>
-                                                        <h:commandButton action="#{profileBean.delete}" class="btn btn-sm btn-danger">
+                                                        <h:commandLink onclick="alert('deleteing?');" action="#{profileBean.delete(user.email)}" class="btn btn-sm btn-danger">
                                                         	<i class="fa fa-remove"></i> Delete
-                                                        </h:commandButton>
+                                                        	<f:param name="id" value="#{user.email}" />
+                                                        </h:commandLink>
                                                     </div>
                                                 </h:column>
                                             </h:dataTable>

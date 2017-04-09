@@ -21,12 +21,13 @@ public class AdminBean {
         File[] listOfFiles = folder.listFiles();
 
         for (File file : listOfFiles) {
-            User user ;
+            User user;
             if (file.isFile()) {
                 FileInputStream fis = new FileInputStream(file);
                 ObjectInputStream oi = new ObjectInputStream(fis);
                 user = (User)oi.readObject();
                 users.add(user);
+                oi.close();
             }
         }
 
