@@ -18,19 +18,19 @@ public class ProfileBean {
     boolean editAllowed;
     
      public boolean isEditAllowed() {
-	return editAllowed;
+         return editAllowed;
      }
 
      public void setEditAllowed(boolean editAllowed) {
-	this.editAllowed = editAllowed;
+         this.editAllowed = editAllowed;
      }
 
      public String getId() {
-	return id;
+         return id;
      }
 
      public void setId(String id) {
-	this.id = id;
+         this.id = id;
      }
 
      public User getUser(){
@@ -42,19 +42,31 @@ public class ProfileBean {
         System.out.println(user.getEmail());
     }
     
+    public void createNewUser(){
+        this.user = new User();
+    }
+    
     public String add() throws Exception {
         user.clearFields();
         System.out.println("calling add");
+        System.out.println("calling add2" + user.getFullName());
         
-        if (user.getEmail() != null) {
+        if (user.getEmail() != null && !user.getEmail().equals("")) {
             File file = new File("C:\\tmp\\course-project\\userdata\\"+user.getEmail());
-            FileOutputStream fos = new FileOutputStream(file);
-            ObjectOutputStream os = new ObjectOutputStream(fos);
-            os.writeObject(user);
-            os.close();
-            
-            return "admin";
+            if (!file.exists()) {
+                FileOutputStream fos = new FileOutputStream(file);
+                ObjectOutputStream os = new ObjectOutputStream(fos);
+                os.writeObject(user);
+                os.close();
+                System.out.println("added new user "+ user.getEmail());
+                FacesContext.getCurrentInstance().getExternalContext().redirect("admin.xhtml");
+                return "admin";
+            }
+            else {
+                return "failed_add_profile";
+            }
         }
+        
         
         return "failed_add_profile";
     }
