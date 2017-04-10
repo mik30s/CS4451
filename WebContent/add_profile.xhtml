@@ -28,12 +28,12 @@
                 <div class="container">
                     <div class="backdrop">
                     	<div class="page-header">
-                            <div class="container"><h3> <i class="material-icons">assignment_ind</i> Add User Profile</h3></div>
+                            <div class="container"><h3> <span class="fa fa-user-plus"></span> Add User Profile</h3></div>
                         </div>
                     </div>
                     <div class="dash-content">
                     	<div class="page-header">
-                    		<b:alert rendered="#{profileBean.editAllowed == true}" severity="info">
+                    		<b:alert severity="info">
                     			<strong>Info!</strong> You are about to create a new user. 
                     			Please fill out all fields before submitting the form.
                     		</b:alert>
@@ -44,29 +44,29 @@
                     				<img src="" />
                     			</div>
                     			<div class="col-md-8 container">
-			                    	<h:form class="form-horizontal">
+			                    	<h:form prependId="false" class="form-horizontal">
 			                    		<div class="form-group">
 			                    			<label class="control-label col-sm-2">Full Name </label>
 			                    			<div class="col-sm-6">
-			                 		    		<b:inputText id="fullName" type="text" value="#{profileBean.user.fullName}" class="form-control" />
+			                 		    		<h:inputText value="#{profileBean.user.fullName}" class="form-control"/>
 			                 		    	</div>
 			                    		</div>
 			                    		<div class="form-group">
 			                    			<label class="control-label col-sm-2">Email </label>
 			                    			<div class="col-sm-6">
-			                 		    		<b:inputText id="email" type="email" value="#{profileBean.user.email}"  class="form-control" />
+			                 		    		<h:inputText value="#{profileBean.user.email}"  class="form-control" />
 			                 		    	</div>
 			                 		    </div>
 			                 		    <div class="form-group">
 			                    			<label class="control-label col-sm-2">Password </label>
 			                    			<div class="col-sm-6">
-			                 		    		<b:inputText type="password" value="#{profileBean.user.password}"  class="form-control" />
+			                 		    		<h:inputText value="#{profileBean.user.password}"  class="form-control" />
 			                 		    	</div>
 			                 		    </div>
 			                 		    <div class="form-group">
 			                    			<label class="control-label col-sm-2">Type </label>
 			                    			<div class="col-sm-6">
-			                 		    		<b:inputText value="#{profileBean.user.type}"  class="form-control" />
+			                 		    		<h:inputText value="#{profileBean.user.type}" class="form-control" />
 			                 		    	</div>
 			                 		    </div>
 			                 		    <div class="form-group">

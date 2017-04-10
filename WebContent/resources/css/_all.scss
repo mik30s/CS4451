@@ -10,6 +10,11 @@ a.btn, button, input, input[type="submit"], input[type="text"], input[type="pass
   margin: 0px;
 }
 
+.inline-flex-item{
+	  margin-left: 5px ;
+	  margin-right: 5px;
+}
+
 .animated{
   -webkit-transform: translateZ(0);
     transform: translateZ(0);

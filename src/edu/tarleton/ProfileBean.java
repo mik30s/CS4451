@@ -13,9 +13,9 @@ import java.util.Map;
 import javax.faces.context.FacesContext;
 
 public class ProfileBean {
-    User user;
-    String id;
-    boolean editAllowed;
+     private User user;
+     private String id;
+	 boolean editAllowed;
     
      public boolean isEditAllowed() {
          return editAllowed;
@@ -47,18 +47,18 @@ public class ProfileBean {
     }
     
     public String add() throws Exception {
-        user.clearFields();
-        System.out.println("calling add");
-        System.out.println("calling add2" + user.getFullName());
+    	this.user.clearFields();
+        System.out.println("Adding user: " + this.user.getFullName());
         
-        if (user.getEmail() != null && !user.getEmail().equals("")) {
-            File file = new File("C:\\tmp\\course-project\\userdata\\"+user.getEmail());
+        if (this.user.getEmail() != null && !this.user.getEmail().equals("")) {
+        	System.out.println("About to add user "+ this.user.getEmail());
+            File file = new File("C:\\tmp\\course-project\\userdata\\"+this.user.getEmail());
             if (!file.exists()) {
                 FileOutputStream fos = new FileOutputStream(file);
                 ObjectOutputStream os = new ObjectOutputStream(fos);
-                os.writeObject(user);
+                os.writeObject(this.user);
                 os.close();
-                System.out.println("added new user "+ user.getEmail());
+                System.out.println("added new user "+ this.user.getEmail());
                 FacesContext.getCurrentInstance().getExternalContext().redirect("admin.xhtml");
                 return "admin";
             }
@@ -66,8 +66,9 @@ public class ProfileBean {
                 return "failed_add_profile";
             }
         }
-        
-        
+        else {
+        	System.out.println("user name is not set");;
+        }
         return "failed_add_profile";
     }
     
