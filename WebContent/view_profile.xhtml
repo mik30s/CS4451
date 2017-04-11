@@ -14,10 +14,10 @@
  	    	<f:viewAction action="#{profileBean.get}"></f:viewAction>
  	    </f:metadata>
         <ui:define name="title">
-             Profile - Swine Project
+             View Profile - Swine Project
         </ui:define>
         <ui:define name="menu">
-            <li><h:link rendered="#{loginBean.user.type == 'admin'}"
+            <li><h:link rendered="#{loginBean.user.type == 'Administrator'}"
                         outcome="admin"><span class="fa fa-cogs"></span> Dashboard</h:link></li>
         </ui:define>
         <ui:define name="css"> 

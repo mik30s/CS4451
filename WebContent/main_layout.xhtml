@@ -36,11 +36,16 @@
 			   			</h:link>
 			   		</li>
 			   		<li>
-                        <h:form>
-                            <b:navCommandLink action="#{loginBean.logout}">
+                        <h:link outcome="load_app">
+                            <f:param name="id" value="#{loginBean.user.email}" />
+                            <f:param name="edit" value="true" />    
+                            <span class="fa fa-sign-out"></span> Logout
+                        </h:link>
+                        <!-- <h:form>
+                            <b:navCommandLink action="#{loginBean}">
              		             <span class="fa fa-sign-out"></span> Logout
     			   			</b:navCommandLink>
-                        </h:form>
+                        </h:form> -->
 			   		</li>
                 </ul>
             </div>
@@ -50,7 +55,7 @@
         </ui:insert> 
         <footer class="footer">
         	<div class="container">
-        		
+        		<p>Tarleton State university</p>
         	</div>
         </footer>
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

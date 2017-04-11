@@ -12,6 +12,9 @@ a.btn, button, input, input[type="submit"], input[type="text"], input[type="pass
   margin-left: 5px;
   margin-right: 5px; }
 
+.content {
+  height: 100%; }
+
 .center-content {
   transform: translate(-50%, -25%);
   position: absolute;
@@ -38,7 +41,6 @@ body {
   background: url("/CourseProject/faces/javax.faces.resource/img/grey-prism.svg"); }
   body .content {
     position: relative;
-    height: auto;
     width: 100%;
     padding: 0px; }
     body .content .backdrop {

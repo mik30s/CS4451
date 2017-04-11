@@ -14,10 +14,10 @@
  	    	<f:viewAction action="#{profileBean.get}"></f:viewAction>
  	    </f:metadata>
         <ui:define name="title">
-             Profile - Swine Project
+             Edit Profile - Swine Project
         </ui:define>
         <ui:define name="menu">
-            <li><h:link rendered="#{loginBean.user.type == 'admin'}" outcome="admin"><span class="fa fa-cogs"></span> Dashboard</h:link></li>
+            <li><h:link rendered="#{loginBean.user.type == 'Administrator'}" outcome="admin"><span class="fa fa-cogs"></span> Dashboard</h:link></li>
         </ui:define>
         <ui:define name="css"> 
             <h:outputStylesheet library="css" name="profile.css"></h:outputStylesheet>
@@ -65,7 +65,12 @@
 			                 		    <div class="form-group">
 			                    			<label class="control-label col-sm-2">Type </label>
 			                    			<div class="col-sm-6">
-			                 		    		<b:inputText value="#{profileBean.user.type}" disabled="#{not profileBean.editAllowed}" class="form-control" />
+			                 		    		<b:selectOneMenu value="#{profileBean.user.type}" disabled="#{not profileBean.editAllowed}" class="form-control"  required="true">
+                                                         <f:selectItem itemLabel="(Please select a user type)" itemValue=""/>
+                                                         <f:selectItem itemLabel="Administrator" itemValue="Administrator"/>
+                                                         <f:selectItem itemLabel="Evaluator" itemValue="Evaluator"/>
+                                                         <f:selectItem itemLabel="Data Entry" itemValue="Data Entry"/>
+                                                 </b:selectOneMenu>
 			                 		    	</div>
 			                 		    </div>
 			                 		    <div class="form-group">

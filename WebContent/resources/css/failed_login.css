@@ -12,6 +12,9 @@ a.btn, button, input, input[type="submit"], input[type="text"], input[type="pass
   margin-left: 5px;
   margin-right: 5px; }
 
+.content {
+  height: 100%; }
+
 .center-content {
   transform: translate(-50%, -25%);
   position: absolute;
@@ -59,5 +62,7 @@ body, html {
     margin-top: 2em; }
     body .content .button-group, html .content .button-group {
       text-align: center; }
+  body .footer, html .footer {
+    position: fixed; }
 
 /*# sourceMappingURL=failed_login.css.map */

@@ -86,6 +86,7 @@ public class ProfileBean {
             ois.writeObject(this.user);
             System.out.println("updated "+user.getFullName());
             ois.close();
+            file.renameTo(new File(user.getEmail()));
             
             return "view_profile?faces-redirect=true&id="+this.id+"&edit=true";
         }

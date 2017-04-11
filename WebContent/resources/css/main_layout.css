@@ -12,6 +12,9 @@ a.btn, button, input, input[type="submit"], input[type="text"], input[type="pass
   margin-left: 5px;
   margin-right: 5px; }
 
+.content {
+  height: 100%; }
+
 .center-content {
   transform: translate(-50%, -25%);
   position: absolute;
@@ -47,5 +50,16 @@ body, html {
     background: transparent;
     text-align: center;
     color: white; }
+  body .footer, html .footer {
+    border-top: 0.5em ridge green;
+    background-repeat: repeat;
+    position: relative;
+    bottom: 0px;
+    height: 60px;
+    width: 100%;
+    -webkit-box-shadow: inset 0px 17px 43px -11px rgba(10, 10, 10, 0.75);
+    -moz-box-shadow: inset 0px 17px 43px -11px rgba(10, 10, 10, 0.75);
+    box-shadow: inset 0px 17px 43px -11px rgba(10, 10, 10, 0.75);
+    background-image: url("/CourseProject/faces/javax.faces.resource/img/bg-footer-noise.jpg"); }
 
 /*# sourceMappingURL=main_layout.css.map */

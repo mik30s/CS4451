@@ -26,5 +26,18 @@ body, html{
 		text-align:center;
 		color: white;
 	}
+
+	.footer{
+		border-top: 0.5em ridge green;
+		background-repeat:repeat;
+		position: relative;
+		bottom: 0px;
+		height: 60px;
+		width:100%;
+		-webkit-box-shadow: inset 0px 17px 43px -11px rgba(10,10,10,0.75);
+		-moz-box-shadow: inset 0px 17px 43px -11px rgba(10,10,10,0.75);
+		box-shadow: inset 0px 17px 43px -11px rgba(10,10,10,0.75);
+		background-image: url("/CourseProject/faces/javax.faces.resource/img/bg-footer-noise.jpg");
+	}
 }
 

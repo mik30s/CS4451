@@ -7,8 +7,11 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
       
  <ui:composition template="main_layout.xhtml">
+        <f:metadata>
+            <f:viewAction action="#{loginBean.logout}"></f:viewAction>
+        </f:metadata>
         <ui:define name="title">
-            Admin Page - Swine Project
+            Loading App - Swine Project
         </ui:define>
         <ui:define name="css"> 
             <h:outputStylesheet library="css" name="login_static.css"></h:outputStylesheet>
@@ -23,11 +26,12 @@
                         <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
                            <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
                         </svg>
-                        <h3 class="">Loading app</h3>
+                        <ui:insert>
+                            <h3>Loading app</h3>
+                        </ui:insert>
                     </div>
                 </div>
             </div>
-          
         </ui:define>
  </ui:composition>
  

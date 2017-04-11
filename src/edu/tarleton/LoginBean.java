@@ -12,6 +12,8 @@ public class LoginBean {
     private String email;
     private String password;
     private User user;
+    private boolean isLoggedIn;
+   
     
     public LoginBean getInstance(){
         return this;
@@ -42,6 +44,7 @@ public class LoginBean {
                           else if(user.getType().equals("Evaluator")){
                               FacesContext.getCurrentInstance().getExternalContext().redirect("evaluator.xhtml");
                           }
+                          isLoggedIn = true;
                           
                           return null;
                     }
@@ -62,9 +65,10 @@ public class LoginBean {
     // Performs a user log out.
     // Will invalidate the current session on the server
     // and redirect to the login page.
-    public String logout(){
+    public void logout() throws Exception {  
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        return "login?faces-redirect=true";
+        isLoggedIn = false;
+        FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
     }
     
     // Annoying java stuff.
