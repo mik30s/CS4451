@@ -6,48 +6,27 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Map;
-
-import javax.faces.context.FacesContext;
 
 public class ProfileBean {
      private User user;
      private String id;
-	 boolean editAllowed;
+     boolean editAllowed;
     
-     public boolean isEditAllowed() {
-         return editAllowed;
-     }
-
-     public void setEditAllowed(boolean editAllowed) {
-         this.editAllowed = editAllowed;
-     }
-
-     public String getId() {
-         return id;
-     }
-
-     public void setId(String id) {
-         this.id = id;
-     }
-
-     public User getUser(){
-        return this.user;
-     }
+     // new profile fields to create a new user.
+     private String newfullName;
+     private String newPassword;
+     private String newType;
+     private String newEmail;
+     
     
-    public void setUser(User user){
-        this.user = user;
-        System.out.println(user.getEmail());
-    }
-    
-    public void createNewUser(){
-        this.user = new User();
-    }
-    
+    // Add a user profile
     public String add() throws Exception {
     	this.user.clearFields();
+    	this.user.setEmail(newEmail);
+    	this.user.setFullName(newfullName);
+    	this.user.setPassword(newPassword);
+    	this.user.setType(newType);
         System.out.println("Adding user: " + this.user.getFullName());
         
         if (this.user.getEmail() != null && !this.user.getEmail().equals("")) {
@@ -59,7 +38,7 @@ public class ProfileBean {
                 os.writeObject(this.user);
                 os.close();
                 System.out.println("added new user "+ this.user.getEmail());
-                FacesContext.getCurrentInstance().getExternalContext().redirect("admin.xhtml");
+                // FacesContext.getCurrentInstance().getExternalContext().redirect("admin.xhtml");
                 return "admin";
             }
             else {
@@ -72,6 +51,8 @@ public class ProfileBean {
         return "failed_add_profile";
     }
     
+    
+    // Get a users profile.
     public String get() throws Exception {
         // get use information from files and database tables
         if(id != null) {
@@ -93,24 +74,26 @@ public class ProfileBean {
         return "session_over";
     }
     
+    // Modify a users profile
     public String modify(String id) throws Exception {
         System.out.println("calling modify.");
         System.out.println("id = "+ this.id);
         // get use information from files and database tables
-        if(id != null){
+        if(id != null) {
             File file = new File("C:\\tmp\\course-project\\userdata\\"+id);
             FileOutputStream fis = new FileOutputStream(file);
             ObjectOutputStream ois = new ObjectOutputStream(fis);
             ois.writeObject(this.user);
-            System.out.println("updated  "+user.getFullName());
+            System.out.println("updated "+user.getFullName());
             ois.close();
             
-            return "view_profile?faces-redirect=true&id="+this.id+"&"+"edit=true";
+            return "view_profile?faces-redirect=true&id="+this.id+"&edit=true";
         }
         
         return "session_over";
     }
     
+    // Delete a users profile
     public String delete(String id) throws Exception {
         System.out.println("calling delete.");
         System.out.println("id = "+ id);
@@ -128,4 +111,67 @@ public class ProfileBean {
         
         return "session_over";
     }
+    
+    public boolean isEditAllowed() {
+        return editAllowed;
+    }
+
+    public void setEditAllowed(boolean editAllowed) {
+        this.editAllowed = editAllowed;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public User getUser(){
+       return this.user;
+    }
+   
+   public void setUser(User user) {
+       this.user = user;
+       System.out.println(user.getEmail());
+   }
+   
+   public void createNewUser() {
+       this.user = new User();
+   }
+   
+   public String getNewfullName() {
+       return newfullName;
+   }
+
+   public void setNewfullName(String newfullName) {
+       this.newfullName = newfullName;
+   }
+
+   public String getNewPassword() {
+       return newPassword;
+   }
+
+   public void setNewPassword(String newPassword) {
+       this.newPassword = newPassword;
+   }
+
+   public String getNewType() {
+       return newType;
+   }
+
+   public void setNewType(String newType) {
+       this.newType = newType;
+   }
+
+   public String getNewEmail() {
+       return newEmail;
+   }
+
+   public void setNewEmail(String newEmail) {
+       this.newEmail = newEmail;
+   }
+
+
 }

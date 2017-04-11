@@ -29,6 +29,40 @@ a.btn, button, input, input[type="submit"], input[type="text"], input[type="pass
   -webkit-animation-delay: 0.25s;
   animation-delay: 0.25s; }
 
+.spinner {
+  animation: rotator 1.4s linear infinite; }
+
+@keyframes rotator {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(270deg); } }
+.path {
+  stroke-dasharray: 187;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite; }
+
+@keyframes colors {
+  0% {
+    stroke: #18c52d; }
+  25% {
+    stroke: #FFF; }
+  50% {
+    stroke: #18c52d; }
+  75% {
+    stroke: #FFF; }
+  100% {
+    stroke: #18c52d; } }
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 187; }
+  50% {
+    stroke-dashoffset: 46.75;
+    transform: rotate(135deg); }
+  100% {
+    stroke-dashoffset: 187;
+    transform: rotate(450deg); } }
 .navbar {
   margin: 0px; }
 
@@ -37,50 +71,28 @@ body {
   height: 100%;
   background: url("/CourseProject/faces/javax.faces.resource/img/grey-prism.svg"); }
   body .content {
-    position: relative;
-    height: auto;
+    position: fixed;
+    height: 100%;
     width: 100%;
-    padding: 0px; }
-    body .content .backdrop {
+    padding: 0px;
+    text-align: center; }
+    body .content .login-static.backdrop {
       position: absolute;
       width: 100%;
-      height: 5em;
+      height: 100%;
       background: linear-gradient(#18c52d 0%, #12b323 100%);
       z-index: 0;
-      opacity: 0.8;
+      opacity: 0.5;
       left: 0px;
       top: 0px;
       border-bottom: 2px groove #12b323; }
-    body .content .dash-content {
-      padding: 5px;
-      top: 5em;
-      margin-left: auto;
-      margin-right: auto;
-      height: auto;
-      position: relative;
-      box-shadow: 0px 2px 10px 0px rgba(30, 30, 30, 0.5);
-      background: white; }
-      body .content .dash-content .page-header {
-        color: black; }
-      body .content .dash-content #admin-tabs {
-        background: white;
-        height: auto;
-        width: 100%;
-        padding: 0px;
-        /* remove border radius for the tab */ }
-        body .content .dash-content #admin-tabs .tab-content {
-          color: white;
-          background-color: #428bca;
-          padding: 5px 15px; }
-          body .content .dash-content #admin-tabs .tab-content .panel .panel-body .table {
-            color: black; }
-        body .content .dash-content #admin-tabs .nav-pills > li > a {
-          border-radius: 0; }
-        body .content .dash-content #admin-tabs .nav-pills > li > a.active {
-          background: #428bca; }
+      body .content .login-static.backdrop .center-content {
+        color: white;
+        position: relative;
+        max-width: 400px; }
   body .page-header {
     margin: 0px;
     border-bottom: 0px;
     color: white; }
 
-/*# sourceMappingURL=profile.css.map */
+/*# sourceMappingURL=login_static.css.map */

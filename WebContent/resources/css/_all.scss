@@ -10,9 +10,18 @@ a.btn, button, input, input[type="submit"], input[type="text"], input[type="pass
   margin: 0px;
 }
 
-.inline-flex-item{
+.inline-flex-item {
 	  margin-left: 5px ;
 	  margin-right: 5px;
+}
+
+.center-content{
+ // max-width: 200px;
+  //max-height: 200px;
+  transform: translate(-50%, -25%);
+  position: absolute;
+  top: 25%;
+  left: 50%;
 }
 
 .animated{

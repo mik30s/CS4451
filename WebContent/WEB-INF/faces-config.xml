@@ -19,5 +19,10 @@
 		<managed-bean-class>edu.tarleton.ProfileBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>appBean</managed-bean-name>
+		<managed-bean-class>edu.tarleton.AppBean</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
 
 </faces-config>

@@ -13,6 +13,10 @@ public class LoginBean {
     private String password;
     private User user;
     
+    public LoginBean getInstance(){
+        return this;
+    }
+    
     public String logIn(){
         System.out.println("loggin in");
         // check if users file exists
@@ -28,14 +32,14 @@ public class LoginBean {
                           System.out.println("found password");
                           of.close();
                           FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", this.user);
-                          if(user.getType().equals("admin")) {
+                          if(user.getType().equals("Administrator")) {
                               // create user session
                               FacesContext.getCurrentInstance().getExternalContext().redirect("admin.xhtml");
                           }
-                          else if(user.getType().equals("data")){
+                          else if(user.getType().equals("Data Entry")){
                               FacesContext.getCurrentInstance().getExternalContext().redirect("data_entry.xhtml");
                           }
-                          else if(user.getType().equals("user")){
+                          else if(user.getType().equals("Evaluator")){
                               FacesContext.getCurrentInstance().getExternalContext().redirect("evaluator.xhtml");
                           }
                           

@@ -39,44 +39,49 @@
                     		</b:alert>
                     	</div>
                     	<div class="container">
-                    		<div class="row">
-                    			<div class="col-md-4">
-                    				<img src="" />
-                    			</div>
-                    			<div class="col-md-8 container">
-			                    	<h:form prependId="false" class="form-horizontal">
+                            <h:form prependId="false" class="form-horizontal">
+                        		<div class="row">
+                        			<div class="col-md-4">
+                        				<img src="" />
+                        			</div>
+                        			<div class="col-md-8 container">
 			                    		<div class="form-group">
 			                    			<label class="control-label col-sm-2">Full Name </label>
 			                    			<div class="col-sm-6">
-			                 		    		<h:inputText value="#{profileBean.user.fullName}" class="form-control"/>
+			                 		    		<b:inputText value="#{profileBean.newfullName}" placeholder="Both Last and first names" class="form-control" required="true"/>
 			                 		    	</div>
 			                    		</div>
 			                    		<div class="form-group">
 			                    			<label class="control-label col-sm-2">Email </label>
 			                    			<div class="col-sm-6">
-			                 		    		<h:inputText value="#{profileBean.user.email}"  class="form-control" />
+			                 		    		<b:inputText value="#{profileBean.newEmail}" placeholder="name@domain.com" class="form-control" required="true"/>
 			                 		    	</div>
 			                 		    </div>
 			                 		    <div class="form-group">
 			                    			<label class="control-label col-sm-2">Password </label>
 			                    			<div class="col-sm-6">
-			                 		    		<h:inputText value="#{profileBean.user.password}"  class="form-control" />
+			                 		    		<b:inputText value="#{profileBean.newPassword}" placeholder="should be at least 4 characters" class="form-control" required="true" />
 			                 		    	</div>
 			                 		    </div>
 			                 		    <div class="form-group">
 			                    			<label class="control-label col-sm-2">Type </label>
 			                    			<div class="col-sm-6">
-			                 		    		<h:inputText value="#{profileBean.user.type}" class="form-control" />
+			                 		    		<b:selectOneMenu value="#{profileBean.newType}" class="form-control"  required="true">
+                                                    <f:selectItem itemLabel="(Please select a user type)" itemValue=""/>
+                                                         <f:selectItem itemLabel="Administrator" itemValue="Administrator"/>
+                                                         <f:selectItem itemLabel="Evaluator" itemValue="Evaluator"/>
+                                                         <f:selectItem itemLabel="Data Entry" itemValue="Data Entry"/>
+                                                 </b:selectOneMenu>
 			                 		    	</div>
 			                 		    </div>
 			                 		    <div class="form-group">
 			                 		    	<div class="col-sm-8">
-			                 		    		<h:commandButton look="success" value="Add User" action="#{profileBean.add}" />
+			                 		    		<h:commandButton class="btn btn-success" value="Add User" action="#{profileBean.add}" />
 			                 		    	</div>
 			                 		    </div>
-			                    	</h:form>
-		                    	</div>
-	                    	</div>
+    		                    	</div>
+    	                    	</div>
+                            </h:form>
                     	</div>
                     </div>
                 </div>
