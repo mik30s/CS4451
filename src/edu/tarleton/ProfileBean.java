@@ -8,6 +8,8 @@ import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import javax.faces.context.FacesContext;
+
 public class ProfileBean {
      private User user;
      private String id;
@@ -32,18 +34,14 @@ public class ProfileBean {
         if (this.user.getEmail() != null && !this.user.getEmail().equals("")) {
         	System.out.println("About to add user "+ this.user.getEmail());
             File file = new File("C:\\tmp\\course-project\\userdata\\"+this.user.getEmail());
-            if (!file.exists()) {
-                FileOutputStream fos = new FileOutputStream(file);
-                ObjectOutputStream os = new ObjectOutputStream(fos);
-                os.writeObject(this.user);
-                os.close();
-                System.out.println("added new user "+ this.user.getEmail());
-                // FacesContext.getCurrentInstance().getExternalContext().redirect("admin.xhtml");
-                return "admin";
-            }
-            else {
-                return "failed_add_profile";
-            }
+            file.createNewFile();
+            FileOutputStream fos = new FileOutputStream(file);
+            ObjectOutputStream os = new ObjectOutputStream(fos);
+            os.writeObject(this.user);
+            os.close();
+            System.out.println("added new user "+ this.user.getEmail());
+            FacesContext.getCurrentInstance().getExternalContext().redirect("admin.xhtml");
+            return "admin";
         }
         else {
         	System.out.println("user name is not set");;
