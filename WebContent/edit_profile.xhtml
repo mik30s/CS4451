@@ -32,10 +32,9 @@
                     </div>
                     <div class="dash-content">
                     	<div class="page-header">
-                    		<b:alert rendered="#{profileBean.editAllowed == true}" severity="warning">
+                    		<b:alert rendered="#{profileBean.editAllowed == true} and #{ loginBean.user.type == 'Administrator'}" severity="warning">
                     			<strong>Warning!</strong> You are editting #{profileBean.user.fullName}'s profile.
                     		</b:alert>
-                    		
                     	</div>
                     	<div class="container-fluid">
                     		<div class="row">
@@ -65,18 +64,19 @@
 			                 		    <div class="form-group">
 			                    			<label class="control-label col-sm-2">Type </label>
 			                    			<div class="col-sm-6">
-			                 		    		<b:selectOneMenu value="#{profileBean.user.type}" disabled="#{not profileBean.editAllowed}" class="form-control"  required="true">
+			                 		    		<b:selectOneMenu value="#{profileBean.user.type}" disabled="#{ loginBean.user.type != 'Administrator'}" 
+                                                                 class="form-control"  required="true">
                                                          <f:selectItem itemLabel="(Please select a user type)" itemValue=""/>
                                                          <f:selectItem itemLabel="Administrator" itemValue="Administrator"/>
                                                          <f:selectItem itemLabel="Evaluator" itemValue="Evaluator"/>
-                                                         <f:selectItem itemLabel="Data Entry" itemValue="Data Entry"/>
+                                                         <f:selectItem itemLabel="Techinician" itemValue="Data Entry"/>
                                                  </b:selectOneMenu>
 			                 		    	</div>
 			                 		    </div>
 			                 		    <div class="form-group">
 			                 		    	<div class="col-sm-8">
 			                 		    		<b:commandButton onclick="alert('You are about to commit changes to a user's profile. Click Ok to commit.');" 
-                                                                 look="success" value="Update" action="#{profileBean.modify(profileBean.id)}" />
+                                                                 look="success" value="Update" action="#{profileBean.modify}" />
 			                 		    	</div>
 			                 		    </div>
 			                    	</h:form>

@@ -38,8 +38,8 @@ public class LoginBean {
                               // create user session
                               FacesContext.getCurrentInstance().getExternalContext().redirect("admin.xhtml");
                           }
-                          else if(user.getType().equals("Data Entry")){
-                              FacesContext.getCurrentInstance().getExternalContext().redirect("data_entry.xhtml");
+                          else if(user.getType().equals("Technician")){
+                              FacesContext.getCurrentInstance().getExternalContext().redirect("techinician.xhtml");
                           }
                           else if(user.getType().equals("Evaluator")){
                               FacesContext.getCurrentInstance().getExternalContext().redirect("evaluator.xhtml");

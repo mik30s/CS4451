@@ -4,7 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b = "http://bootsfaces.net/ui">
       
  <ui:composition template="main_layout.xhtml">
         <ui:define name="title">
@@ -70,17 +72,27 @@
                                                         	<f:param name="id" value="#{user.email}" />
                                                             <f:param name="edit" value="true" />  	
                                                         </h:link>
-                                                        <h:link outcome="view_profile" class="btn btn-sm btn-success">
+                                                        <!--  <h:link outcome="view_profile" class="btn btn-sm btn-success">
                                                         	<i class='fa fa-eye'></i> View Profile
                                                         	<f:param name="id" value="#{user.email}" />
                                                             <f:param name="edit" value="false" />  	
-                                                       	</h:link>
-                                                        <h:commandLink onclick="alert('deleteing?');" action="#{profileBean.delete(user.email)}" class="btn btn-sm btn-danger">
+                                                       	</h:link>-->
+                                                        <h:link data-target="amodal_#{user.email}" data-toggle="modal"  class="btn btn-sm btn-danger">
                                                         	<i class="fa fa-remove"></i> Delete
-                                                        	<f:param name="id" value="#{user.email}" />
-                                                        </h:commandLink>
+                                                        </h:link>
                                                     </div>
                                                 </h:column>
+                                                <b:modal id="#{user.email}" title="Modal Example" styleClass="modalPseudoClass">
+                                                    <p>Modal body</p>
+                                                    <f:facet name="footer">
+                                                        <b:button value="close" dismiss="modal" onclick="return false;"/>
+                                                        <b:button value="Ok" look="primary" dismiss="modal" onclick="return false;"/>
+                                                        <h:commandLink  action="#{profileBean.delete(user.email)}" class="btn btn-sm btn-danger">
+                                                            <i class="fa fa-remove"></i> Delete
+                                                            <f:param name="id" value="#{user.email}" />
+                                                        </h:commandLink>
+                                                    </f:facet>
+                                                </b:modal>
                                             </h:dataTable>
                                             </h:form>
                                         </div>

@@ -24,5 +24,10 @@
 		<managed-bean-class>edu.tarleton.AppBean</managed-bean-class>
 		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>technicianBean</managed-bean-name>
+		<managed-bean-class>edu.tarleton.TechnicianBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
 
 </faces-config>

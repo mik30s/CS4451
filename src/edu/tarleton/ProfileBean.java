@@ -73,12 +73,12 @@ public class ProfileBean {
     }
     
     // Modify a users profile
-    public String modify(String id) throws Exception {
+    public String modify() throws Exception {
         System.out.println("calling modify.");
         System.out.println("id = "+ this.id);
         // get use information from files and database tables
         if(id != null) {
-            File file = new File("C:\\tmp\\course-project\\userdata\\"+id);
+            File file = new File("C:\\tmp\\course-project\\userdata\\"+this.id);
             FileOutputStream fis = new FileOutputStream(file);
             ObjectOutputStream ois = new ObjectOutputStream(fis);
             ois.writeObject(this.user);
@@ -99,7 +99,7 @@ public class ProfileBean {
         String filePath = "C:\\tmp\\course-project\\userdata\\"+id;
         if(id != null) {
             System.out.println("id = "+ id);
-            File file = new File("C:\\tmp\\course-project\\userdata\\"+id);
+            File file = new File(filePath);
             if(file.exists()) {
                 System.out.println(id + " has been found");
                 Files.delete(Paths.get(filePath));
