@@ -48,7 +48,6 @@ body, html {
     background: white; }
   body .panel-heading, html .panel-heading {
     background: transparent;
-    text-align: center;
     color: white; }
   body .footer, html .footer {
     border-top: 0.5em ridge green;

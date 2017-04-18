@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">    
+ <ui:composition>
+        <div class="panel daily-tab-content">
+        	<div class="panel-heading">
+        		<h3>Daily Entries.</h3>
+        		
+        	</div>
+        	<div class="panel-body">
+        		<div id="period-panel" class="sub-panel panel">
+        		 	<div class="panel-heading">
+        				<h4>Feed Records</h4>
+        			</div>
+        			<div class="panel-body">
+        				<form class="form-horizontal">
+	        				<div class="form-group">
+	        					<label class="col-sm-4 control-label">Amount of Feed Eaten</label>
+	        					<div class="col-sm-6 input-group">
+	        						<input class="form-control" type="text" v-model="amountFeedEaten" name="amountFeedEaten" placeholder="Enter amount of food eaten (kg) in 0kg - 50kg"/>
+	        						<span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+	        					</div>
+	        				</div>
+	        				<div class="form-group">
+	        					<label class="col-sm-4 control-label">Amount of Feed Refused</label>
+	        					<div class="col-sm-6 input-group">
+	        						<input class="form-control" type="text" v-model="amountFeedRefused" name="amountFeedEaten" placeholder="Enter amount of food refused (kg) in 0kg - 50kg"/>
+	        						<span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+	        					</div>
+	        				</div>
+	        				<div class="form-group">
+	        					<label class="col-sm-4 control-label">Blood glucose level per meal</label>
+	        					<div class="col-sm-6 input-group">
+	        						<input class="form-control" type="text" v-model="bloodGlucosePerMeal" name="amountFeedEaten" placeholder="Enter blood glucose level per meal"/>
+	        						<span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+	        					</div>
+	        				</div>
+	        				<div class="form-group">
+	        					<label class="col-sm-4 control-label">Blood glucose level after meal</label>
+	        					<div class="col-sm-6 input-group">
+	        						<input class="form-control" type="text" v-model="bloodGlucoseAfterMeal" name="amountFeedEaten" placeholder="Enter blood glucose level after meal"/>
+	        						<span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+	        					</div>
+	        				</div>
+	        				<div class="form-group">
+	        					<label class="col-sm-4 control-label">Amount of insulin administered</label>
+	        					<div class="col-sm-6 input-group">
+	        						<input class="form-control" type="text" v-model="bloodGlucoseAfterMeal" name="amountFeedEaten" placeholder="Enter blood glucose level after meal"/>
+	        						<span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+	        					</div>
+	        				</div>
+        				</form>
+        			</div>
+        		</div>
+        		<div id="bed-check-panel" class="sub-panel panel">
+        			<div class="panel-heading">
+        				<h4>Bed Check Records</h4>
+        			</div>
+        			<div class="panel-body">
+        				<form class="form-horizontal">
+	        				<div class="form-group">
+	        					<label class="col-sm-4 control-label">Amount of Feed Eaten</label>
+	        					<div class="col-sm-6 input-group">
+	        						<input class="form-control" type="text" v-model="amountFeedEaten" name="amountFeedEaten" placeholder="Enter amount of food eaten (kg) in 0kg - 50kg"/>
+	        						<span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+	        					</div>
+	        				</div>
+	        				<div class="form-group">
+	        					<label class="col-sm-4 control-label">Amount of Feed Refused</label>
+	        					<div class="col-sm-6 input-group">
+	        						<input class="form-control" type="text" v-model="amountFeedRefused" name="amountFeedEaten" placeholder="Enter amount of food refused (kg) in 0kg - 50kg"/>
+	        						<span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+	        					</div>
+	        				</div>
+        				</form>
+        			</div>
+        		</div>
+        	</div>
+        </div>
+ </ui:composition>
+</html>

@@ -1,3 +1,4 @@
+@import 'all';
 
 .navbar{
     margin:0px;
@@ -19,67 +20,62 @@ body{
             z-index: 0;
         }
 
-        .container{
+        .panel.technician-content {
+            background: white;
             top: 5em;
             position: relative;
-        }
 
-        .panel{
-            background: white;
-
-            .panel-heading{
-                max-height: 2em;
-                .subject-image{
-                    float: left;
-                    max-width: 100px;
-                    max-height: 100px; 
-                    background: #428bca;
-
-                }
-
-                .subject-bio{
-                    position: relative;
-                    left: 10px;
-                }
-            }
-
-            .panel-body{
+            .container {
                 position: relative;
+                z-index: 1;
             }
-        }
-         #tech-tabs.container-fluid{
-            background: white;
-            height: auto;
-            width: 100%;
-            padding: 0px;
-            position: relative;
 
-            .tab-header{
-                display: inline-flex;
-                flex-direction: row;
+             #tech-tabs.container-fluid {
+                background: white;
+                height: auto;
                 width: 100%;
+                padding: 0px;
                 position: relative;
-                align-content: flex-start;
-                flex-wrap: wrap;
-            }
-            .tab-content {
-                color : white;
+
+                .tab-header{
+                    display: inline-flex;
+                    flex-direction: row;
+                    width: 100%;
+                    position: relative;
+                    align-content: flex-start;
+                    flex-wrap: wrap;
+                }
+                .tab-content {
+                    color : white;
                     background-color: #428bca;
                     padding : 5px 15px;
 
-                .panel .panel-body .table{
-                    color: black;
+                    .tab-pane{
+                        .panel.daily-tab-content{
+                            margin-bottom: 0px;
+ 
+                            .panel-body{
+                                color: black;
+                                .sub-panel .panel-heading{
+                                    color: black;
+                                }
+                                .form-horizontal{
+                                    margin-left: auto;
+                                    margin-right: auto;
+                                    width: 70%;
+                                }
+                            }
+                        }
+                    }
                 }
-                
 
-            }
-
-            /* remove border radius for the tab */
-            .nav-pills > li > a {
-                border-radius: 0;
-            }
-            .nav-pills > li > a.active {
-                background: #428bca;
+                /* remove border radius for the tab */
+                .nav-pills > li > a {
+                    border-radius: 0;
+                }
+                .nav-pills > li > a.active {
+                    background: #428bca;
+                }
             }
         }
     }
@@ -87,5 +83,4 @@ body{
     .page-header{
         margin: 0px;
     }
-
 }

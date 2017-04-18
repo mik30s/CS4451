@@ -41,11 +41,6 @@
                             <f:param name="edit" value="true" />    
                             <span class="fa fa-sign-out"></span> Logout
                         </h:link>
-                        <!-- <h:form>
-                            <b:navCommandLink action="#{loginBean}">
-             		             <span class="fa fa-sign-out"></span> Logout
-    			   			</b:navCommandLink>
-                        </h:form> -->
 			   		</li>
                 </ul>
             </div>
@@ -59,7 +54,8 @@
         	</div>
         </footer>
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-      <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+      	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="http://cdn.jsdelivr.net/vue/1.0.16/vue.js"></script>
+		<h:outputScript library="js" name="build/app-build.js"></h:outputScript>
    </h:body>
 </html>

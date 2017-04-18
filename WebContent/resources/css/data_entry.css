@@ -1,3 +1,37 @@
+.form, .form-horizontal,
+a.btn, button, input, input[type="submit"], input[type="text"], input[type="password"],
+.alert, .alert-warning, .btn, input, .btn-success, .btn-danger, .btn-info, .form-control, .panel, .list-group, .list-group-item {
+  border-radius: 0px !important;
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important; }
+
+.alert {
+  margin: 0px; }
+
+.inline-flex-item {
+  margin-left: 5px;
+  margin-right: 5px; }
+
+.content {
+  height: 100%; }
+
+.center-content {
+  transform: translate(-50%, -25%);
+  position: absolute;
+  top: 25%;
+  left: 50%; }
+
+.animated {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0); }
+
+* {
+  -moz-animation-duration: 0.25s;
+  -webkit-animation-duration: 0.25s;
+  animation-duration: 0.25s;
+  -webkit-animation-delay: 0.25s;
+  animation-delay: 0.25s; }
+
 .navbar {
   margin: 0px; }
 
@@ -14,47 +48,45 @@ body {
       height: 200px;
       background: #18c52d;
       z-index: 0; }
-    body .content .container {
+    body .content .panel.technician-content {
+      background: white;
       top: 5em;
       position: relative; }
-    body .content .panel {
-      background: white; }
-      body .content .panel .panel-heading {
-        max-height: 2em; }
-        body .content .panel .panel-heading .subject-image {
-          float: left;
-          max-width: 100px;
-          max-height: 100px;
-          background: #428bca; }
-        body .content .panel .panel-heading .subject-bio {
-          position: relative;
-          left: 10px; }
-      body .content .panel .panel-body {
-        position: relative; }
-    body .content #tech-tabs.container-fluid {
-      background: white;
-      height: auto;
-      width: 100%;
-      padding: 0px;
-      position: relative;
-      /* remove border radius for the tab */ }
-      body .content #tech-tabs.container-fluid .tab-header {
-        display: inline-flex;
-        flex-direction: row;
-        width: 100%;
+      body .content .panel.technician-content .container {
         position: relative;
-        align-content: flex-start;
-        flex-wrap: wrap; }
-      body .content #tech-tabs.container-fluid .tab-content {
-        color: white;
-        background-color: #428bca;
-        padding: 5px 15px; }
-        body .content #tech-tabs.container-fluid .tab-content .panel .panel-body .table {
-          color: black; }
-      body .content #tech-tabs.container-fluid .nav-pills > li > a {
-        border-radius: 0; }
-      body .content #tech-tabs.container-fluid .nav-pills > li > a.active {
-        background: #428bca; }
+        z-index: 1; }
+      body .content .panel.technician-content #tech-tabs.container-fluid {
+        background: white;
+        height: auto;
+        width: 100%;
+        padding: 0px;
+        position: relative;
+        /* remove border radius for the tab */ }
+        body .content .panel.technician-content #tech-tabs.container-fluid .tab-header {
+          display: inline-flex;
+          flex-direction: row;
+          width: 100%;
+          position: relative;
+          align-content: flex-start;
+          flex-wrap: wrap; }
+        body .content .panel.technician-content #tech-tabs.container-fluid .tab-content {
+          color: white;
+          background-color: #428bca;
+          padding: 5px 15px; }
+          body .content .panel.technician-content #tech-tabs.container-fluid .tab-content .tab-pane .panel.daily-tab-content {
+            margin-bottom: 0px; }
+            body .content .panel.technician-content #tech-tabs.container-fluid .tab-content .tab-pane .panel.daily-tab-content .panel-body {
+              color: black; }
+              body .content .panel.technician-content #tech-tabs.container-fluid .tab-content .tab-pane .panel.daily-tab-content .panel-body .sub-panel .panel-heading {
+                color: black; }
+              body .content .panel.technician-content #tech-tabs.container-fluid .tab-content .tab-pane .panel.daily-tab-content .panel-body .form-horizontal {
+                margin-left: auto;
+                margin-right: auto;
+                width: 70%; }
+        body .content .panel.technician-content #tech-tabs.container-fluid .nav-pills > li > a {
+          border-radius: 0; }
+        body .content .panel.technician-content #tech-tabs.container-fluid .nav-pills > li > a.active {
+          background: #428bca; }
   body .page-header {
     margin: 0px; }
 
