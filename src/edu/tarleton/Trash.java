@@ -15,17 +15,17 @@ public class Trash {
                 new User("mosei27@live.com", "Administrator", "99", "Michael Osei")
         };
         
-        TestSubject s1 = new TestSubject();
+        TestSubject s1 = new TestSubject(42,TestSubject.Group.CONTROL, "Henrietta", TestSubject.Sex.FEMALE);
         s1.notes = "The healthy pig from sesame street";
-        s1.addDailyRecord(new TestSubject.Daily());
-        s1.addWeeklyRecord(new TestSubject.Weekly());
-        s1.addSTZInductionRecord(new TestSubject.STZInduction());
+        s1.addDailyRecord(s1.new Daily());
+        s1.addWeeklyRecord(s1.new Weekly());
+        s1.addSTZInductionRecord(s1.new STZInduction());
         
-        TestSubject s2 = new TestSubject();
+        TestSubject s2 = new TestSubject(24,TestSubject.Group.TEST, "Bridget", TestSubject.Sex.FEMALE);
         s2.notes = "That funny pig from wolf among us";
-        s2.addDailyRecord(new TestSubject.Daily());
-        s2.addWeeklyRecord(new TestSubject.Weekly());
-        s2.addSTZInductionRecord(new TestSubject.STZInduction());
+        s2.addDailyRecord(s2.new Daily());
+        s2.addWeeklyRecord(s2.new Weekly());
+        s2.addSTZInductionRecord(s2.new STZInduction());
         
         TestSubject[] subs = new TestSubject[]{
                 s1, s2
@@ -34,6 +34,13 @@ public class Trash {
         for(User user : users) {
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(new File("C:\\tmp\\course-project\\userdata\\"+user.getEmail())));
             os.writeObject(user);
+            os.close();
+        }
+        
+        for(TestSubject sub : subs) {
+            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(new File("C:\\tmp\\course-project\\testsubjectdata\\"+sub.id+".dat")));
+            os.writeObject(sub);
+            os.close();
         }
     }
 }

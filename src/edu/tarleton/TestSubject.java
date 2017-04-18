@@ -1,9 +1,14 @@
 package edu.tarleton;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class TestSubject {
-    class Daily{
+import javax.xml.bind.annotation.XmlRootElement;
+
+public class TestSubject implements Serializable {
+
+    class Daily implements Serializable{
+        
         public String timePeriod;
         public int feedEaten;
         public int feedRefused;
@@ -12,7 +17,6 @@ public class TestSubject {
         public float insulinAdministered;
         
         public Daily(){}
-        
         public Daily(String timePeriod, int feedEaten, int feedRefused, 
                      float bloodGlucoseLevelPerMeal,
                      float bloodGlucoseLevelPostMeal, 
@@ -28,7 +32,8 @@ public class TestSubject {
         }    
     }
     
-    class Weekly{
+    class Weekly implements Serializable{
+
         public float IOP;
         public float weight;
         public Weekly(){}
@@ -39,7 +44,8 @@ public class TestSubject {
         }
     }
     
-    class STZInduction{
+    class STZInduction implements Serializable {
+
         public float STZAdministered;
         public float salineAmount;
         
@@ -51,12 +57,23 @@ public class TestSubject {
         }
     }
     
+    enum Group{CONTROL, TEST}
+    enum Sex{MALE, FEMALE}
+    
+    public int id;
+    public Sex sex;
+    public String name;
+    public Group group;
     public ArrayList<Daily> dailies;
     public ArrayList<Weekly> weeklies;
     public ArrayList<STZInduction> stzInductions;
     public String notes;
     
-    public TestSubject(){
+    public TestSubject(int i, Group group, String name, Sex sex){
+        this.id = i;
+        this.sex = sex;
+        this.group = group;
+        this.name = name;
         dailies = new ArrayList<>();
         weeklies = new ArrayList<>();
         stzInductions = new ArrayList<>();

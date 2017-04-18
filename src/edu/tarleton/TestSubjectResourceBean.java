@@ -21,7 +21,7 @@ public class TestSubjectResourceBean {
     @Produces(MediaType.APPLICATION_JSON)
     public TestSubject getSubject(@PathParam("subject_id") String id) throws Exception {
         TestSubject subject;
-        subject  = Utilities.<TestSubject>readObjectFromFile("C:/tmp/course-project/testsubjectdata/" + id);
+        subject  = Utility.<TestSubject>readObjectFromFile("C:\\tmp\\course-project\\testsubjectdata\\" + id + ".dat");
         return subject;
     }
 }

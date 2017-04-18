@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 
-public class Utilities {
+public class Utility {
     
     @SuppressWarnings("unchecked")
     public static <E> E readObjectFromFile(String filename) throws Exception{
