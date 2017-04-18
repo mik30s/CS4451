@@ -27,7 +27,7 @@
      <!-- Register resources and providers under com.vogella.jersey.first package. -->
     <init-param>
         <param-name>jersey.config.server.provider.packages</param-name>
-        <param-value>edu.tarleton</param-value>
+        <param-value>edu.tarleton, com.jersey.jaxb, com.fasterxml.jackson.jaxrs.json</param-value>
     </init-param>
     <init-param>
     	<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>

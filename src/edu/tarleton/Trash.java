@@ -32,13 +32,17 @@ public class Trash {
         };
 
         for(User user : users) {
-            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(new File("C:\\tmp\\course-project\\userdata\\"+user.getEmail())));
+        	File file = new File("C:\\tmp\\course-project\\userdata\\"+user.getEmail());
+        	file.createNewFile();
+            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(file));
             os.writeObject(user);
             os.close();
         }
         
         for(TestSubject sub : subs) {
-            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(new File("C:\\tmp\\course-project\\testsubjectdata\\"+sub.id+".dat")));
+        	File file = new File("C:\\tmp\\course-project\\testsubjectdata\\"+sub.id+".dat");
+        	file.createNewFile();
+            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(file));
             os.writeObject(sub);
             os.close();
         }
