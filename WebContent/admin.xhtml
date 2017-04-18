@@ -21,8 +21,8 @@
         <ui:define name="content">
             <div class="animated fadeIn content">
                 <div class="container">
-                    <div class="animated slideInDown backdrop">
-                    <div class="page-header">
+                    <div class="animated backdrop">
+                        <div class="page-header">
 	                    	<div class="container"><h3> <span class="fa fa-cogs"></span> Admin Dashboard</h3></div>
 	                    </div>
                     </div>
@@ -77,22 +77,12 @@
                                                         	<f:param name="id" value="#{user.email}" />
                                                             <f:param name="edit" value="false" />  	
                                                        	</h:link>-->
-                                                        <h:link data-target="amodal_#{user.email}" data-toggle="modal"  class="btn btn-sm btn-danger">
+                                                        <h:link  data-toggle="modal"  class="btn btn-sm btn-danger">
                                                         	<i class="fa fa-remove"></i> Delete
                                                         </h:link>
                                                     </div>
                                                 </h:column>
-                                                <b:modal id="#{user.email}" title="Modal Example" styleClass="modalPseudoClass">
-                                                    <p>Modal body</p>
-                                                    <f:facet name="footer">
-                                                        <b:button value="close" dismiss="modal" onclick="return false;"/>
-                                                        <b:button value="Ok" look="primary" dismiss="modal" onclick="return false;"/>
-                                                        <h:commandLink  action="#{profileBean.delete(user.email)}" class="btn btn-sm btn-danger">
-                                                            <i class="fa fa-remove"></i> Delete
-                                                            <f:param name="id" value="#{user.email}" />
-                                                        </h:commandLink>
-                                                    </f:facet>
-                                                </b:modal>
+                                                
                                             </h:dataTable>
                                             </h:form>
                                         </div>

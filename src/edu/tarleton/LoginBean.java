@@ -39,7 +39,7 @@ public class LoginBean {
                               FacesContext.getCurrentInstance().getExternalContext().redirect("admin.xhtml");
                           }
                           else if(user.getType().equals("Technician")){
-                              FacesContext.getCurrentInstance().getExternalContext().redirect("techinician.xhtml");
+                              FacesContext.getCurrentInstance().getExternalContext().redirect("technician.xhtml");
                           }
                           else if(user.getType().equals("Evaluator")){
                               FacesContext.getCurrentInstance().getExternalContext().redirect("evaluator.xhtml");

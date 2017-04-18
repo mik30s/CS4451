@@ -14,6 +14,47 @@ body {
       height: 200px;
       background: #18c52d;
       z-index: 0; }
+    body .content .container {
+      top: 5em;
+      position: relative; }
+    body .content .panel {
+      background: white; }
+      body .content .panel .panel-heading {
+        max-height: 2em; }
+        body .content .panel .panel-heading .subject-image {
+          float: left;
+          max-width: 100px;
+          max-height: 100px;
+          background: #428bca; }
+        body .content .panel .panel-heading .subject-bio {
+          position: relative;
+          left: 10px; }
+      body .content .panel .panel-body {
+        position: relative; }
+    body .content #tech-tabs.container-fluid {
+      background: white;
+      height: auto;
+      width: 100%;
+      padding: 0px;
+      position: relative;
+      /* remove border radius for the tab */ }
+      body .content #tech-tabs.container-fluid .tab-header {
+        display: inline-flex;
+        flex-direction: row;
+        width: 100%;
+        position: relative;
+        align-content: flex-start;
+        flex-wrap: wrap; }
+      body .content #tech-tabs.container-fluid .tab-content {
+        color: white;
+        background-color: #428bca;
+        padding: 5px 15px; }
+        body .content #tech-tabs.container-fluid .tab-content .panel .panel-body .table {
+          color: black; }
+      body .content #tech-tabs.container-fluid .nav-pills > li > a {
+        border-radius: 0; }
+      body .content #tech-tabs.container-fluid .nav-pills > li > a.active {
+        background: #428bca; }
   body .page-header {
     margin: 0px; }
 
