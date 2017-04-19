@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:v-on="http://https://vuejs.org">
       
  <ui:composition template="main_layout.xhtml">
         
@@ -21,8 +22,12 @@
                         <div class="panel-heading">
                             <img class="subject-image" src="img/logo.png" />
                             <div class="subject-bio">
-                                
+                                <select  v-on:change="loadData($currentSubjectId)" v-model='currentSubjectId' class="selectpicker">
+									  <option>Henrietta(42)</option>
+									  <option>Bridget(24)</option>
+								</select>
                             </div>
+                            <button class="btn btn-success">Update subject's record</button>
                         </div>
                         <div class="panel-body">
                             <div id="tech-tabs" class="container-fluid">
