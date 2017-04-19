@@ -8,7 +8,9 @@
       xmlns:v-on="http://https://vuejs.org">
       
  <ui:composition template="main_layout.xhtml">
-        
+        <f:metadata>
+            <f:viewAction action="#{technicianBean.load}"></f:viewAction>
+        </f:metadata>
         <ui:define name="css"> 
             <h:outputStylesheet library="css" name="data_entry.css"></h:outputStylesheet>
         </ui:define>
@@ -19,26 +21,12 @@
                 </div>
                 <div class="container">
                     <div class="panel technician-content">
-                        <div class="panel-heading">
-                            <img class="subject-image" src="img/logo.png" />
-                            <div class="subject-bio">
-                                <select  v-on:change="loadData($currentSubjectId)" v-model='currentSubjectId' class="selectpicker">
-									  <option>Henrietta(42)</option>
-									  <option>Bridget(24)</option>
-								</select>
-                            </div>
-                            <button class="btn btn-success">Update subject's record</button>
-                        </div>
                         <div class="panel-body">
                             <div id="tech-tabs" class="container-fluid">
                                 <ul class="nav nav-pills">
                                     <li class="active"><a href="#daily-tab" data-toggle="tab">Daily</a></li>
                                     <li><a href="#weekly-tab" data-toggle="tab">Weekly</a></li>
                                     <li><a href="#stz1-tab" data-toggle="tab">STZ Induction Day 1</a></li>
-                                    <li><a href="#stz2-tab" data-toggle="tab">STZ Induction Day 2</a></li>
-                                    <li><a href="#stz3-tab" data-toggle="tab">STZ Induction Day 3</a></li>
-                                    <li><a href="#tdb1" data-toggle="tab">Statistics</a></li>
-                                    <li><a href="#tbd1" data-toggle="tab">Notes</a></li>
                                 </ul>
                                 <div class="tab-content clearfix">
                                     <div class="tab-pane active" id="daily-tab">
@@ -55,26 +43,6 @@
                                         <div class="panel daily-tab-content">
                                             <div class="panel-heading">
                                                 <h3>Day 1 of STZ induction</h3>
-                                            </div>
-                                            <ui:insert name="stz-tab">
-                                                <ui:include src="technician_stz_tab.html" />
-                                            </ui:insert>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="stz2-tab">
-                                        <div class="panel daily-tab-content">
-                                            <div class="panel-heading">
-                                                <h3>Day 2 of STZ induction</h3>
-                                            </div>
-                                            <ui:insert name="stz-tab">
-                                                <ui:include src="technician_stz_tab.html" />
-                                            </ui:insert>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="stz3-tab">
-                                        <div class="panel daily-tab-content">
-                                            <div class="panel-heading">
-                                                <h3>Day 3 of STZ induction</h3>
                                             </div>
                                             <ui:insert name="stz-tab">
                                                 <ui:include src="technician_stz_tab.html" />

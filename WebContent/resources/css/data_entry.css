@@ -54,6 +54,8 @@ body {
       position: relative; }
       body .content .panel.technician-content .panel-body {
         padding: 0px; }
+      body .content .panel.technician-content .daily-tab-content.panel-body {
+        padding: 5px; }
       body .content .panel.technician-content .container {
         position: relative;
         z-index: 1; }
@@ -64,6 +66,10 @@ body {
         padding: 0px;
         position: relative;
         /* remove border radius for the tab */ }
+        body .content .panel.technician-content #tech-tabs.container-fluid .nav-pills > li > a {
+          border-radius: 0; }
+        body .content .panel.technician-content #tech-tabs.container-fluid .nav-pills > li > a.active {
+          background: #428bca; }
         body .content .panel.technician-content #tech-tabs.container-fluid .tab-header {
           display: inline-flex;
           flex-direction: row;
@@ -77,18 +83,12 @@ body {
           padding: 5px 15px; }
           body .content .panel.technician-content #tech-tabs.container-fluid .tab-content .tab-pane .panel.daily-tab-content {
             margin-bottom: 0px; }
-            body .content .panel.technician-content #tech-tabs.container-fluid .tab-content .tab-pane .panel.daily-tab-content .panel-body {
-              color: black; }
-              body .content .panel.technician-content #tech-tabs.container-fluid .tab-content .tab-pane .panel.daily-tab-content .panel-body .sub-panel .panel-heading {
-                color: black; }
-              body .content .panel.technician-content #tech-tabs.container-fluid .tab-content .tab-pane .panel.daily-tab-content .panel-body .form-horizontal {
-                margin-left: auto;
-                margin-right: auto;
-                width: 70%; }
-        body .content .panel.technician-content #tech-tabs.container-fluid .nav-pills > li > a {
-          border-radius: 0; }
-        body .content .panel.technician-content #tech-tabs.container-fluid .nav-pills > li > a.active {
-          background: #428bca; }
+            body .content .panel.technician-content #tech-tabs.container-fluid .tab-content .tab-pane .panel.daily-tab-content .sub-tabs .nav-pills > li > a.active {
+              background: #428bca; }
+            body .content .panel.technician-content #tech-tabs.container-fluid .tab-content .tab-pane .panel.daily-tab-content .sub-tabs.tab-content {
+              color: black;
+              background-color: white;
+              padding: 5px 15px; }
   body .page-header {
     margin: 0px; }
 

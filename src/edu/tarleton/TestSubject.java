@@ -6,7 +6,21 @@ import java.util.ArrayList;
 import javax.xml.bind.annotation.XmlRootElement;
 
 public class TestSubject implements Serializable {
-
+    enum Period {AM, PM};
+    enum Group{CONTROL, TEST}
+    enum Sex{MALE, FEMALE}
+    
+    public int id;
+    public Sex sex;
+    public String name;
+    public Group group;
+    public ArrayList<Daily> dailiesAM;
+    public ArrayList<Daily> dailiesPM;
+    public ArrayList<BedCheck> bedCheck;
+    public ArrayList<Weekly> weeklies;
+    public ArrayList<STZInduction> stzInductions;
+    public String notes;
+    
     class Daily implements Serializable{
         public String timePeriod;
         public int feedEaten;
@@ -14,6 +28,7 @@ public class TestSubject implements Serializable {
         public float bloodGlucoseLevelPerMeal;
         public float bloodGlucoseLevelPostMeal; 
         public float insulinAdministered;
+        public Period period;
         
         public Daily(){}
         public Daily(String timePeriod, int feedEaten, int feedRefused, 
@@ -43,8 +58,18 @@ public class TestSubject implements Serializable {
         }
     }
     
+    class BedCheck implements Serializable {
+        public float bloodGlucoseLevel;
+        public float amountInsulinAdmin;
+        
+        public BedCheck(){}
+        public BedCheck(float bloodGlucoseLevel, float amountInsulinAdmin){
+            this.amountInsulinAdmin = amountInsulinAdmin;
+            this.bloodGlucoseLevel = bloodGlucoseLevel;
+        }
+    }
+    
     class STZInduction implements Serializable {
-
         public float STZAdministered;
         public float salineAmount;
         
@@ -56,24 +81,14 @@ public class TestSubject implements Serializable {
         }
     }
     
-    enum Group{CONTROL, TEST}
-    enum Sex{MALE, FEMALE}
-    
-    public int id;
-    public Sex sex;
-    public String name;
-    public Group group;
-    public ArrayList<Daily> dailies;
-    public ArrayList<Weekly> weeklies;
-    public ArrayList<STZInduction> stzInductions;
-    public String notes;
-    
     public TestSubject(int i, Group group, String name, Sex sex){
         this.id = i;
         this.sex = sex;
         this.group = group;
         this.name = name;
-        dailies = new ArrayList<>();
+        dailiesAM = new ArrayList<>();
+        dailiesPM = new ArrayList<>();
+        bedCheck = new ArrayList<>();
         weeklies = new ArrayList<>();
         stzInductions = new ArrayList<>();
         notes = "";
@@ -88,6 +103,93 @@ public class TestSubject implements Serializable {
     }
     
     public void addDailyRecord(Daily daily){
-        dailies.add(daily);     
+        if(daily.period == Period.PM){
+            dailiesPM.add(daily);
+        }
+        else {
+            dailiesAM.add(daily);
+        }
     }
+
+    public ArrayList<Daily> getDailiesAM() {
+        return dailiesAM;
+    }
+
+    public void setDailiesAM(ArrayList<Daily> dailiesAM) {
+        this.dailiesAM = dailiesAM;
+    }
+
+    public ArrayList<Daily> getDailiesPM() {
+        return dailiesPM;
+    }
+
+    public void setDailiesPM(ArrayList<Daily> dailiesPM) {
+        this.dailiesPM = dailiesPM;
+    }
+
+    public ArrayList<BedCheck> getBedCheck() {
+        return bedCheck;
+    }
+
+    public void setBedCheck(ArrayList<BedCheck> bedCheck) {
+        this.bedCheck = bedCheck;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Sex getSex() {
+        return sex;
+    }
+
+    public void setSex(Sex sex) {
+        this.sex = sex;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    public ArrayList<Weekly> getWeeklies() {
+        return weeklies;
+    }
+
+    public void setWeeklies(ArrayList<Weekly> weeklies) {
+        this.weeklies = weeklies;
+    }
+
+    public ArrayList<STZInduction> getStzInductions() {
+        return stzInductions;
+    }
+
+    public void setStzInductions(ArrayList<STZInduction> stzInductions) {
+        this.stzInductions = stzInductions;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+    
+    
 }

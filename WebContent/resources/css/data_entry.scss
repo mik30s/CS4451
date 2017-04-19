@@ -25,9 +25,8 @@ body{
             top: 5em;
             position: relative;
 
-            .panel-body{
-                padding: 0px;
-            }
+            .panel-body{padding: 0px;}
+            .daily-tab-content.panel-body{padding: 5px;}
 
             .container {
                 position: relative;
@@ -40,6 +39,13 @@ body{
                 width: 100%;
                 padding: 0px;
                 position: relative;
+                 /* remove border radius for the tab */
+                .nav-pills > li > a {
+                    border-radius: 0;
+                }
+                .nav-pills > li > a.active {
+                    background: #428bca;
+                }
 
                 .tab-header{
                     display: inline-flex;
@@ -49,6 +55,7 @@ body{
                     align-content: flex-start;
                     flex-wrap: wrap;
                 }
+                
                 .tab-content {
                     color : white;
                     background-color: #428bca;
@@ -57,28 +64,16 @@ body{
                     .tab-pane{
                         .panel.daily-tab-content{
                             margin-bottom: 0px;
- 
-                            .panel-body{
-                                color: black;
-                                .sub-panel .panel-heading{
-                                    color: black;
-                                }
-                                .form-horizontal{
-                                    margin-left: auto;
-                                    margin-right: auto;
-                                    width: 70%;
+                            .sub-tabs{
+                                .nav-pills > li > a.active {background: #428bca;}
+                                &.tab-content {
+                                    color : black;
+                                    background-color: white;
+                                    padding : 5px 15px;
                                 }
                             }
                         }
                     }
-                }
-
-                /* remove border radius for the tab */
-                .nav-pills > li > a {
-                    border-radius: 0;
-                }
-                .nav-pills > li > a.active {
-                    background: #428bca;
                 }
             }
         }
