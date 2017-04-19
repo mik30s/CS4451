@@ -22,7 +22,7 @@ public class Trash {
         s1.addSTZInductionRecord(s1.new STZInduction());
         
         TestSubject s2 = new TestSubject(24,TestSubject.Group.TEST, "Bridget", TestSubject.Sex.FEMALE);
-        s2.notes = "That funny pig from wolf among us";
+        s2.notes = "That funny pig from the wolf among us";
         s2.addDailyRecord(s2.new Daily());
         s2.addWeeklyRecord(s2.new Weekly());
         s2.addSTZInductionRecord(s2.new STZInduction());

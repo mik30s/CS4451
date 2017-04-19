@@ -63,25 +63,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var Technician = __webpack_require__(1);
-
-var main = function(){
-	console.log("App started");
-	var technicianView = new Technician("technician-vue-instance");
-};
-
-module.exports = main();
-
-
-/***/ }),
-/* 1 */
 /***/ (function(module, exports) {
 
 module.exports = function(mountId){
@@ -94,6 +80,20 @@ module.exports = function(mountId){
 
 	return vueInstance;
 };
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Technician = __webpack_require__(0);
+
+var main = function(){
+	console.log("App started");
+	var technicianView = new Technician("technician-vue-instance");
+};
+
+module.exports = main();
+
 
 /***/ })
 /******/ ]);
