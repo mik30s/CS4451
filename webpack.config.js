@@ -11,16 +11,24 @@ var config = {
 		filename: "app-build.js"
 	},
 	module: {
-		loaders: [{
-			test: /\.scss$/,
-            loaders: ['style-loader', 'css-loader', 'sass-loader']
-		},
-		{
-			test: /\.(jpe?g|png|gif|svg)$/i,
-			loaders: [
-				'url-loader?limit=100000'
-			]
-		}]
+		loaders: [
+			{
+				test: /\.(scss|css)$/,
+				loaders: ['style-loader', 'css-loader', 'sass-loader']
+			},
+			{
+				test: /\.(jpe?g|png|gif|svg)$/i,
+				loaders: [
+					'url-loader?limit=100000'
+					]
+			},
+			{
+				test: /\.(jade)$/i,
+				loaders: [
+					'jade-loader'
+					]
+			}
+		]
 	},
 };
 
