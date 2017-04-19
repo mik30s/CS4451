@@ -25,6 +25,10 @@ body{
             top: 5em;
             position: relative;
 
+            .panel-body{
+                padding: 0px;
+            }
+
             .container {
                 position: relative;
                 z-index: 1;

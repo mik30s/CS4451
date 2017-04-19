@@ -21,6 +21,7 @@
                         <div class="panel-heading">
                             <img class="subject-image" src="img/logo.png" />
                             <div class="subject-bio">
+                                
                             </div>
                         </div>
                         <div class="panel-body">
@@ -28,10 +29,10 @@
                                 <ul class="nav nav-pills">
                                     <li class="active"><a href="#daily-tab" data-toggle="tab">Daily</a></li>
                                     <li><a href="#weekly-tab" data-toggle="tab">Weekly</a></li>
-                                    <li><a href="#tbd1" data-toggle="tab">STZ Induction Day 1</a></li>
-                                    <li><a href="#tbd1" data-toggle="tab">STZ Induction Day 2</a></li>
-                                    <li><a href="#tbd1" data-toggle="tab">STZ Induction Day 3</a></li>
-                                    <li><a href="#tbd1" data-toggle="tab">Statistics</a></li>
+                                    <li><a href="#stz1-tab" data-toggle="tab">STZ Induction Day 1</a></li>
+                                    <li><a href="#stz2-tab" data-toggle="tab">STZ Induction Day 2</a></li>
+                                    <li><a href="#stz3-tab" data-toggle="tab">STZ Induction Day 3</a></li>
+                                    <li><a href="#tdb1" data-toggle="tab">Statistics</a></li>
                                     <li><a href="#tbd1" data-toggle="tab">Notes</a></li>
                                 </ul>
                                 <div class="tab-content clearfix">
@@ -41,10 +42,39 @@
                                         </ui:insert>
                                     </div>
                                     <div class="tab-pane" id="weekly-tab">
-                                        <h3>Weekly Records</h3>
+                                        <ui:insert name="daily_tab">
+                                        	<ui:include src="technician_weekly_tab.html" />
+                                        </ui:insert>
                                     </div>
-                                    <div class="tab-pane" id="tbd1">
-                                        <h3>TBD1</h3>
+                                    <div class="tab-pane" id="stz1-tab">
+                                        <div class="panel daily-tab-content">
+                                            <div class="panel-heading">
+                                                <h3>Day 1 of STZ induction</h3>
+                                            </div>
+                                            <ui:insert name="stz-tab">
+                                                <ui:include src="technician_stz_tab.html" />
+                                            </ui:insert>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="stz2-tab">
+                                        <div class="panel daily-tab-content">
+                                            <div class="panel-heading">
+                                                <h3>Day 2 of STZ induction</h3>
+                                            </div>
+                                            <ui:insert name="stz-tab">
+                                                <ui:include src="technician_stz_tab.html" />
+                                            </ui:insert>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="stz3-tab">
+                                        <div class="panel daily-tab-content">
+                                            <div class="panel-heading">
+                                                <h3>Day 3 of STZ induction</h3>
+                                            </div>
+                                            <ui:insert name="stz-tab">
+                                                <ui:include src="technician_stz_tab.html" />
+                                            </ui:insert>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

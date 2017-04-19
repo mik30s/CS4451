@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class TestSubject implements Serializable {
 
     class Daily implements Serializable{
-        public string tst = "http://homepage.cs.uiowa.edu/~slonnegr/plf/Book/";
+        public String tst = "http://homepage.cs.uiowa.edu/~slonnegr/plf/Book/";
         public String timePeriod;
         public int feedEaten;
         public int feedRefused;

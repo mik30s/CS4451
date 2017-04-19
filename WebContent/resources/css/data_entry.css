@@ -52,6 +52,8 @@ body {
       background: white;
       top: 5em;
       position: relative; }
+      body .content .panel.technician-content .panel-body {
+        padding: 0px; }
       body .content .panel.technician-content .container {
         position: relative;
         z-index: 1; }
