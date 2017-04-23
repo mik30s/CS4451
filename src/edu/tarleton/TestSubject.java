@@ -14,16 +14,16 @@ public class TestSubject implements Serializable {
     public Sex sex;
     public String name;
     public Group group;
-    public ArrayList<Daily> dailiesAM;
-    public ArrayList<Daily> dailiesPM;
-    public ArrayList<BedCheck> bedCheck;
-    public ArrayList<Weekly> weeklies;
-    public ArrayList<STZInduction> stzInductions;
+    public Daily dailyAM;
+    public Daily dailyPM;
+    public BedCheck bedCheck;
+    public Weekly weekly;
+    public STZInduction stzInductions;
     public String notes;
     
-    class Daily implements Serializable{
+    public class Daily implements Serializable{
         public String timePeriod;
-        public int feedEaten;
+        private int feedEaten;
         public int feedRefused;
         public float bloodGlucoseLevelPerMeal;
         public float bloodGlucoseLevelPostMeal; 
@@ -31,23 +31,65 @@ public class TestSubject implements Serializable {
         public Period period;
         
         public Daily(){}
-        public Daily(String timePeriod, int feedEaten, int feedRefused, 
+        public Daily(Period period, 
+                     int feedEaten, int feedRefused, 
                      float bloodGlucoseLevelPerMeal,
                      float bloodGlucoseLevelPostMeal, 
                      float insulinAdministered) 
         {
             super();
-            this.timePeriod = timePeriod;
+            this.period = period;
             this.feedEaten = feedEaten;
             this.feedRefused = feedRefused;
             this.bloodGlucoseLevelPerMeal = bloodGlucoseLevelPerMeal;
             this.bloodGlucoseLevelPostMeal = bloodGlucoseLevelPostMeal;
             this.insulinAdministered = insulinAdministered;
-        }    
+        }
+        public String getTimePeriod() {
+            return timePeriod;
+        }
+        public void setTimePeriod(String timePeriod) {
+            this.timePeriod = timePeriod;
+        }
+        public int getFeedEaten() {
+            return feedEaten;
+        }
+        public void setFeedEaten(int feedEaten) {
+            this.feedEaten = feedEaten;
+        }
+        public int getFeedRefused() {
+            return feedRefused;
+        }
+        public void setFeedRefused(int feedRefused) {
+            this.feedRefused = feedRefused;
+        }
+        public float getBloodGlucoseLevelPerMeal() {
+            return bloodGlucoseLevelPerMeal;
+        }
+        public void setBloodGlucoseLevelPerMeal(float bloodGlucoseLevelPerMeal) {
+            this.bloodGlucoseLevelPerMeal = bloodGlucoseLevelPerMeal;
+        }
+        public float getBloodGlucoseLevelPostMeal() {
+            return bloodGlucoseLevelPostMeal;
+        }
+        public void setBloodGlucoseLevelPostMeal(float bloodGlucoseLevelPostMeal) {
+            this.bloodGlucoseLevelPostMeal = bloodGlucoseLevelPostMeal;
+        }
+        public float getInsulinAdministered() {
+            return insulinAdministered;
+        }
+        public void setInsulinAdministered(float insulinAdministered) {
+            this.insulinAdministered = insulinAdministered;
+        }
+        public Period getPeriod() {
+            return period;
+        }
+        public void setPeriod(Period period) {
+            this.period = period;
+        } 
     }
     
-    class Weekly implements Serializable{
-
+    public class Weekly implements Serializable{
         public float IOP;
         public float weight;
         public Weekly(){}
@@ -56,9 +98,21 @@ public class TestSubject implements Serializable {
             IOP = iOP;
             this.weight = weight;
         }
+        public float getIOP() {
+            return IOP;
+        }
+        public void setIOP(float iOP) {
+            IOP = iOP;
+        }
+        public float getWeight() {
+            return weight;
+        }
+        public void setWeight(float weight) {
+            this.weight = weight;
+        }
     }
     
-    class BedCheck implements Serializable {
+    public class BedCheck implements Serializable {
         public float bloodGlucoseLevel;
         public float amountInsulinAdmin;
         
@@ -67,9 +121,21 @@ public class TestSubject implements Serializable {
             this.amountInsulinAdmin = amountInsulinAdmin;
             this.bloodGlucoseLevel = bloodGlucoseLevel;
         }
+        public float getBloodGlucoseLevel() {
+            return bloodGlucoseLevel;
+        }
+        public void setBloodGlucoseLevel(float bloodGlucoseLevel) {
+            this.bloodGlucoseLevel = bloodGlucoseLevel;
+        }
+        public float getAmountInsulinAdmin() {
+            return amountInsulinAdmin;
+        }
+        public void setAmountInsulinAdmin(float amountInsulinAdmin) {
+            this.amountInsulinAdmin = amountInsulinAdmin;
+        }
     }
     
-    class STZInduction implements Serializable {
+    public class STZInduction implements Serializable {
         public float STZAdministered;
         public float salineAmount;
         
@@ -79,6 +145,18 @@ public class TestSubject implements Serializable {
             this.STZAdministered = admins;
             this.salineAmount = saline;
         }
+        public String getSTZAdministered() {
+            return new Float(STZAdministered).toString();
+        }
+        public void setSTZAdministered(String sTZAdministered) {
+            STZAdministered = Float.parseFloat(sTZAdministered);
+        }
+        public float getSalineAmount() {
+            return salineAmount;
+        }
+        public void setSalineAmount(float salineAmount) {
+            this.salineAmount = salineAmount;
+        }
     }
     
     public TestSubject(int i, Group group, String name, Sex sex){
@@ -86,54 +164,53 @@ public class TestSubject implements Serializable {
         this.sex = sex;
         this.group = group;
         this.name = name;
-        dailiesAM = new ArrayList<>();
-        dailiesPM = new ArrayList<>();
-        bedCheck = new ArrayList<>();
-        weeklies = new ArrayList<>();
-        stzInductions = new ArrayList<>();
+        dailyAM = new Daily();
+        dailyPM = new Daily();
+        bedCheck = new BedCheck();
+        weekly = new Weekly();
+        stzInductions = new STZInduction();
         notes = "";
     }
     
-    public void addSTZInductionRecord(STZInduction stzInduction){
-        stzInductions.add(stzInduction);     
-    }
-    
-    public void addWeeklyRecord(Weekly weekly){
-        weeklies.add(weekly);     
-    }
-    
-    public void addDailyRecord(Daily daily){
-        if(daily.period == Period.PM){
-            dailiesPM.add(daily);
-        }
-        else {
-            dailiesAM.add(daily);
-        }
+    public Daily getDailyAM() {
+        return dailyAM;
     }
 
-    public ArrayList<Daily> getDailiesAM() {
-        return dailiesAM;
+
+    public void setDailyAM(Daily dailiesAM) {
+        this.dailyAM = dailiesAM;
     }
 
-    public void setDailiesAM(ArrayList<Daily> dailiesAM) {
-        this.dailiesAM = dailiesAM;
+
+    public Daily getDailyPM() {
+        return dailyPM;
     }
 
-    public ArrayList<Daily> getDailiesPM() {
-        return dailiesPM;
+
+    public void setDailyPM(Daily dailiesPM) {
+        this.dailyPM = dailiesPM;
     }
 
-    public void setDailiesPM(ArrayList<Daily> dailiesPM) {
-        this.dailiesPM = dailiesPM;
-    }
 
-    public ArrayList<BedCheck> getBedCheck() {
+    public BedCheck getBedCheck() {
         return bedCheck;
     }
 
-    public void setBedCheck(ArrayList<BedCheck> bedCheck) {
+
+    public void setBedCheck(BedCheck bedCheck) {
         this.bedCheck = bedCheck;
     }
+
+
+    public void setWeekly(Weekly weeklies) {
+        this.weekly = weeklies;
+    }
+
+
+    public void setStzInductions(STZInduction stzInductions) {
+        this.stzInductions = stzInductions;
+    }
+
 
     public int getId() {
         return id;
@@ -167,22 +244,6 @@ public class TestSubject implements Serializable {
         this.group = group;
     }
 
-    public ArrayList<Weekly> getWeeklies() {
-        return weeklies;
-    }
-
-    public void setWeeklies(ArrayList<Weekly> weeklies) {
-        this.weeklies = weeklies;
-    }
-
-    public ArrayList<STZInduction> getStzInductions() {
-        return stzInductions;
-    }
-
-    public void setStzInductions(ArrayList<STZInduction> stzInductions) {
-        this.stzInductions = stzInductions;
-    }
-
     public String getNotes() {
         return notes;
     }
@@ -190,6 +251,4 @@ public class TestSubject implements Serializable {
     public void setNotes(String notes) {
         this.notes = notes;
     }
-    
-    
 }

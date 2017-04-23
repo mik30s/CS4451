@@ -19,31 +19,99 @@
                 </ul>
                 <div class="sub-tabs tab-content clearfix">
                     <div class="tab-pane active" id="am-tab">
-                       <b:dataTable value="#{technicianBean.subjects}" var="subject">
+                       <h:form>
+                       <b:dataTable respomsive="true" value="#{technicianBean.subjects}" var="subject">
                             <b:dataTableColumn value="#{subject.id}" />
                             <b:dataTableColumn value="#{subject.name}" />
-                            <b:dataTableColumn order-by="dom-text" data-type="text"> 
-                                <f:facet name="header">
-                                  <h:outputText value="Feed Eaten"/>
-                                </f:facet>
-                                
+                            <b:dataTableColumn order-by="dom-text" data-type="text">
+                            	<f:facet name="header">
+                            		<h:outputText value="Feed Eaten" />
+                            	</f:facet>
+                            	<b:inputText class="sm-value" value="#{subject.dailyAM.feedEaten}" />
                             </b:dataTableColumn>
-                            <b:dataTableColumn order-by="dom-text" data-type="text"> 
-                                <f:facet name="header">
-                                  <h:outputText value="#{subject.dailiesAM.feedRefused}"/>
-                                </f:facet>
+                            <b:dataTableColumn order-by="dom-text" data-type="text">
+                            	<f:facet name="header">
+                            		<h:outputText value="Feed Refused" />
+                            	</f:facet>
+                            	<b:inputText class="sm-value" value="#{subject.dailyAM.feedRefused}" />
+                            </b:dataTableColumn>
+                            <b:dataTableColumn order-by="dom-text" data-type="text">
+                            	<f:facet name="header">
+                            		<h:outputText value="Glucose level / meal" />
+                            	</f:facet>
+                            	<b:inputText class="sm-value" value="#{subject.dailyAM.bloodGlucoseLevelPerMeal}" />
+                            </b:dataTableColumn>
+                            <b:dataTableColumn order-by="dom-text" data-type="text">
+                            	<f:facet name="header">
+                            		<h:outputText value="Glucose level after meal" />
+                            	</f:facet>
+                            	<b:inputText class="sm-value" value="#{subject.dailyAM.bloodGlucoseLevelPostMeal}" />
+                            </b:dataTableColumn>
+                            <b:dataTableColumn order-by="dom-text" data-type="text">
+                            	<f:facet name="header">
+                            		<h:outputText value="Amount of Insulin administered" />
+                            	</f:facet>
+                            	<b:inputText class="sm-value" value="#{subject.dailyAM.insulinAdministered}" />
                             </b:dataTableColumn>
                         </b:dataTable>
+                        </h:form>
                     </div>
                     <div class="tab-pane" id="pm-tab">
-                       
-                    </div>
+                       <h:form>
+                       <b:dataTable respomsive="true" value="#{technicianBean.subjects}" var="subject">
+                            <b:dataTableColumn value="#{subject.id}" />
+                            <b:dataTableColumn value="#{subject.name}" />
+                            <b:dataTableColumn order-by="dom-text" data-type="text">
+                            	<f:facet name="header">
+                            		<h:outputText value="Feed Eaten" />
+                            	</f:facet>
+                            	<b:inputText class="sm-value" value="#{subject.dailyPM.feedEaten}" />
+                            </b:dataTableColumn>
+                            <b:dataTableColumn order-by="dom-text" data-type="text">
+                            	<f:facet name="header">
+                            		<h:outputText value="Feed Refused" />
+                            	</f:facet>
+                            	<b:inputText class="sm-value" value="#{subject.dailyPM.feedRefused}" />
+                            </b:dataTableColumn>
+                            <b:dataTableColumn order-by="dom-text" data-type="text">
+                            	<f:facet name="header">
+                            		<h:outputText value="Glucose level / meal" />
+                            	</f:facet>
+                            	<b:inputText class="sm-value" value="#{subject.dailyPM.bloodGlucoseLevelPerMeal}" />
+                            </b:dataTableColumn>
+                            <b:dataTableColumn order-by="dom-text" data-type="text">
+                            	<f:facet name="header">
+                            		<h:outputText value="Glucose level after meal" />
+                            	</f:facet>
+                            	<b:inputText class="sm-value" value="#{subject.dailyPM.bloodGlucoseLevelPostMeal}" />
+                            </b:dataTableColumn>
+                            <b:dataTableColumn order-by="dom-text" data-type="text">
+                            	<f:facet name="header">
+                            		<h:outputText value="Amount of Insulin administered" />
+                            	</f:facet>
+                            	<b:inputText class="sm-value" value="#{subject.dailyPM.insulinAdministered}" />
+                            </b:dataTableColumn>
+                        </b:dataTable>
+                        </h:form>              
+                     </div>
                     <div class="tab-pane" id="bed-check-tab">
-                        
-                            
-
-                    </div>
-                    
+                    	<b:dataTable value="#{technicianBean.subjects}" var="subject">
+                            <b:dataTableColumn value="#{subject.id}" />
+                            <b:dataTableColumn value="#{subject.name}" />
+                            <b:dataTableColumn order-by="dom-text" data-type="text">
+                            	<f:facet name="header">
+                            		<h:outputText value="Blood glucose level" />
+                            	</f:facet>
+                            	<b:inputText class="sm-value" value="#{subject.bedCheck.bloodGlucoseLevel}" />
+                            </b:dataTableColumn>
+                            <b:dataTableColumn order-by="dom-text" data-type="text">
+                            	<f:facet name="header">
+                            		<h:outputText value="Amount of insulin administered" />
+                            	</f:facet>
+                            	<b:inputText class="sm-value" value="#{subject.bedCheck.amountInsulinAdmin}" />
+                            </b:dataTableColumn>
+                        </b:dataTable>
+                    </div>                    
                 </div>
         	</div>
         </div>

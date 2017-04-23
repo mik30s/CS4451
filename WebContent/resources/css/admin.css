@@ -5,6 +5,10 @@ a.btn, button, input, input[type="submit"], input[type="text"], input[type="pass
   border-top-left-radius: 0px !important;
   border-top-right-radius: 0px !important; }
 
+.sm-value {
+  max-width: 70px;
+  max-height: 25px; }
+
 .alert {
   margin: 0px; }
 
