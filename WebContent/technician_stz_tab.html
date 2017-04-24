@@ -3,12 +3,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">    
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui">    
  <ui:composition>
             <div class="panel-body">
-                <table class="table">
-                
-                </table>
+                <div class="tab-pane active">
+                  <h:form>
+                      <b:dataTable respomsive="true" value="#{technicianBean.subjects}" var="subject">
+                           <b:dataTableColumn value="#{subject.id}" />
+                           <b:dataTableColumn value="#{subject.name}" />
+                           <b:dataTableColumn order-by="dom-text" data-type="text">
+	                           	<f:facet name="header">
+	                           		<h:outputText value="Amount of STZ" />
+	                           	</f:facet>
+	                           	<b:inputText placeholder="" class="sm-value" value="#{subject.weekly.IOP}" />
+                           </b:dataTableColumn>
+                           <b:dataTableColumn order-by="dom-text" data-type="text">
+	                           	<f:facet name="header">
+	                           		<h:outputText value="Amount of saline" />
+	                           	</f:facet>
+	                           	<b:inputText class="sm-value" value="#{subject.weekly.weight}" />
+                           </b:dataTableColumn>
+                       </b:dataTable>
+                    </h:form>
+                </div>
             </div>
  </ui:composition>
 </html>

@@ -93,6 +93,16 @@ body {
               color: black;
               background-color: white;
               padding: 5px 15px; }
+          body .content .panel.technician-content #tech-tabs.container-fluid .tab-content .tab-pane .panel.weekly-tab-content {
+            color: black;
+            margin-bottom: 0px; }
+            body .content .panel.technician-content #tech-tabs.container-fluid .tab-content .tab-pane .panel.weekly-tab-content .panel-body {
+              padding: 5px 15px; }
+          body .content .panel.technician-content #tech-tabs.container-fluid .tab-content .tab-pane .panel.stz-tab-content {
+            color: black;
+            margin-bottom: 0px; }
+            body .content .panel.technician-content #tech-tabs.container-fluid .tab-content .tab-pane .panel.stz-tab-content .panel-body {
+              padding: 5px 15px; }
   body .page-header {
     margin: 0px; }
 

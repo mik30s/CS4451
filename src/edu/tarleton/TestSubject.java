@@ -200,6 +200,10 @@ public class TestSubject implements Serializable {
     public void setBedCheck(BedCheck bedCheck) {
         this.bedCheck = bedCheck;
     }
+    
+    public Weekly getWeekly(){
+        return this.weekly;
+    }
 
 
     public void setWeekly(Weekly weeklies) {
