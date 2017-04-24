@@ -19,10 +19,22 @@
                 </ul>
                 <div class="sub-tabs tab-content clearfix">
                     <div class="tab-pane active" id="am-tab">
-                       <form id="am-tab-form" class="form" data-parsley-validate="">
+                       <form id="am-tab-form" class="form" action="/rest/" data-parsley-validate="" method="POST">
                            <b:dataTable respomsive="true" value="#{technicianBean.subjects}" var="subject">
-                                <b:dataTableColumn name="id" value="#{subject.id}" />
-                                <b:dataTableColumn value="#{subject.name}" />
+                                <b:dataTableColumn name="id">
+                                	<f:facet name="header">
+                                		<h:outputText value="ID" />
+                                	</f:facet>
+                                	<input type="hidden" name="id" value="#{subject.id}" />
+                                	<h:outputText value="#{subject.id}" />
+                                 </b:dataTableColumn>
+                                <b:dataTableColumn name="id">
+                                	<f:facet name="header">
+                                		<h:outputText value="Name" />
+                                	</f:facet>
+                                	<input type="hidden" name="name" value="#{subject.name}" />
+                                	<h:outputText value="#{subject.name}" />
+                                 </b:dataTableColumn>
                                 <b:dataTableColumn order-by="dom-text" data-type="text">
                                 	<f:facet name="header">
                                 		<h:outputText value="Feed Eaten" />
@@ -44,8 +56,12 @@
                                 <b:dataTableColumn order-by="dom-text" data-type="text">
                                 	<f:facet name="header">
                                 		<h:outputText value="Glucose level after meal" />
-                                	</f:facet>
-                                	<b:inputText class="sm-value" value="#{subject.dailyAM.bloodGlucoseLevelPostMeal}" />
+                                	</f:facet>            	
+                               		<b:inputText class="sm-value" value="#{subject.dailyAM.bloodGlucoseLevelPostMeal}">
+                               			<f:facet name="append">
+                               				<h:outputText value="mmol/L" />
+                               			</f:facet>
+                               		</b:inputText>
                                 </b:dataTableColumn>
                                 <b:dataTableColumn order-by="dom-text" data-type="text">
                                 	<f:facet name="header">

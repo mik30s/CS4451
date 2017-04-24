@@ -1,28 +1,44 @@
-var $ = require('jquery');
-
+// load jqeury from page scripts instead.
 module.exports = function(mountId){
-	var vueInstance = new Vue({
+	 this.DailyController = function(){
+		 console.log("Daily Controller being constructed");
+		// initialize validator
+		$("#am-tab-form").parsley().on('field:validated', function(){
+			var ok = $('.parsley-error').length === 0;
+			if(ok === true) {
+				console.log("valid");
+			}
+			else{
+				console.log("not valid");
+			}
+		}).on('form:submit', function() {
+			alert('submiting form are you sure.');
+			return false;
+		});
 		
-	});
-	
-	var dailyAMModel = {
-		id: "", 
-		name: "",
-		feedEaten: "",
-		feedRefused: "",
+		function sendData(){
+			
+		}
+		console.log("Daily Controller done constructing");
+		return this;
 	};
 	
-	$("#am-tab-form").parsley().on('field:validated', function(){
-		var ok = $('.parsley-error').length === 0;
-		if(ok === true){
-			console.log("valid");
+	this.BedCheck = function(){
+		// initialize validator
+		$("#pm-tab-form").parsley().on('field:validated', function(){
+			var ok = $('.parsley-error').length === 0;
+			if(ok === true){
+				console.log("valid");
+			}
+			else{
+				console.log("not valid");
+			}
+		}).on('form:submit', function(){
+			alert('submiting form are you sure.');
+		});
+		
+		function sendData(){
+			
 		}
-		else{
-			console.log("not valid");
-		}
-	}).on('form:submit', function(){
-		alert('submiting form are you sure.');
-	});
-
-	return vueInstance;
+	}
 };
