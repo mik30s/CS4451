@@ -73,45 +73,68 @@
 // load jqeury from page scripts instead.
 module.exports = function(mountId){
 	 this.DailyController = function(){
-		 console.log("Daily Controller being constructed");
-		// initialize validator
-		$("#am-tab-form").parsley().on('field:validated', function(){
-			var ok = $('.parsley-error').length === 0;
-			if(ok === true) {
-				console.log("valid");
+		console.log("Daily Controller being constructed");
+		$("#am-tab-form").on('submit', function(e){
+			// an invalid form
+			if (e.isDefaultPrevented){
+				
 			}
-			else{
-				console.log("not valid");
+			else {
+				// everything looks good send data
 			}
-		}).on('form:submit', function() {
-			alert('submiting form are you sure.');
-			return false;
 		});
+		
 		
 		function sendData(){
 			
 		}
+		
 		console.log("Daily Controller done constructing");
 		return this;
 	};
 	
-	this.BedCheck = function(){
-		// initialize validator
-		$("#pm-tab-form").parsley().on('field:validated', function(){
-			var ok = $('.parsley-error').length === 0;
-			if(ok === true){
-				console.log("valid");
+	this.WeeklyController = function() {
+		console.log("Weekly Controller being constructed");
+		$("#weekly-tab-form").on('submit', function(e){
+			alert("Aout to send weekly data.");
+			// an invalid form
+			if (e.isDefaultPrevented){
+				
 			}
-			else{
-				console.log("not valid");
+			else {
+				// everything looks good send data
+				// show modal dialog
+				alert("About to send weekly data.");
+				console.log("sending data.");
+				// ok send data
+				sendData();
+				
+				// cancel return false;
+				setTimeout(() => {
+					console.log();
+				}, 2000);
+				return false;
 			}
-		}).on('form:submit', function(){
-			alert('submiting form are you sure.');
 		});
 		
-		function sendData(){
+		function sendData() {
+			var subjectData = [];
+			var subjectRecord = {}; 
+			var iopNodes = $("#weekly-tab-form\\:weekly-tab-form-table input[type='text'][name='IOP']");
+			var weightNodes = $("#weekly-tab-form\\:weekly-tab-form-table input[type='text'][name='weight']");
+			var nameNodes = $("#weekly-tab-form\\:weekly-tab-form-table input[type='hidden'][name='name']");
+			var idNodes = $("#weekly-tab-form\\:weekly-tab-form-table input[type='hidden'][name='id']");
+
+			// build objects
+			idNodes.forEach(function(id, i, arr) {
+				subjectRecord["id"] = id;
+				subjectRecord["iopNodes"] = $(iopNodes[i]).val(); 
+			});
 			
+			console.log(iopNodes);
 		}
+		console.log("Weekly Controller done constructing");
+		return this;
 	}
 };
 
@@ -125,6 +148,7 @@ var main = function(){
 	console.log("App started");
 	var technician = new Technician("technician-vue-instance");
 	var dailyController = new technician.DailyController();
+	var weeklyController = new technician.WeeklyController();
 };
 
 module.exports = main();

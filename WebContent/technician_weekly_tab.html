@@ -8,28 +8,41 @@
  <ui:composition>
         <div class="panel weekly-tab-content">
             <div class="panel-heading">
-                <h3>Weekly Entries <button style="margin-left: 0.5em;" class="btn btn-sm btn-success">Add entries.</button></h3>
+                <h3>Weekly Entries</h3>
             </div>
             <div class="panel-body">
-                <div class="tab-pane active" id="am-tab">
-                  <h:form>
-                      <b:dataTable respomsive="true" value="#{technicianBean.subjects}" var="subject">
-                           <b:dataTableColumn value="#{subject.id}" />
-                           <b:dataTableColumn value="#{subject.name}" />
+                <div class="tab-pane active" id="weekly-tab">
+                  <form id="weekly-tab-form" data-toggle="validator">
+                      <b:dataTable id="weekly-tab-form-table" respomsive="true" value="#{technicianBean.subjects}" var="subject">
+                           <b:dataTableColumn name="id">
+                            	<f:facet name="header">
+                            		<h:outputText value="ID" />
+                            	</f:facet>
+                            	<input type="hidden" name="id" value="#{subject.id}"/>
+                            	<h:outputText value="#{subject.id}" />
+                             </b:dataTableColumn>
+                            <b:dataTableColumn name="id">
+                            	<f:facet name="header">    
+                            		<h:outputText value="Name" />
+                            	</f:facet>
+                            	<input type="hidden" name="name" value="#{subject.name}"/>
+                            	<h:outputText value="#{subject.name}" />
+                             </b:dataTableColumn>
                            <b:dataTableColumn order-by="dom-text" data-type="text">
 	                           	<f:facet name="header">
 	                           		<h:outputText value="Intra Ocular Pressure" />
 	                           	</f:facet>
-	                           	<b:inputText placeholder="" class="sm-value" value="#{subject.weekly.IOP}" />
+	                           	<input placeholder="" pattern="[0-9]" name="IOP" class="form-control sm-value" value="#{subject.weekly.IOP}" required=""/>
                            </b:dataTableColumn>
                            <b:dataTableColumn order-by="dom-text" data-type="text">
 	                           	<f:facet name="header">
 	                           		<h:outputText value="Weight" />
 	                           	</f:facet>
-	                           	<b:inputText class="sm-value" value="#{subject.weekly.weight}" />
+	                           	<input placeholder="" pattern="[0-9]" name="weight" class="form-control sm-value" value="#{subject.weekly.weight}" required=""/>
                            </b:dataTableColumn>
                        </b:dataTable>
-                    </h:form>
+                       <input value="Submit Entries" class="btn btn-success" type="submit"/>
+                    </form>
                 </div>
             </div>
         </div>
