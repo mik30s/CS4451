@@ -20,7 +20,7 @@
                 <div class="sub-tabs tab-content clearfix">
                     <div class="tab-pane active" id="am-tab">
                        <form id="am-tab-form" class="form"  data-parsley-validate="">
-                           <b:dataTable respomsive="true" value="#{technicianBean.subjects}" var="subject">
+                           <b:dataTable id="am-tab-form-table" respomsive="true" value="#{technicianBean.subjects}" var="subject">
                                 <b:dataTableColumn name="id">
                                 	<f:facet name="header">
                                 		<h:outputText value="ID" />
@@ -74,8 +74,8 @@
                         </form>
                     </div>
                     <div class="tab-pane" id="pm-tab">
-                       <form class="form">
-                           <b:dataTable respomsive="true" value="#{technicianBean.subjects}" var="subject">
+                       <form  id="pm-tab-form" class="form">
+                           <b:dataTable id="pm-tab-form-table" respomsive="true" value="#{technicianBean.subjects}" var="subject">
                                 <b:dataTableColumn value="#{subject.id}" />
                                 <b:dataTableColumn value="#{subject.name}" />
                                 <b:dataTableColumn order-by="dom-text" data-type="text">
@@ -113,22 +113,24 @@
                         </form>              
                      </div>
                     <div class="tab-pane" id="bed-check-tab">
-                    	<b:dataTable value="#{technicianBean.subjects}" var="subject">
-                            <b:dataTableColumn value="#{subject.id}" />
-                            <b:dataTableColumn value="#{subject.name}" />
-                            <b:dataTableColumn order-by="dom-text" data-type="text">
-                            	<f:facet name="header">
-                            		<h:outputText value="Blood glucose level" />
-                            	</f:facet>
-                            	<b:inputText class="sm-value" value="#{subject.bedCheck.bloodGlucoseLevel}" />
-                            </b:dataTableColumn>
-                            <b:dataTableColumn order-by="dom-text" data-type="text">
-                            	<f:facet name="header">
-                            		<h:outputText value="Amount of insulin administered" />
-                            	</f:facet>
-                            	<b:inputText class="sm-value" value="#{subject.bedCheck.amountInsulinAdmin}" />
-                            </b:dataTableColumn>
-                        </b:dataTable>
+                        <form id="bed-check-tab-form" class="form">
+                        	<b:dataTable id="bed-check-tab-form-table" value="#{technicianBean.subjects}" var="subject">
+                                <b:dataTableColumn value="#{subject.id}" />
+                                <b:dataTableColumn value="#{subject.name}" />
+                                <b:dataTableColumn order-by="dom-text" data-type="text">
+                                	<f:facet name="header">
+                                		<h:outputText value="Blood glucose level" />
+                                	</f:facet>
+                                	<b:inputText class="sm-value" value="#{subject.bedCheck.bloodGlucoseLevel}" />
+                                </b:dataTableColumn>
+                                <b:dataTableColumn order-by="dom-text" data-type="text">
+                                	<f:facet name="header">
+                                		<h:outputText value="Amount of insulin administered" />
+                                	</f:facet>
+                                	<b:inputText class="sm-value" value="#{subject.bedCheck.amountInsulinAdmin}" />
+                                </b:dataTableColumn>
+                            </b:dataTable>
+                        </form>
                     </div>                    
                 </div>
         	</div>

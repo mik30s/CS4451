@@ -9,15 +9,14 @@
    <h:head>
       <title><ui:insert name="title"></ui:insert></title>
       <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
-
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-      <h:outputStylesheet library="css" name="main_layout.css"></h:outputStylesheet>
-      <h:outputStylesheet library="css" name="animate.css"></h:outputStylesheet>
-      
-      <ui:insert name="css" />
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css" />
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+      <h:outputStylesheet library="css" name="main_layout.css"></h:outputStylesheet>
+      <h:outputStylesheet library="css" name="animate.css"></h:outputStylesheet>
+      <h:outputStylesheet library="css" name="bootstrap-dialog.min.css"></h:outputStylesheet>
+      <ui:insert name="css" />
       
    </h:head>
    <h:body>
@@ -56,8 +55,10 @@
         	</div>
         </footer>
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
       	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<script src="http://cdn.jsdelivr.net/vue/1.0.16/vue.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/js/bootstrap-notify.min.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
 		<h:outputScript library="js" name="build/app-build.js"></h:outputScript>
    </h:body>
