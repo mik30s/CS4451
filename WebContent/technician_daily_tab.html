@@ -25,7 +25,8 @@
                                 	<f:facet name="header">
                                 		<h:outputText value="ID" />
                                 	</f:facet>
-                                	<input type="hidden" name="id" value="#{subject.id}" />
+                                	<b:inputText type="hidden" name="id" value="#{subject.id}">
+                                	</b:inputText>
                                 	<h:outputText value="#{subject.id}" />
                                  </b:dataTableColumn>
                                 <b:dataTableColumn name="id">
@@ -39,7 +40,12 @@
                                 	<f:facet name="header">
                                 		<h:outputText value="Feed Eaten" />
                                 	</f:facet>
-                                	<b:inputText placeholder="" name="amFeedEaten" class="sm-value" value="#{subject.dailyAM.feedEaten}" required=""/>
+                                	<b:inputText placeholder="0 - 50" name="amFeedEaten" 
+                                				 class="sm-value" value="#{subject.dailyAM.feedEaten}" required="">
+                                		<f:facet name="append">
+                               				<h:outputText value="kg" />
+                               			</f:facet>
+                                	</b:inputText>
                                 </b:dataTableColumn>
                                 <b:dataTableColumn order-by="dom-text" data-type="text">
                                 	<f:facet name="header">
