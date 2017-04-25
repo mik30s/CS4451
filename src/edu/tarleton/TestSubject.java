@@ -1,15 +1,10 @@
 package edu.tarleton;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-
-import javax.xml.bind.annotation.XmlRootElement;
- 
-enum Period {AM, PM};
  
 public class TestSubject implements Serializable {
-    enum Group{CONTROL, TEST}
-    enum Sex{MALE, FEMALE}
+    enum Group {CONTROL, TEST}
+    enum Sex {MALE, FEMALE}
     
     public int id;
     public Sex sex;
@@ -28,6 +23,8 @@ public class TestSubject implements Serializable {
         this.group = group;
         this.name = name;
         dailyAM = new Daily();
+        dailyAM.id = this.id;
+        dailyAM.name = this.name;
         dailyPM = new Daily();
         bedCheck = new BedCheck();
         weekly = new Weekly();

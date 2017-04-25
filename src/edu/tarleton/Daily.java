@@ -2,7 +2,11 @@ package edu.tarleton;
 
 import java.io.Serializable;
 
-public class Daily implements Serializable{
+import edu.tarleton.Period;
+
+public class Daily implements Serializable {
+    public int id;
+    public String name;
     public String timePeriod;
     private int feedEaten;
     public int feedRefused;
