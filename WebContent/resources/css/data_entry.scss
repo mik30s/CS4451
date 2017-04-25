@@ -21,10 +21,13 @@ body{
         }
 
         .panel.technician-content {
-            background: white;
-            top: 5em;
+           // background: white;
             position: relative;
 
+            .panel-heading{
+                color: white;
+                background: transparent;
+            }
             .panel-body{padding: 0px;}
             .daily-tab-content.panel-body{padding: 5px;}
 

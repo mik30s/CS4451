@@ -17,6 +17,10 @@ public class TestSubject implements Serializable {
     public STZInduction stzInductions;
     public String notes;
     
+    public TestSubject(){
+        // do noting
+    }
+    
     public TestSubject(int i, Group group, String name, Sex sex){
         this.id = i;
         this.sex = sex;

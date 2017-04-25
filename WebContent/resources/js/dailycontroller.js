@@ -1,3 +1,5 @@
+var Noty = require('noty');
+
 module.exports =  function(){
 	console.log("Daily Controller being constructed");
 	var self = this;
@@ -31,7 +33,36 @@ module.exports =  function(){
 					// let sendData handle the closing
 					self.sendData(function() {
 						// before closing the dialog call growl
-						$('.backdrop').notify("Record for this week was successfully added.", "success");
+						var noty = new Noty({
+							text:"Successfully updated daily records.",
+							timeout: 5000,
+							progressBar: true,
+							closeWith: ['click', 'button'],
+							layout: 'topRight',
+							theme: 'metroui',
+							container: '#notification-holder',
+							animation: {
+								open: 'animated slideInDown',
+								close: 'animated slideOutUp'
+							},
+							type: 'success'
+						}).show();
+						dref.close();
+					}, function(){
+						var noty = new Noty({
+							text:"Failed to update daily records.",
+							timeout: 5000,
+							progressBar: true,
+							closeWith: ['click', 'button'],
+							layout: 'topRight',
+							theme: 'metroui',
+							container: '#notification-holder',
+							animation: {
+								open: 'animated slideInDown',
+								close: 'animated slideOutUp'
+							},
+							type: 'error'
+						}).show();
 						dref.close();
 					});
 				}
@@ -45,59 +76,59 @@ module.exports =  function(){
 		});
 	}
 	
-	this.sendData = function(){
+	this.sendData = function(successCallback, errorCallback) {
 		var subjectRecord = {}; 
+		var _send_data = this;
 		
 		// initialize node lists
-		var nameNodes = $("#am-tab-form #am-tab-form-table input[type='hidden'][name='name']"),
-		    idNodes = $("#am-tab-form #am-tab-form-table input[type='hidden'][name='id']");
+		var nameNodes = $("#am-tab-form #am-tab-form-table input[type='hidden'][name='name']");
+		var idNodes = $("#am-tab-form #am-tab-form-table input[type='hidden'][name='id']");
 		
-		var amNodes = {
-			feedEatenNodes : $("#am-tab-form #am-tab-form-table input[name='IOP']"),
-			feedRefusedNodes : $("#am-tab-form #am-tab-form-table input[name='weight']"),
-			bloodGlucoseLevelPerMeal : $("#am-tab-form #am-tab-form-table input[name='bloodGlucoseLevelPerMeal']"),
-			bloodGlucoseLevelAfterMeal : $("#am-tab-form #am-tab-form-table input[name='bloodGlucoseLevelAfterMeal']"),
-		}
+		var amFeedEatenNodes = $("#am-tab-form #am-tab-form-table input[name='amFeedEaten']");
+		var amFeedRefusedNodes = $("#am-tab-form #am-tab-form-table input[name='amFeedRefused']");
+		var amBloodGlucoseLevelPerMeal = $("#am-tab-form #am-tab-form-table input[name='amBloodGlucoseLevelPerMeal']");
+		var amBloodGlucoseLevelAfterMeal = $("#am-tab-form #am-tab-form-table input[name='amBloodGlucoseLevelAfterMeal']");
 		
-		var pmNodes = {
-			feedEatenNodes : $("#pm-tab-form #pm-tab-form-table input[name='IOP']"),
-			feedRefusedNodes : $("#pm-tab-form #pm-tab-form-table input[name='weight']"),
-			bloodGlucoseLevelPerMeal : $("#pm-tab-form #pm-tab-form-table input[name='bloodGlucoseLevelPerMeal']"),
-			bloodGlucoseLevelAfterMeal : $("#pm-tab-form #pm-tab-form-table input[name='bloodGlucoseLevelAfterMeal']"),
-		}
+		var pmFeedEatenNodes = $("#pm-tab-form #pm-tab-form-table input[name='pmFeedEaten']");
+		var pmFeedRefusedNodes = $("#pm-tab-form #pm-tab-form-table input[name='pmFeedRefused']");
+		var pmBloodGlucoseLevelPerMeal = $("#pm-tab-form #pm-tab-form-table input[name='pmBloodGlucoseLevelPerMeal']");
+		var pmBloodGlucoseLevelAfterMeal = $("#pm-tab-form #pm-tab-form-table input[name='pmBloodGlucoseLevelAfterMeal']");
 		
 		$(idNodes).each(function(i, node) {
 			var subjectRecord = {
-					"dailyAm":{},
-					"dailyPM":{},
+					dailyAM:{},
+					dailyPM:{},
 			};
 			// identifiers
 			subjectRecord["id"] = $(node).val();
 			subjectRecord["name"] = $(nameNodes[i]).val();
+			//console.log(JSON.stringify(_send_data.pmNodes));
 			// am nodes
-			subjectRecord.dailyAM["feedEaten"] = $(amNodes.feedEatenNodes[i]).val();
-			subjectRecord.dailyAM["feedRefused"] = $(amNodes.feedRefusedNodes[i]).val();
-			subjectRecord.dailyAM["bloodGlucoseLevelPerMeal"] = $(amNodes.bloodGlucoseLevelPerMeal[i]).val();
-			subjectRecord.dailyAM["bloodGlucoseLevelAfterMeal"] = $(amNodes.bloodGlucoseLevelAfterMeal[i]).val();
+			subjectRecord.dailyAM["feedEaten"] = $(amFeedEatenNodes[i]).val();
+			subjectRecord.dailyAM["feedRefused"] = $(amFeedRefusedNodes[i]).val();
+			subjectRecord.dailyAM["bloodGlucoseLevelPerMeal"] = $(amBloodGlucoseLevelPerMeal[i]).val();
+			subjectRecord.dailyAM["bloodGlucoseLevelPostMeal"] = $(amBloodGlucoseLevelAfterMeal[i]).val();
+			subjectRecord.dailyAM["period"] = "AM";
 			// pm nodes
-			subjectRecord.dailyPM["feedEaten"] = $(pmNodes.feedEatenNodes[i]).val();
-			subjectRecord.dailyPM["feedRefused"] = $(pmNodes.feedRefusedNodes[i]).val();
-			subjectRecord.dailyPM["bloodGlucoseLevelPerMeal"] = $(pmNodes.bloodGlucoseLevelPerMeal[i]).val();
-			subjectRecord.dailyPM["bloodGlucoseLevelAfterMeal"] = $(pmNodes.bloodGlucoseLevelAfterMeal[i]).val();
+			subjectRecord.dailyPM["feedEaten"] = $(pmFeedEatenNodes[i]).val();
+			subjectRecord.dailyPM["feedRefused"] = $(pmFeedRefusedNodes[i]).val();
+			subjectRecord.dailyPM["bloodGlucoseLevelPerMeal"] = $(pmBloodGlucoseLevelPerMeal[i]).val();
+			subjectRecord.dailyPM["bloodGlucoseLevelPostMeal"] = $(pmBloodGlucoseLevelAfterMeal[i]).val();
+			subjectRecord.dailyPM["period"] = "PM";
 			
 			self.subjectData.push(subjectRecord);
 		});
 		
 		$.ajax({
-			url : "../rest/subject/daily/add",
+			url : "../rest/subjec/daily/add",
 		    type : "POST",
 		    dataType : 'json',
 		    contentType : 'application/json; charset=UTF-8',
 		    data : JSON.stringify(self.subjectData),
 		    success : function(response) {
 	    		console.log(response);
-	    		if (callback !== undefined) {
-	    			callback();
+	    		if (successCallback !== undefined) {
+	    			successCallback();
 	    		}
 		    },
 		    error: function(xhresponse) {
@@ -110,6 +141,10 @@ module.exports =  function(){
 		    	}
 		    	else {
 		    		// this is truly an error so handle it here.
+		    		if(errorCallback !== undefined) {
+		    			errorCallback();
+		    		}
+		    		console.log("update failed.")
 		    		alert("failed");
 		    	}
 		    }

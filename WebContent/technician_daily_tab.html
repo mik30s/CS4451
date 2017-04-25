@@ -39,25 +39,25 @@
                                 	<f:facet name="header">
                                 		<h:outputText value="Feed Eaten" />
                                 	</f:facet>
-                                	<b:inputText placeholder="" name="feedEaten" class="sm-value" value="#{subject.dailyAM.feedEaten}" required=""/>
+                                	<b:inputText placeholder="" name="amFeedEaten" class="sm-value" value="#{subject.dailyAM.feedEaten}" required=""/>
                                 </b:dataTableColumn>
                                 <b:dataTableColumn order-by="dom-text" data-type="text">
                                 	<f:facet name="header">
                                 		<h:outputText value="Feed Refused" />
                                 	</f:facet>
-                                	<b:inputText name="feedRefused" class="sm-value" value="#{subject.dailyAM.feedRefused}" />
+                                	<b:inputText name="amFeedRefused" class="sm-value" value="#{subject.dailyAM.feedRefused}" />
                                 </b:dataTableColumn>
                                 <b:dataTableColumn order-by="dom-text" data-type="text">
                                 	<f:facet name="header">
                                 		<h:outputText value="Glucose level / meal" />
                                 	</f:facet>
-                                	<b:inputText class="sm-value" value="#{subject.dailyAM.bloodGlucoseLevelPerMeal}" />
+                                	<b:inputText class="sm-value" name="amBloodGlucoseLevelPerMeal" value="#{subject.dailyAM.bloodGlucoseLevelPerMeal}" />
                                 </b:dataTableColumn>
                                 <b:dataTableColumn order-by="dom-text" data-type="text">
                                 	<f:facet name="header">
                                 		<h:outputText value="Glucose level after meal" />
                                 	</f:facet>            	
-                               		<b:inputText class="sm-value" value="#{subject.dailyAM.bloodGlucoseLevelPostMeal}">
+                               		<b:inputText class="sm-value" name="amBloodGlucoseLevelAfterMeal" value="#{subject.dailyAM.bloodGlucoseLevelPostMeal}">
                                			<f:facet name="append">
                                				<h:outputText value="mmol/L" />
                                			</f:facet>
@@ -65,7 +65,7 @@
                                 </b:dataTableColumn>
                                 <b:dataTableColumn order-by="dom-text" data-type="text">
                                 	<f:facet name="header">
-                                		<h:outputText value="Amount of Insulin administered" />
+                                		<h:outputText value="Insulin administered" />
                                 	</f:facet>
                                 	<b:inputText class="sm-value" value="#{subject.dailyAM.insulinAdministered}" />
                                 </b:dataTableColumn>
@@ -82,29 +82,29 @@
                                 	<f:facet name="header">
                                 		<h:outputText value="Feed Eaten" />
                                 	</f:facet>
-                                	<b:inputText class="sm-value" value="#{subject.dailyPM.feedEaten}" />
+                                	<b:inputText class="sm-value" name="pmFeedEaten" value="#{subject.dailyPM.feedEaten}" />
                                 </b:dataTableColumn>
                                 <b:dataTableColumn order-by="dom-text" data-type="text">
                                 	<f:facet name="header">
                                 		<h:outputText value="Feed Refused" />
                                 	</f:facet>
-                                	<b:inputText class="sm-value" value="#{subject.dailyPM.feedRefused}" />
+                                	<b:inputText class="sm-value" name="pmFeedRefused" value="#{subject.dailyPM.feedRefused}" />
                                 </b:dataTableColumn>
                                 <b:dataTableColumn order-by="dom-text" data-type="text">
                                 	<f:facet name="header">
                                 		<h:outputText value="Glucose level / meal" />
                                 	</f:facet>
-                                	<b:inputText class="sm-value" value="#{subject.dailyPM.bloodGlucoseLevelPerMeal}" />
+                                	<b:inputText class="sm-value" name="pmBloodGlucoseLevelPerMeal" value="#{subject.dailyPM.bloodGlucoseLevelPerMeal}" />
                                 </b:dataTableColumn>
                                 <b:dataTableColumn order-by="dom-text" data-type="text">
                                 	<f:facet name="header">
                                 		<h:outputText value="Glucose level after meal" />
                                 	</f:facet>
-                                	<b:inputText class="sm-value" value="#{subject.dailyPM.bloodGlucoseLevelPostMeal}" />
+                                	<b:inputText class="sm-value" name="pmBloodGlucoseLevelAfterMeal" value="#{subject.dailyPM.bloodGlucoseLevelPostMeal}" />
                                 </b:dataTableColumn>
                                 <b:dataTableColumn order-by="dom-text" data-type="text">
                                 	<f:facet name="header">
-                                		<h:outputText value="Amount of Insulin administered" />
+                                		<h:outputText value="Insulin administered" />
                                 	</f:facet>
                                 	<b:inputText class="sm-value" value="#{subject.dailyPM.insulinAdministered}" />
                                 </b:dataTableColumn>
@@ -125,11 +125,12 @@
                                 </b:dataTableColumn>
                                 <b:dataTableColumn order-by="dom-text" data-type="text">
                                 	<f:facet name="header">
-                                		<h:outputText value="Amount of insulin administered" />
+                                		<h:outputText value="Insulin administered" />
                                 	</f:facet>
                                 	<b:inputText class="sm-value" value="#{subject.bedCheck.amountInsulinAdmin}" />
                                 </b:dataTableColumn>
                             </b:dataTable>
+                            <input value="Submit Entries" class="btn btn-success" type="submit"/>
                         </form>
                     </div>                    
                 </div>

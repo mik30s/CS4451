@@ -77,15 +77,22 @@ public class TestSubjectResourceBean {
         return Response.status(200).entity("success").build();
     }
     
+    @GET
+    @Path("/daily")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getDailies() throws Exception {
+        return "failed";
+    }
+    
     @POST
     @Path("/daily/add")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateDailyRecords(@Valid List<Daily> records) throws Exception {
+    public Response updateDailyRecords(@Valid List<TestSubject> records) throws Exception {
         if(records == null || records.size() < 1){
             return Response.status(201).entity("failed").build();
         }
         
-        for(Daily record : records){
+        for(TestSubject record : records){
             System.out.println("Updating record");
             System.out.println(record.id + " " + record.name);
         }
