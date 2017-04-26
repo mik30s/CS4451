@@ -51,7 +51,12 @@
                                 	<f:facet name="header">
                                 		<h:outputText value="Feed Refused" />
                                 	</f:facet>
-                                	<b:inputText name="amFeedRefused" class="sm-value" value="#{subject.dailyAM.feedRefused}" />
+                                	<b:inputText placeholder="0 - 50" name="amFeedRefused" 
+                                                  class="sm-value" value="#{subject.dailyAM.feedRefused}" required="">
+                                        <f:facet name="append">
+                                            <h:outputText value="kg" />
+                                        </f:facet>
+                                    </b:inputText>
                                 </b:dataTableColumn>
                                 <b:dataTableColumn order-by="dom-text" data-type="text">
                                 	<f:facet name="header">

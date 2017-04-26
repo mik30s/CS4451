@@ -1,3 +1,5 @@
+var Noty = require('noty');
+
 module.exports = function() {
 	var self = this;
 	this.subjectData = [];
@@ -23,9 +25,39 @@ module.exports = function() {
 					action: function(dref) {
 						dref.enableButtons(false);
 						// let sendData handle the closing
+						// let sendData handle the closing
 						self.sendData(function() {
 							// before closing the dialog call growl
-							$('.backdrop').notify("Record for this week was successfully added.", "success");
+							var noty = new Noty({
+								text:"Successfully updated daily records.",
+								timeout: 2500,
+								progressBar: true,
+								closeWith: ['click', 'button'],
+								layout: 'topRight',
+								theme: 'metroui',
+								container: '#notification-holder',
+								animation: {
+									open: 'animated slideInDown',
+									close: 'animated slideOutUp'
+								},
+								type: 'success'
+							}).show();
+							dref.close();
+						}, function(){
+							var noty = new Noty({
+								text:"Failed to update daily records.",
+								timeout: 2500,
+								progressBar: true,
+								closeWith: ['click', 'button'],
+								layout: 'topRight',
+								theme: 'metroui',
+								container: '#notification-holder',
+								animation: {
+									open: 'animated slideInDown',
+									close: 'animated slideOutUp'
+								},
+								type: 'error'
+							}).show();
 							dref.close();
 						});
 					}
@@ -41,7 +73,7 @@ module.exports = function() {
 		}
 	});
 	
-	this.sendData = function(callback) {
+	this.sendData = function(successCallback, errorCallback) {
 		console.log("sending data...");
 		var _send_data_self = this;
 		var subjectRecord = {}; 
@@ -70,8 +102,8 @@ module.exports = function() {
 		    data : JSON.stringify(self.subjectData),
 		    success : function(response) {
 	    		console.log(response);
-	    		if (callback !== undefined) {
-	    			callback();
+	    		if (successCallback !== undefined) {
+	    			successCallback();
 	    		}
 		    },
 		    error: function(xhresponse) {
@@ -84,7 +116,10 @@ module.exports = function() {
 		    	}
 		    	else {
 		    		// this is truly an error so handle it here.
-		    		alert("failed");
+		    		if(errorCallback !== undefined){
+		    			errorCallback();
+		    		}
+		    		//alert("failed");
 		    	}
 		    }
 		});

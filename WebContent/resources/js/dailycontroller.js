@@ -28,6 +28,7 @@ module.exports =  function(){
 				label: 'Confirm',
 				cssClass: 'btn-success',
 				autospin: true,
+				draggable: true,
 				action: function(dref) {
 					dref.enableButtons(false);
 					// let sendData handle the closing
@@ -35,7 +36,7 @@ module.exports =  function(){
 						// before closing the dialog call growl
 						var noty = new Noty({
 							text:"Successfully updated daily records.",
-							timeout: 5000,
+							timeout: 2500,
 							progressBar: true,
 							closeWith: ['click', 'button'],
 							layout: 'topRight',
@@ -51,7 +52,7 @@ module.exports =  function(){
 					}, function(){
 						var noty = new Noty({
 							text:"Failed to update daily records.",
-							timeout: 5000,
+							timeout: 2500,
 							progressBar: true,
 							closeWith: ['click', 'button'],
 							layout: 'topRight',
@@ -145,7 +146,7 @@ module.exports =  function(){
 		    			errorCallback();
 		    		}
 		    		console.log("update failed.")
-		    		alert("failed");
+		    		//alert("failed");
 		    	}
 		    }
 		});
