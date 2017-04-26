@@ -7,9 +7,13 @@ body, html{
 	background-image: url("/CourseProject/faces/javax.faces.resource/img/debut-light.png");
 	font-family: 'Lato';
 	
-	.panel{
+	.panel {
 		border-radius: 0px;
 		background: transparent;
+	}
+
+	#login-form input {
+		text-align: center;
 	}
 
 	.nav {

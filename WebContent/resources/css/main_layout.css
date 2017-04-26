@@ -91,6 +91,9 @@ body, html {
   body .panel-heading, html .panel-heading {
     background: transparent;
     color: white; }
+  body .content, html .content {
+    background-color: #ffffff;
+    background-image: url("/CourseProject/faces/javax.faces.resource/img/debut-light.png"); }
   body .footer, html .footer {
     border-top: 0.5em ridge green;
     background-repeat: repeat;

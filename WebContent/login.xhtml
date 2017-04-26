@@ -18,7 +18,7 @@
 	   				<h2> <i class="material-icons">lock_open</i> Login</h2>
 	   			</div>
 	      		<div class="panel-body">
-	      			<h:form class="form">
+	      			<form id="login-form" class="form">
 	      				<div class="form-group">
 	      					<label class="control-label" for="email">Email</label>
 	      					<h:inputText  value="#{loginBean.email}" name="email" class="form-control" 
@@ -35,7 +35,7 @@
                                 <h:commandButton action="#" value="Forgot your Password ?" class="btn btn-info" ></h:commandButton>
 	      				     </div>
                         </div>
-	      			</h:form>
+	      			</form>
 	      		</div>
                 <div class="panel-footer">
                     <div class="button-group">
