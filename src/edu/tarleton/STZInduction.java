@@ -3,6 +3,8 @@ package edu.tarleton;
 import java.io.Serializable;
 
 public class STZInduction implements Serializable {
+	public int id;
+	public String name;
     public float STZAdministered;
     public float salineAmount;
     

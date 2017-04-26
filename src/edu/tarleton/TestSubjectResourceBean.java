@@ -63,6 +63,33 @@ public class TestSubjectResourceBean {
     }
     
     @GET
+    @Path("/stzinductions")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getSTZInductions() throws Exception {
+        return "failed";
+    }
+    
+    @POST
+    @Path("/stzinductions/add")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateSTZInductionRecords(@Valid List<STZInduction> records) throws Exception {
+    	ResponseObject resp = new ResponseObject();
+        String retval = FAILED;
+    	if(records == null || records.size() < 1){
+            return Response.status(201).entity(setResponseMessage(resp, retval)).build();
+        }
+        
+        for(STZInduction record : records){
+            System.out.println("Updating weekly record");
+        	System.out.println(record.id + " " + record.name);
+            retval = validateFields(record) ? SUCCESS : FAILED ;
+        }
+    
+        return Response.status(200).entity(setResponseMessage(resp, retval)).build();
+    }
+    
+    @GET
     @Path("/weekly")
     @Produces(MediaType.TEXT_PLAIN)
     public String getWeeklies() throws Exception {
@@ -125,6 +152,24 @@ public class TestSubjectResourceBean {
     	if(weekly != null) {
     		if ((weekly.IOP >= 5.0f && weekly.IOP <= 65.0f) && 
     			(weekly.weight >= 0 && weekly.weight <= 100)) 
+    		{
+    			System.out.println("fields are valid.");
+    			isValid = true;
+    		}
+    		else {
+    			System.out.println("fields are not valid.");
+    		}
+    	}
+    	
+    	return  isValid;
+    }
+    
+    public boolean validateFields(STZInduction induction){
+    	boolean isValid = false;
+    	
+    	if(induction != null) {
+    		if ((induction.salineAmount >= 10.0f && induction.salineAmount <= 100.0f) && 
+    			(induction.STZAdministered >= 1200.0f && induction.STZAdministered <= 1900.0f)) 
     		{
     			System.out.println("fields are valid.");
     			isValid = true;
