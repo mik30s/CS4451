@@ -26,10 +26,10 @@ module.exports = function() {
 						dref.enableButtons(false);
 						// let sendData handle the closing
 						// let sendData handle the closing
-						self.sendData(function() {
+						self.sendData(function(resp) {
 							// before closing the dialog call growl
 							var noty = new Noty({
-								text:"Successfully updated daily records.",
+								text: resp["status"] +" "+ resp["reason"],
 								timeout: 2500,
 								progressBar: true,
 								closeWith: ['click', 'button'],
@@ -43,9 +43,9 @@ module.exports = function() {
 								type: 'success'
 							}).show();
 							dref.close();
-						}, function(){
+						}, function(resp){
 							var noty = new Noty({
-								text:"Failed to update daily records.",
+								text:resp["status"] +" "+ resp["reason"],
 								timeout: 2500,
 								progressBar: true,
 								closeWith: ['click', 'button'],
@@ -100,25 +100,32 @@ module.exports = function() {
 		    dataType : 'json',
 		    contentType : 'application/json; charset=UTF-8',
 		    data : JSON.stringify(self.subjectData),
-		    success : function(response) {
-	    		console.log(response);
-	    		if (successCallback !== undefined) {
-	    			successCallback();
+		    success : function(xhresponse) {
+		    	console.log(xhresponse);
+	    		if(xhresponse["status"] === "Failed") {
+		    		//alert("error");
+		    		this.error(xhresponse);
+		    	}
+	    		else {
+	    			if(successCallback !== undefined) {
+	    				successCallback(xhresponse);
+	    			}
 	    		}
 		    },
 		    error: function(xhresponse) {
 		    	console.log(xhresponse.status);
 		    	// handle error in jquery version 2.2.4
 		    	// where error handle is called even on success.
-		    	if(xhresponse.status === 200) {
+		    	if(xhresponse.status === 200 && xhresponse["status"] === "Success") {
 		    		//alert("success");
 		    		this.success(xhresponse);
 		    	}
 		    	else {
 		    		// this is truly an error so handle it here.
-		    		if(errorCallback !== undefined){
-		    			errorCallback();
+		    		if(errorCallback !== undefined) {
+		    			errorCallback(xhresponse);
 		    		}
+		    		console.log("update failed.")
 		    		//alert("failed");
 		    	}
 		    }

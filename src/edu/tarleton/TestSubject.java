@@ -14,14 +14,16 @@ public class TestSubject implements Serializable {
     public Daily dailyPM;
     public BedCheck bedCheck;
     public Weekly weekly;
-    public STZInduction stzInductions;
+    public STZInduction stzInduction;
     public String notes;
     
     public TestSubject(){
         // do noting
     }
     
-    public TestSubject(int i, Group group, String name, Sex sex){
+    
+
+	public TestSubject(int i, Group group, String name, Sex sex){
         this.id = i;
         this.sex = sex;
         this.group = group;
@@ -34,7 +36,7 @@ public class TestSubject implements Serializable {
         weekly = new Weekly();
         weekly.id = this.id;
         weekly.name = this.name;
-        stzInductions = new STZInduction();
+        stzInduction = new STZInduction();
         notes = "";
     }
     
@@ -77,11 +79,6 @@ public class TestSubject implements Serializable {
     }
 
 
-    public void setStzInductions(STZInduction stzInductions) {
-        this.stzInductions = stzInductions;
-    }
-
-
     public int getId() {
         return id;
     }
@@ -121,4 +118,12 @@ public class TestSubject implements Serializable {
     public void setNotes(String notes) {
         this.notes = notes;
     }
+    
+    public STZInduction getStzInduction() {
+		return stzInduction;
+	}
+
+	public void setStzInduction(STZInduction stzInduction) {
+		this.stzInduction = stzInduction;
+	}
 }

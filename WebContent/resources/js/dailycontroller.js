@@ -32,40 +32,44 @@ module.exports =  function(){
 				action: function(dref) {
 					dref.enableButtons(false);
 					// let sendData handle the closing
-					self.sendData(function() {
-						// before closing the dialog call growl
-						var noty = new Noty({
-							text:"Successfully updated daily records.",
-							timeout: 2500,
-							progressBar: true,
-							closeWith: ['click', 'button'],
-							layout: 'topRight',
-							theme: 'metroui',
-							container: '#notification-holder',
-							animation: {
-								open: 'animated slideInDown',
-								close: 'animated slideOutUp'
-							},
-							type: 'success'
-						}).show();
-						dref.close();
-					}, function(){
-						var noty = new Noty({
-							text:"Failed to update daily records.",
-							timeout: 2500,
-							progressBar: true,
-							closeWith: ['click', 'button'],
-							layout: 'topRight',
-							theme: 'metroui',
-							container: '#notification-holder',
-							animation: {
-								open: 'animated slideInDown',
-								close: 'animated slideOutUp'
-							},
-							type: 'error'
-						}).show();
-						dref.close();
-					});
+					self.sendData(
+						function(resp) {
+							var sc = this; // reference to success call back
+							// before closing the dialog call growl
+							var noty = new Noty({
+								text: resp["status"] + ", "+ resp["reason"] ,
+								timeout: 2500,
+								progressBar: true,
+								closeWith: ['click', 'button'],
+								//layout: 'topRight',
+								theme: 'metroui',
+								container: '#notification-holder',
+								animation: {
+									open: 'animated slideInDown',
+									close: 'animated slideOutUp'
+								},
+								type: 'success'
+							}).show();
+							dref.close();
+						}, 
+						function(resp){
+							var noty = new Noty({
+								text: resp["status"] + ", "+ resp["reason"] ,
+								timeout: 2500,
+								progressBar: true,
+								closeWith: ['click', 'button'],
+								//layout: 'topRight',
+								theme: 'metroui',
+								container: '#notification-holder',
+								animation: {
+									open: 'animated slideInDown',
+									close: 'animated slideOutUp'
+								},
+								type: 'error'
+							}).show();
+							dref.close();
+						}
+					);
 				}
 			},{
 				label: 'Cancel',
@@ -121,29 +125,35 @@ module.exports =  function(){
 		});
 		
 		$.ajax({
-			url : "../rest/subjec/daily/add",
+			url : "../rest/subject/daily/add",
 		    type : "POST",
 		    dataType : 'json',
 		    contentType : 'application/json; charset=UTF-8',
 		    data : JSON.stringify(self.subjectData),
-		    success : function(response) {
-	    		console.log(response);
-	    		if (successCallback !== undefined) {
-	    			successCallback();
+		    success : function(xhresponse) {
+	    		console.log(xhresponse);
+	    		if(xhresponse["status"] === "Failed") {
+		    		//alert("error");
+		    		this.error(xhresponse);
+		    	}
+	    		else {
+	    			if(successCallback !== undefined) {
+	    				successCallback(xhresponse);
+	    			}
 	    		}
 		    },
 		    error: function(xhresponse) {
 		    	console.log(xhresponse.status);
 		    	// handle error in jquery version 2.2.4
 		    	// where error handle is called even on success.
-		    	if(xhresponse.status === 200) {
+		    	if(xhresponse.status === 200 && xhresponse["status"] === "Success") {
 		    		//alert("success");
 		    		this.success(xhresponse);
 		    	}
 		    	else {
 		    		// this is truly an error so handle it here.
 		    		if(errorCallback !== undefined) {
-		    			errorCallback();
+		    			errorCallback(xhresponse);
 		    		}
 		    		console.log("update failed.")
 		    		//alert("failed");

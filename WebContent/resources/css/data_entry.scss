@@ -11,6 +11,10 @@ body{
     .content {
         position: relative;
         width: 100%;
+
+        .container{
+            height: 100%;
+        }
         
         .backdrop {
             position: absolute;
@@ -97,10 +101,14 @@ body{
                         }
 
                         .panel.stz-tab-content{
-                            color: black;
                             margin-bottom: 0px;
-                            .panel-body{
-                                padding: 5px 15px;
+                            .sub-tabs{
+                                .nav-pills > li > a.active {background: #428bca;}
+                                &.tab-content {
+                                    color : black;
+                                    background-color: white;
+                                    padding : 5px 15px;
+                                }
                             }
                         }
                     }

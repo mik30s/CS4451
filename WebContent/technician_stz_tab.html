@@ -5,28 +5,107 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:b="http://bootsfaces.net/ui">    
- <ui:composition>
-            <div class="panel-body">
-                <div class="tab-pane active">
-                  <h:form>
-                      <b:dataTable respomsive="true" value="#{technicianBean.subjects}" var="subject">
-                           <b:dataTableColumn value="#{subject.id}" />
-                           <b:dataTableColumn value="#{subject.name}" />
-                           <b:dataTableColumn order-by="dom-text" data-type="text">
-	                           	<f:facet name="header">
-	                           		<h:outputText value="Amount of STZ" />
-	                           	</f:facet>
-	                           	<b:inputText placeholder="" class="sm-value" value="#{subject.weekly.IOP}" />
-                           </b:dataTableColumn>
-                           <b:dataTableColumn order-by="dom-text" data-type="text">
-	                           	<f:facet name="header">
-	                           		<h:outputText value="Amount of saline" />
-	                           	</f:facet>
-	                           	<b:inputText class="sm-value" value="#{subject.weekly.weight}" />
-                           </b:dataTableColumn>
-                       </b:dataTable>
-                    </h:form>
-                </div>
-            </div>
+ <ui:composition>                              
+     <div class="panel stz-tab-content">
+     	<div class="panel-heading">
+             <h3>STZ Induction records</h3>
+         </div>
+        <div class="panel-body">
+	     	<ul class="nav nav-pills">
+	             <li class="active"><a href="#stz1-tab" data-toggle="tab">Day 1</a></li>
+	             <li><a href="#stz2-tab" data-toggle="tab">Day 2</a></li>
+	             <li><a href="#stz3-tab" data-toggle="tab">day 3</a></li>
+	         </ul>
+	         <div class="sub-tabs tab-content clearfix">
+		          <div class="tab-pane active" id="stz1-tab">
+		            <form id="stz1-tab-form" class="form"  data-parsley-validate="">
+		                <b:dataTable respomsive="true" value="#{technicianBean.subjects}" var="subject">
+		                     <b:dataTableColumn value="#{subject.id}" />
+		                     <b:dataTableColumn value="#{subject.name}" />
+		                     <b:dataTableColumn order-by="dom-text" data-type="text">
+		                      	<f:facet name="header">
+		                      		<h:outputText value="Amount of STZ" />
+		                      	</f:facet>
+		                      	<b:inputText placeholder="1200 - 1900" class="sm-value-2" value="#{subject.stzInduction.STZAdministered}">
+		                      		<f:facet name="append">
+			                      		<h:outputText value="mg" />
+			                      	</f:facet>
+		                      	</b:inputText>
+		                     </b:dataTableColumn>
+		                     <b:dataTableColumn order-by="dom-text" data-type="text">
+		                      	<f:facet name="header">
+		                      		<h:outputText value="Amount of saline" />
+		                      	</f:facet>
+		                      	<b:inputText placeholder="10 - 100" class="sm-value-2" value="#{subject.stzInduction.salineAmount}">
+		                      		<f:facet name="append">
+			                      		<h:outputText value="mL" />
+			                      	</f:facet>
+		                      	</b:inputText>
+		                     </b:dataTableColumn>
+		                 </b:dataTable>
+		                 <input type="submit" class="btn btn-success" value="Submit Entries"/>
+		              </form>
+		          </div>
+		          <div class="tab-pane" id="stz2-tab">
+		            <form id="stz2-tab-form" class="form"  data-parsley-validate="">
+		                <b:dataTable respomsive="true" value="#{technicianBean.subjects}" var="subject">
+		                     <b:dataTableColumn value="#{subject.id}" />
+		                     <b:dataTableColumn value="#{subject.name}" />
+		                     <b:dataTableColumn order-by="dom-text" data-type="text">
+		                      	<f:facet name="header">
+		                      		<h:outputText value="Amount of STZ" />
+		                      	</f:facet>
+		                      	<b:inputText placeholder="1200 - 1900" class="sm-value-2" value="#{subject.stzInduction.STZAdministered}">
+		                      		<f:facet name="append">
+			                      		<h:outputText value="mg" />
+			                      	</f:facet>
+		                      	</b:inputText>
+		                     </b:dataTableColumn>
+		                     <b:dataTableColumn order-by="dom-text" data-type="text">
+		                      	<f:facet name="header">
+		                      		<h:outputText value="Amount of saline" />
+		                      	</f:facet>
+								<b:inputText placeholder="10 - 100" class="sm-value-2" value="#{subject.stzInduction.salineAmount}">
+									<f:facet name="append">
+			                      		<h:outputText value="mL" />
+			                      	</f:facet>
+								</b:inputText>
+		                     </b:dataTableColumn>
+		                 </b:dataTable>
+		                 <input type="submit" class="btn btn-success" value="Submit Entries"/>
+		              </form>
+		          </div>
+		          <div class="tab-pane" id="stz3-tab">
+		            <form id="stz3-tab-form" class="form"  data-parsley-validate="">
+		                <b:dataTable respomsive="true" value="#{technicianBean.subjects}" var="subject">
+		                     <b:dataTableColumn value="#{subject.id}" />
+		                     <b:dataTableColumn value="#{subject.name}" />
+		                     <b:dataTableColumn order-by="dom-text" data-type="text">
+		                      	<f:facet name="header">
+		                      		<h:outputText value="Amount of STZ" />
+		                      	</f:facet>
+		                      	<b:inputText placeholder="1200 - 1900" class="sm-value-2" value="#{subject.stzInduction.STZAdministered}">
+		                      		<f:facet name="append">
+			                      		<h:outputText value="mg" />
+			                      	</f:facet>
+		                      	</b:inputText>
+		                     </b:dataTableColumn>
+		                     <b:dataTableColumn order-by="dom-text" data-type="text">
+		                      	<f:facet name="header">
+		                      		<h:outputText value="Amount of saline" />
+		                      	</f:facet>
+		                      	<b:inputText placeholder="10 - 100" class="sm-value-2" value="#{subject.stzInduction.salineAmount}">
+									<f:facet name="append">
+			                      		<h:outputText value="mL" />
+			                      	</f:facet>
+								</b:inputText>
+		                     </b:dataTableColumn>
+		                 </b:dataTable>
+		                 <input type="submit" class="btn btn-success" value="Submit Entries"/>
+		              </form>
+		          </div>
+	     	</div>
+      	</div>
+     </div>
  </ui:composition>
 </html>

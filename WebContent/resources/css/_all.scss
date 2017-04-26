@@ -19,8 +19,17 @@ a.btn, button, input, input[type="submit"], .btn, .btn-success, .btn-danger, .bt
   cursor: move;
 }
 
+input.form-control{
+  padding: 2px;
+  text-align:center;
+}
+
 .sm-value {
   max-width: 50px;;
+}
+
+.sm-value-2 {
+  max-width: 90px;;
 }
 
 .table td{

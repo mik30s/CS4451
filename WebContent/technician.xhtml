@@ -28,7 +28,7 @@
                                 <ul class="nav nav-pills">
                                     <li class="active"><a href="#daily-tab" data-toggle="tab">Daily</a></li>
                                     <li><a href="#weekly-tab" data-toggle="tab">Weekly</a></li>
-                                    <li><a href="#stz1-tab" data-toggle="tab">STZ Induction Day 1</a></li>
+                                    <li><a href="#stz-tab" data-toggle="tab">STZ Inductions</a></li>
                                 </ul>
                                 <div class="tab-content clearfix">
                                     <div class="tab-pane active" id="daily-tab">
@@ -41,15 +41,10 @@
                                         	<ui:include src="technician_weekly_tab.html" />
                                         </ui:insert>
                                     </div>
-                                    <div class="tab-pane" id="stz1-tab">
-                                        <div class="panel stz-tab-content">
-                                            <div class="panel-heading">
-                                                <h3>Day 1 of STZ induction</h3>
-                                            </div>
-                                            <ui:insert name="stz-tab">
-                                                <ui:include src="technician_stz_tab.html" />
-                                            </ui:insert>
-                                        </div>
+                                    <div class="tab-pane" id="stz-tab">
+                                       <ui:insert name="stz-tab">
+                                           <ui:include src="technician_stz_tab.html" />
+                                       </ui:insert>
                                     </div>
                                 </div>
                             </div>

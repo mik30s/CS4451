@@ -17,8 +17,15 @@ a.btn, button, input, input[type="submit"], .btn, .btn-success, .btn-danger, .bt
 .bootstrap-dialog .modal-header.bootstrap-dialog-draggable {
   cursor: move; }
 
+input.form-control {
+  padding: 2px;
+  text-align: center; }
+
 .sm-value {
   max-width: 50px; }
+
+.sm-value-2 {
+  max-width: 90px; }
 
 .table td {
   text-align: center; }
@@ -77,6 +84,8 @@ body {
   body .content {
     position: relative;
     width: 100%; }
+    body .content .container {
+      height: 100%; }
     body .content .backdrop {
       position: absolute;
       width: 100%;
@@ -138,9 +147,12 @@ body {
             body .content .panel.technician-content #tech-tabs.container-fluid .tab-content .tab-pane .panel.weekly-tab-content .panel-body {
               padding: 5px 15px; }
           body .content .panel.technician-content #tech-tabs.container-fluid .tab-content .tab-pane .panel.stz-tab-content {
-            color: black;
             margin-bottom: 0px; }
-            body .content .panel.technician-content #tech-tabs.container-fluid .tab-content .tab-pane .panel.stz-tab-content .panel-body {
+            body .content .panel.technician-content #tech-tabs.container-fluid .tab-content .tab-pane .panel.stz-tab-content .sub-tabs .nav-pills > li > a.active {
+              background: #428bca; }
+            body .content .panel.technician-content #tech-tabs.container-fluid .tab-content .tab-pane .panel.stz-tab-content .sub-tabs.tab-content {
+              color: black;
+              background-color: white;
               padding: 5px 15px; }
   body .page-header {
     margin: 0px; }

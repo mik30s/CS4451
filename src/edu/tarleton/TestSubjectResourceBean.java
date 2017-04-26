@@ -19,8 +19,8 @@ import javax.ws.rs.core.Response;
 
 @Path("/subject")
 public class TestSubjectResourceBean {
-	public final String FAILED = "failed";
-	public final String SUCCESS = "success";
+	public final String FAILED = "Failed";
+	public final String SUCCESS = "Success";
     public String rootFolderPath =  "C:\\tmp\\course-project\\testsubjectdata\\";
     
     public class ResponseObject {
@@ -72,10 +72,12 @@ public class TestSubjectResourceBean {
     @POST
     @Path("/weekly/add")
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response updateWeeklyRecords(@Valid List<Weekly> records) throws Exception {
+    	ResponseObject resp = new ResponseObject();
         String retval = FAILED;
     	if(records == null || records.size() < 1){
-            return Response.status(201).entity(retval).build();
+            return Response.status(201).entity(setResponseMessage(resp, retval)).build();
         }
         
         for(Weekly record : records){
@@ -84,7 +86,7 @@ public class TestSubjectResourceBean {
             retval = validateFields(record) ? SUCCESS : FAILED ;
         }
     
-        return Response.status(200).entity(retval).build();
+        return Response.status(200).entity(setResponseMessage(resp, retval)).build();
     }
     
     @GET
@@ -97,21 +99,25 @@ public class TestSubjectResourceBean {
     @POST
     @Path("/daily/add")
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response updateDailyRecords(@Valid List<TestSubject> records) throws Exception {
+    	ResponseObject resp = new ResponseObject();
     	String retval = FAILED;
         if(records == null || records.size() < 1){
-            return Response.status(201).entity(retval).build();
+            return Response.status(500).entity(setResponseMessage(resp, retval)).build();
         }
         
-        for(TestSubject record : records){
+        for(TestSubject record : records) {
             System.out.println("Updating daily record");
             System.out.println(record.id + " " + record.name);
             retval = validateFields(record.getDailyAM()) ? SUCCESS : FAILED ;
             retval = validateFields(record.getDailyPM()) ? SUCCESS : FAILED ;
         }
-        
-        return Response.status(200).entity(retval).build();
+             
+        return Response.status(200).entity(setResponseMessage(resp, retval)).build();
     }
+    
+    
     
     public boolean validateFields(Weekly weekly){
     	boolean isValid = false;
@@ -123,8 +129,9 @@ public class TestSubjectResourceBean {
     			System.out.println("fields are valid.");
     			isValid = true;
     		}
-    		
-    		//System.out.println("fields are not valid.");
+    		else {
+    			System.out.println("fields are not valid.");
+    		}
     	}
     	
     	return  isValid;
@@ -140,10 +147,21 @@ public class TestSubjectResourceBean {
     		    && (daily.getBloodGlucoseLevelPerMeal() >= 25 && daily.getBloodGlucoseLevelPerMeal() <= 500)
     		    && (daily.getInsulinAdministered() >= 0 && daily.getInsulinAdministered() <= 5))
     		{
+    			System.out.println("fields are valid.");
     			isvalid = true;
+    		}
+    		else {
+    			System.out.println("fields are not valid.");
     		}
     	}
     	
     	return isvalid;
+    }
+    
+    public ResponseObject setResponseMessage(ResponseObject resp, String status){
+    	 resp.status = status;
+    	 if(status != SUCCESS) {resp.reason = "One or more fields are not valid! Operation failed.";}
+         else {resp.reason = "All fields were valid! Operation successful.";}
+    	 return resp;
     }
 }
