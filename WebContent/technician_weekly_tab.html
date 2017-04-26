@@ -32,13 +32,13 @@
 	                           	<f:facet name="header">
 	                           		<h:outputText value="Intra Ocular Pressure" />
 	                           	</f:facet>
-	                           	<input placeholder="" pattern="[0-9]" name="IOP" class="form-control sm-value" value="#{subject.weekly.IOP}" required=""/>
+	                           	<input placeholder="" min="5" max="65" name="IOP" class="form-control sm-value" value="#{subject.weekly.IOP}" required=""/>
                            </b:dataTableColumn>
                            <b:dataTableColumn order-by="dom-text" data-type="text">
 	                           	<f:facet name="header">
 	                           		<h:outputText value="Weight" />
 	                           	</f:facet>
-	                           	<input placeholder="" pattern="[0-9]" name="weight" class="form-control sm-value" value="#{subject.weekly.weight}" required=""/>
+	                           	<input placeholder="" name="weight" class="form-control sm-value" value="#{subject.weekly.weight}" required=""/>
                            </b:dataTableColumn>
                        </b:dataTable>
                        <input value="Submit Entries" class="btn btn-success" type="submit"/>
