@@ -23,6 +23,11 @@ public class TestSubjectResourceBean {
 	public final String SUCCESS = "success";
     public String rootFolderPath =  "C:\\tmp\\course-project\\testsubjectdata\\";
     
+    public class ResponseObject {
+    	public String status;
+    	public String reason;
+    };
+    
     // Returns a subjects data from file
     @GET
     @Path("{subject_id}")
@@ -74,11 +79,11 @@ public class TestSubjectResourceBean {
         }
         
         for(Weekly record : records){
-            System.out.println(record.id + " " + record.name);
+            System.out.println("Updating weekly record");
+        	System.out.println(record.id + " " + record.name);
             retval = validateFields(record) ? SUCCESS : FAILED ;
         }
     
-        System.out.println("Updating record");
         return Response.status(200).entity(retval).build();
     }
     
@@ -93,16 +98,19 @@ public class TestSubjectResourceBean {
     @Path("/daily/add")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateDailyRecords(@Valid List<TestSubject> records) throws Exception {
+    	String retval = FAILED;
         if(records == null || records.size() < 1){
-            return Response.status(201).entity("failed").build();
+            return Response.status(201).entity(retval).build();
         }
         
         for(TestSubject record : records){
-            System.out.println("Updating record");
+            System.out.println("Updating daily record");
             System.out.println(record.id + " " + record.name);
+            retval = validateFields(record.getDailyAM()) ? SUCCESS : FAILED ;
+            retval = validateFields(record.getDailyPM()) ? SUCCESS : FAILED ;
         }
         
-        return Response.status(200).entity("success").build();
+        return Response.status(200).entity(retval).build();
     }
     
     public boolean validateFields(Weekly weekly){
@@ -120,5 +128,22 @@ public class TestSubjectResourceBean {
     	}
     	
     	return  isValid;
+    }
+    
+    public boolean validateFields(Daily daily){
+    	boolean isvalid = false;
+    	
+    	if(daily != null) {
+    		if((daily.getFeedEaten() >= 0 && daily.getFeedEaten() <= 50)
+    		    && (daily.getFeedRefused() >= 0 && daily.getFeedRefused() <= 50)
+    		    && (daily.getBloodGlucoseLevelPerMeal() >= 25 && daily.getBloodGlucoseLevelPerMeal() <= 500)
+    		    && (daily.getBloodGlucoseLevelPerMeal() >= 25 && daily.getBloodGlucoseLevelPerMeal() <= 500)
+    		    && (daily.getInsulinAdministered() >= 0 && daily.getInsulinAdministered() <= 5))
+    		{
+    			isvalid = true;
+    		}
+    	}
+    	
+    	return isvalid;
     }
 }
