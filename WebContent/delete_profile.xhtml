@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+      
+ <ui:composition template="main_layout.xhtml">
+        <f:metadata>
+            <f:viewParam name="edit" value="#{profileBean.editAllowed}"></f:viewParam>
+            <f:viewParam name="user" value="#{profileBean.deleteEmail}"></f:viewParam>
+        </f:metadata>
+        <ui:define name="title">
+             Delete User - Swine Project
+        </ui:define>
+        <ui:define name="menu">
+            <li><h:link rendered="#{loginBean.user.type == 'Administrator'}" outcome="admin">
+            	<span class="fa fa-cogs"></span> Dashboard</h:link>
+            </li>
+        </ui:define>
+        <ui:define name="css"> 
+            <h:outputStylesheet library="css" name="profile.css"></h:outputStylesheet>
+        </ui:define>
+        <ui:define name="content">
+            <div class="animated bounceIn content">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h1><i class="material-icons md-48">warn</i> Login Failed</h1>
+                    </div>
+                    <div class="panel-body">
+                    	<h:form>
+	                        <p>Are you sure you want to delete this user?</p>
+	                        <div class="button-group">
+	                            <h:commandButton value = "Confirm" class="btn btn-danger" action="#{profileBean.delete}" />
+	                        </div>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+ </ui:composition>
+ 
+</html>

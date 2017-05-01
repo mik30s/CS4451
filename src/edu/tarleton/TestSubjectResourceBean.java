@@ -26,6 +26,12 @@ public class TestSubjectResourceBean {
     public class ResponseObject {
     	public String status;
     	public String reason;
+    	
+    	public ResponseObject(){}
+    	public ResponseObject(String status, String reason){
+    		this.status = status;
+    		this.reason = reason;
+    	}
     };
     
     // Returns a subjects data from file
@@ -121,6 +127,35 @@ public class TestSubjectResourceBean {
     @Produces(MediaType.TEXT_PLAIN)
     public String getDailies() throws Exception {
         return "failed";
+    }
+    
+    @POST
+    @Path("/daily/delete")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteDailyRecords() throws Exception {
+    	return Response.status(200).entity(
+    						new ResponseObject(SUCCESS, " Deleted entries for today"
+    						)).build();
+    }
+    
+    @POST
+    @Path("/weekly/delete")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteWeeklyRecords() throws Exception {
+    	return Response.status(200).entity(
+    						new ResponseObject(SUCCESS, " Deleted entries for today")).build();
+    }
+    
+    @POST
+    @Path("/stz/delete")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteStzRecords() throws Exception {
+    	return Response.status(200).entity(
+    						new ResponseObject(SUCCESS, " Deleted entries for today"
+    						)).build();
     }
     
     @POST

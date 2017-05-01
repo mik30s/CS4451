@@ -13,6 +13,16 @@ import javax.faces.context.FacesContext;
 public class ProfileBean {
      private User user;
      private String id;
+     public String getDeleteEmail() {
+		return deleteEmail;
+	}
+
+
+	public void setDeleteEmail(String deleteEmail) {
+		this.deleteEmail = deleteEmail;
+	}
+
+	private String deleteEmail;
      boolean editAllowed;
     
      // new profile fields to create a new user.
@@ -34,6 +44,7 @@ public class ProfileBean {
         if (this.user.getEmail() != null && !this.user.getEmail().equals("")) {
         	System.out.println("About to add user "+ this.user.getEmail());
             File file = new File("C:\\tmp\\course-project\\userdata\\"+this.user.getEmail());
+            file.getParentFile().mkdirs();
             file.createNewFile();
             FileOutputStream fos = new FileOutputStream(file);
             ObjectOutputStream os = new ObjectOutputStream(fos);
@@ -93,17 +104,17 @@ public class ProfileBean {
     }
     
     // Delete a users profile
-    public String delete(String id) throws Exception {
+    public String delete() throws Exception {
         System.out.println("calling delete.");
-        System.out.println("id = "+ id);
-        String filePath = "C:\\tmp\\course-project\\userdata\\"+id;
-        if(id != null) {
-            System.out.println("id = "+ id);
+        System.out.println("id = "+ deleteEmail);
+        String filePath = "C:\\tmp\\course-project\\userdata\\"+deleteEmail;
+        if(deleteEmail != null) {
+            System.out.println("id = "+ deleteEmail);
             File file = new File(filePath);
             if(file.exists()) {
-                System.out.println(id + " has been found");
+                System.out.println(deleteEmail + " has been found");
                 Files.delete(Paths.get(filePath));
-                System.out.println(id + " has been deleted");
+                System.out.println(deleteEmail + " has been deleted");
                 return "admin";
             }
         }

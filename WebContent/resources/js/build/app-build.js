@@ -3131,8 +3131,8 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 var DailyController = __webpack_require__(3);
-var WeeklyController = __webpack_require__(4);
-var STZController = __webpack_require__(5);
+var WeeklyController = __webpack_require__(5);
+var STZController = __webpack_require__(4);
 
 module.exports = function(mountId) {
 	this.initialize = function() {
@@ -3171,7 +3171,7 @@ module.exports =  function(){
 	this.subjectData = [];
 	$("#am-tab-form, #pm-tab-form, #bed-check-tab-form").on('submit', function(e){
 		// an invalid form
-		if (e.isDefaultPrevented){
+		if (e.isDefaultPrevented) {
 			e.preventDefault();
 			// everything looks good send data
 			// show modal dialog
@@ -3179,11 +3179,101 @@ module.exports =  function(){
 			//alert("sending data.");
 			// ok send data
 			self.showDialog("You are about to modify records for this day. " +
-							"If records don't exist they will be created otherwise previous records will be modified." +
+							"<br />If records don't exist they will be created " +
+							"otherwise previous" +
+							" records will be modified." +
 							"Click to confirm or cancel.");
 			return false;
 		}
 	});
+	
+	$("#pm-tab-form-btn-cancel, " +
+			"#am-tab-form-btn-cancel, " +
+			"#bedcheck-tab-form-btn-cancel").on('click', function(){
+		BootstrapDialog.show({
+			title: 'Confirm Action',
+			message: "You are about to revert all changes made for this " +
+					"set of records for this time period. <br />"+
+					"Click to confirm or cancel.",
+			buttons:[{
+				label: 'Confirm',
+				cssClass: 'btn-success',
+				autospin: true,
+				draggable: true,
+				action: function(dref) {
+					self.deleteRecords(dref);
+				}
+			},{
+				label: 'Cancel',
+				cssClass: 'btn-default',
+				autospin: true,
+				draggable: true,
+				action: function(dref) {
+					dref.close();
+				}
+			}]
+		});
+	});
+	
+	this.deleteRecords = function(dref){
+		$.ajax({
+			url : "../rest/subject/daily/delete",
+		    type : "POST",
+		    dataType : 'json',
+		    contentType : 'application/json; charset=UTF-8',
+		    data : JSON.stringify(self.subjectData),
+		    success : function(xhresponse) {
+		    	if(xhresponse["status"] === "Failed") {
+		    		//alert("error");
+		    		this.error(xhresponse);
+		    	}
+	    		else {
+	    			dref.close();
+    				var noty = new Noty({
+						text: xhresponse["status"] + ", "+ xhresponse["reason"] ,
+						timeout: 2500,
+						progressBar: true,
+						closeWith: ['click', 'button'],
+						//layout: 'topRight',
+						theme: 'metroui',
+						container: '#notification-holder',
+						animation: {
+							open: 'animated slideInDown',
+							close: 'animated slideOutUp'
+						},
+						type: 'success'
+					}).show();
+	    		}
+		    },
+		    error: function(xhresponse) {
+		    	console.log(xhresponse.status);
+		    	// handle error in jquery version 2.2.4
+		    	// where error handle is called even on success.
+		    	if(xhresponse.status === 200 && xhresponse["status"] === "Success") {
+		    		//alert("success");
+		    		this.success(xhresponse);
+		    	}
+		    	else {
+		    		var noty = new Noty({
+						text: xhresponse["status"] + ", "+ xhresponse["reason"] ,
+						timeout: 2500,
+						progressBar: true,
+						closeWith: ['click', 'button'],
+						//layout: 'topRight',
+						theme: 'metroui',
+						container: '#notification-holder',
+						animation: {
+							open: 'animated slideInDown',
+							close: 'animated slideOutUp'
+						},
+						type: 'error'
+					}).show();
+					dref.close();
+		    	}
+		    	
+		    }
+		});
+	}
 	
 	this.showDialog = function(msg){
 		BootstrapDialog.show({
@@ -3338,149 +3428,6 @@ module.exports =  function(){
 
 var Noty = __webpack_require__(0);
 
-module.exports = function() {
-	var self = this;
-	this.subjectData = [];
-	console.log("Weekly Controller being constructed");
-	$("#weekly-tab-form").on('submit', function(e){
-		//alert("Aout to send weekly data.");
-		// an invalid form
-		if (e.isDefaultPrevented){
-			e.preventDefault();
-			// everything looks good send data
-			// show modal dialog
-			//alert("About to send weekly data.");
-			//alert("sending data.");
-			// ok send data
-			BootstrapDialog.show({
-				title: 'Confirm Action',
-				message: 'You are about to update records. \
-						  Click to confirm or cancel',
-				buttons:[{
-					label: 'Confirm',
-					cssClass: 'btn-success',
-					autospin: true,
-					action: function(dref) {
-						dref.enableButtons(false);
-						// let sendData handle the closing
-						// let sendData handle the closing
-						self.sendData(function(resp) {
-							// before closing the dialog call growl
-							var noty = new Noty({
-								text: resp["status"] +" "+ resp["reason"],
-								timeout: 2500,
-								progressBar: true,
-								closeWith: ['click', 'button'],
-								layout: 'topRight',
-								theme: 'metroui',
-								container: '#notification-holder',
-								animation: {
-									open: 'animated slideInDown',
-									close: 'animated slideOutUp'
-								},
-								type: 'success'
-							}).show();
-							dref.close();
-						}, function(resp){
-							var noty = new Noty({
-								text:resp["status"] +" "+ resp["reason"],
-								timeout: 2500,
-								progressBar: true,
-								closeWith: ['click', 'button'],
-								layout: 'topRight',
-								theme: 'metroui',
-								container: '#notification-holder',
-								animation: {
-									open: 'animated slideInDown',
-									close: 'animated slideOutUp'
-								},
-								type: 'error'
-							}).show();
-							dref.close();
-						});
-					}
-				},{
-					label: 'Cancel',
-					cssClass: 'btn btn-default',
-					action: function(dref){
-						dref.close();
-					}
-				}]
-			});
-			return false;
-		}
-	});
-	
-	this.sendData = function(successCallback, errorCallback) {
-		console.log("sending data...");
-		var _send_data_self = this;
-		var subjectRecord = {}; 
-		var iopNodes = $("#weekly-tab-form #weekly-tab-form-table input[name='IOP']");
-		var weightNodes = $("#weekly-tab-form #weekly-tab-form-table input[name='weight']");
-		var nameNodes = $("#weekly-tab-form #weekly-tab-form-table input[type='hidden'][name='name']");
-		var idNodes = $("#weekly-tab-form #weekly-tab-form-table input[type='hidden'][name='id']");
-		
-		// build objects
-		$(idNodes).each(function(i, node) {
-			var subjectRecord = {};
-			subjectRecord["id"] = $(node).val();
-			subjectRecord["name"] = $(nameNodes[i]).val();
-			subjectRecord["iop"] = $(iopNodes[i]).val();
-			subjectRecord["weight"] = $(weightNodes[i]).val();
-//				alert(subjectRecord["id"] +" "+subjectRecord["name"]);
-			self.subjectData.push(subjectRecord);
-		});
-		console.log(self.subjectData);
-		
-		$.ajax({
-			url : "../rest/subject/weekly/add",
-		    type : "POST",
-		    dataType : 'json',
-		    contentType : 'application/json; charset=UTF-8',
-		    data : JSON.stringify(self.subjectData),
-		    success : function(xhresponse) {
-		    	console.log(xhresponse);
-	    		if(xhresponse["status"] === "Failed") {
-		    		//alert("error");
-		    		this.error(xhresponse);
-		    	}
-	    		else {
-	    			if(successCallback !== undefined) {
-	    				successCallback(xhresponse);
-	    			}
-	    		}
-		    },
-		    error: function(xhresponse) {
-		    	console.log(xhresponse.status);
-		    	// handle error in jquery version 2.2.4
-		    	// where error handle is called even on success.
-		    	if(xhresponse.status === 200 && xhresponse["status"] === "Success") {
-		    		//alert("success");
-		    		this.success(xhresponse);
-		    	}
-		    	else {
-		    		// this is truly an error so handle it here.
-		    		if(errorCallback !== undefined) {
-		    			errorCallback(xhresponse);
-		    		}
-		    		console.log("update failed.")
-		    		//alert("failed");
-		    	}
-		    }
-		});
-		
-		self.subjectData = [];
-	}
-	console.log("Weekly Controller done constructing");
-	return this;
-}
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var Noty = __webpack_require__(0);
-
 module.exports =  function(){
 	console.log("Daily Controller being constructed");
 	var self = this;
@@ -3500,6 +3447,93 @@ module.exports =  function(){
 							"Click to confirm or cancel.");
 			return false;
 		}
+	});
+	
+	this.deleteRecords = function(dref){
+		$.ajax({
+			url : "../rest/subject/stz/delete",
+		    type : "POST",
+		    dataType : 'json',
+		    contentType : 'application/json; charset=UTF-8',
+		    data : JSON.stringify(self.subjectData),
+		    success : function(xhresponse) {
+		    	if(xhresponse["status"] === "Failed") {
+		    		//alert("error");
+		    		this.error(xhresponse);
+		    	}
+	    		else {
+	    			dref.close();
+    				var noty = new Noty({
+						text: xhresponse["status"] + ", "+ xhresponse["reason"] ,
+						timeout: 2500,
+						progressBar: true,
+						closeWith: ['click', 'button'],
+						//layout: 'topRight',
+						theme: 'metroui',
+						container: '#notification-holder',
+						animation: {
+							open: 'animated slideInDown',
+							close: 'animated slideOutUp'
+						},
+						type: 'success'
+					}).show();
+	    		}
+		    },
+		    error: function(xhresponse) {
+		    	console.log(xhresponse.status);
+		    	// handle error in jquery version 2.2.4
+		    	// where error handle is called even on success.
+		    	if(xhresponse.status === 200 && xhresponse["status"] === "Success") {
+		    		//alert("success");
+		    		this.success(xhresponse);
+		    	}
+		    	else {
+		    		var noty = new Noty({
+						text: xhresponse["status"] + ", "+ xhresponse["reason"] ,
+						timeout: 2500,
+						progressBar: true,
+						closeWith: ['click', 'button'],
+						//layout: 'topRight',
+						theme: 'metroui',
+						container: '#notification-holder',
+						animation: {
+							open: 'animated slideInDown',
+							close: 'animated slideOutUp'
+						},
+						type: 'error'
+					}).show();
+					dref.close();
+		    	}
+		    	
+		    }
+		});
+	}
+	
+	$("#stz1-tab-form-btn-cancel," +
+			" #stz2-tab-form-btn-cancel, " +
+			"#stz3-tab-form-btn-cancel").on('click', function(){
+		BootstrapDialog.show({
+			title: 'Confirm Action',
+			message: "You are about to revert all changes made for this set of records for this time period. <br />"+
+					"Click to confirm or cancel.",
+			buttons:[{
+				label: 'Confirm',
+				cssClass: 'btn-success',
+				autospin: true,
+				draggable: true,
+				action: function(dref) {
+					self.deleteRecords(dref);
+				}
+			},{
+				label: 'Cancel',
+				cssClass: 'btn-default',
+				autospin: true,
+				draggable: true,
+				action: function(dref) {
+					dref.close();
+				}
+			}]
+		});
 	});
 	
 	this.showDialog = function(msg){
@@ -3648,6 +3682,234 @@ module.exports =  function(){
 	return this;
 };
 	
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Noty = __webpack_require__(0);
+
+module.exports = function() {
+	var self = this;
+	this.subjectData = [];
+	console.log("Weekly Controller being constructed");
+	$("#weekly-tab-form").on('submit', function(e){
+		//alert("Aout to send weekly data.");
+		// an invalid form
+		if (e.isDefaultPrevented){
+			e.preventDefault();
+			// everything looks good send data
+			// show modal dialog
+			//alert("About to send weekly data.");
+			//alert("sending data.");
+			// ok send data
+			BootstrapDialog.show({
+				title: 'Confirm Action',
+				message: 'You are about to update records. \
+						  Click to confirm or cancel',
+				buttons:[{
+					label: 'Confirm',
+					cssClass: 'btn-success',
+					autospin: true,
+					action: function(dref) {
+						dref.enableButtons(false);
+						// let sendData handle the closing
+						// let sendData handle the closing
+						self.sendData(function(resp) {
+							// before closing the dialog call growl
+							var noty = new Noty({
+								text: resp["status"] +" "+ resp["reason"],
+								timeout: 2500,
+								progressBar: true,
+								closeWith: ['click', 'button'],
+								layout: 'topRight',
+								theme: 'metroui',
+								container: '#notification-holder',
+								animation: {
+									open: 'animated slideInDown',
+									close: 'animated slideOutUp'
+								},
+								type: 'success'
+							}).show();
+							dref.close();
+						}, function(resp){
+							var noty = new Noty({
+								text:resp["status"] +" "+ resp["reason"],
+								timeout: 2500,
+								progressBar: true,
+								closeWith: ['click', 'button'],
+								layout: 'topRight',
+								theme: 'metroui',
+								container: '#notification-holder',
+								animation: {
+									open: 'animated slideInDown',
+									close: 'animated slideOutUp'
+								},
+								type: 'error'
+							}).show();
+							dref.close();
+						});
+					}
+				},{
+					label: 'Cancel',
+					cssClass: 'btn btn-default',
+					action: function(dref){
+						dref.close();
+					}
+				}]
+			});
+			return false;
+		}
+	});
+	
+	this.deleteRecords = function(dref){
+		$.ajax({
+			url : "../rest/subject/weekly/delete",
+		    type : "POST",
+		    dataType : 'json',
+		    contentType : 'application/json; charset=UTF-8',
+		    data : JSON.stringify(self.subjectData),
+		    success : function(xhresponse) {
+		    	if(xhresponse["status"] === "Failed") {
+		    		//alert("error");
+		    		this.error(xhresponse);
+		    	}
+	    		else {
+	    			dref.close();
+    				var noty = new Noty({
+						text: xhresponse["status"] + ", "+ xhresponse["reason"] ,
+						timeout: 2500,
+						progressBar: true,
+						closeWith: ['click', 'button'],
+						//layout: 'topRight',
+						theme: 'metroui',
+						container: '#notification-holder',
+						animation: {
+							open: 'animated slideInDown',
+							close: 'animated slideOutUp'
+						},
+						type: 'success'
+					}).show();
+	    		}
+		    },
+		    error: function(xhresponse) {
+		    	console.log(xhresponse.status);
+		    	// handle error in jquery version 2.2.4
+		    	// where error handle is called even on success.
+		    	if(xhresponse.status === 200 && xhresponse["status"] === "Success") {
+		    		//alert("success");
+		    		this.success(xhresponse);
+		    	}
+		    	else {
+		    		var noty = new Noty({
+						text: xhresponse["status"] + ", "+ xhresponse["reason"] ,
+						timeout: 2500,
+						progressBar: true,
+						closeWith: ['click', 'button'],
+						//layout: 'topRight',
+						theme: 'metroui',
+						container: '#notification-holder',
+						animation: {
+							open: 'animated slideInDown',
+							close: 'animated slideOutUp'
+						},
+						type: 'error'
+					}).show();
+					dref.close();
+		    	}
+		    	
+		    }
+		});
+	}
+	
+	$("#weekly-tab-form-btn-cancel ").on('click', function(){
+		BootstrapDialog.show({
+			title: 'Confirm Action',
+			message: "You are about to revert all changes made for this set of records for this time period. <br />"+
+					"Click to confirm or cancel.",
+			buttons:[{
+				label: 'Confirm',
+				cssClass: 'btn-success',
+				autospin: true,
+				draggable: true,
+				action: function(dref) {
+					self.deleteRecords(dref);
+				}
+			},{
+				label: 'Cancel',
+				cssClass: 'btn-default',
+				autospin: true,
+				draggable: true,
+				action: function(dref) {
+					dref.close();
+				}
+			}]
+		});
+	});
+	
+	this.sendData = function(successCallback, errorCallback) {
+		console.log("sending data...");
+		var _send_data_self = this;
+		var subjectRecord = {}; 
+		var iopNodes = $("#weekly-tab-form #weekly-tab-form-table input[name='IOP']");
+		var weightNodes = $("#weekly-tab-form #weekly-tab-form-table input[name='weight']");
+		var nameNodes = $("#weekly-tab-form #weekly-tab-form-table input[type='hidden'][name='name']");
+		var idNodes = $("#weekly-tab-form #weekly-tab-form-table input[type='hidden'][name='id']");
+		
+		// build objects
+		$(idNodes).each(function(i, node) {
+			var subjectRecord = {};
+			subjectRecord["id"] = $(node).val();
+			subjectRecord["name"] = $(nameNodes[i]).val();
+			subjectRecord["iop"] = $(iopNodes[i]).val();
+			subjectRecord["weight"] = $(weightNodes[i]).val();
+//				alert(subjectRecord["id"] +" "+subjectRecord["name"]);
+			self.subjectData.push(subjectRecord);
+		});
+		console.log(self.subjectData);
+		
+		$.ajax({
+			url : "../rest/subject/weekly/add",
+		    type : "POST",
+		    dataType : 'json',
+		    contentType : 'application/json; charset=UTF-8',
+		    data : JSON.stringify(self.subjectData),
+		    success : function(xhresponse) {
+		    	console.log(xhresponse);
+	    		if(xhresponse["status"] === "Failed") {
+		    		//alert("error");
+		    		this.error(xhresponse);
+		    	}
+	    		else {
+	    			if(successCallback !== undefined) {
+	    				successCallback(xhresponse);
+	    			}
+	    		}
+		    },
+		    error: function(xhresponse) {
+		    	console.log(xhresponse.status);
+		    	// handle error in jquery version 2.2.4
+		    	// where error handle is called even on success.
+		    	if(xhresponse.status === 200 && xhresponse["status"] === "Success") {
+		    		//alert("success");
+		    		this.success(xhresponse);
+		    	}
+		    	else {
+		    		// this is truly an error so handle it here.
+		    		if(errorCallback !== undefined) {
+		    			errorCallback(xhresponse);
+		    		}
+		    		console.log("update failed.")
+		    		//alert("failed");
+		    	}
+		    }
+		});
+		
+		self.subjectData = [];
+	}
+	console.log("Weekly Controller done constructing");
+	return this;
+}
 
 /***/ })
 /******/ ]);

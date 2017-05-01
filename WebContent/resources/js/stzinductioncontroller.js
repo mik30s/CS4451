@@ -21,6 +21,93 @@ module.exports =  function(){
 		}
 	});
 	
+	this.deleteRecords = function(dref){
+		$.ajax({
+			url : "../rest/subject/stz/delete",
+		    type : "POST",
+		    dataType : 'json',
+		    contentType : 'application/json; charset=UTF-8',
+		    data : JSON.stringify(self.subjectData),
+		    success : function(xhresponse) {
+		    	if(xhresponse["status"] === "Failed") {
+		    		//alert("error");
+		    		this.error(xhresponse);
+		    	}
+	    		else {
+	    			dref.close();
+    				var noty = new Noty({
+						text: xhresponse["status"] + ", "+ xhresponse["reason"] ,
+						timeout: 2500,
+						progressBar: true,
+						closeWith: ['click', 'button'],
+						//layout: 'topRight',
+						theme: 'metroui',
+						container: '#notification-holder',
+						animation: {
+							open: 'animated slideInDown',
+							close: 'animated slideOutUp'
+						},
+						type: 'success'
+					}).show();
+	    		}
+		    },
+		    error: function(xhresponse) {
+		    	console.log(xhresponse.status);
+		    	// handle error in jquery version 2.2.4
+		    	// where error handle is called even on success.
+		    	if(xhresponse.status === 200 && xhresponse["status"] === "Success") {
+		    		//alert("success");
+		    		this.success(xhresponse);
+		    	}
+		    	else {
+		    		var noty = new Noty({
+						text: xhresponse["status"] + ", "+ xhresponse["reason"] ,
+						timeout: 2500,
+						progressBar: true,
+						closeWith: ['click', 'button'],
+						//layout: 'topRight',
+						theme: 'metroui',
+						container: '#notification-holder',
+						animation: {
+							open: 'animated slideInDown',
+							close: 'animated slideOutUp'
+						},
+						type: 'error'
+					}).show();
+					dref.close();
+		    	}
+		    	
+		    }
+		});
+	}
+	
+	$("#stz1-tab-form-btn-cancel," +
+			" #stz2-tab-form-btn-cancel, " +
+			"#stz3-tab-form-btn-cancel").on('click', function(){
+		BootstrapDialog.show({
+			title: 'Confirm Action',
+			message: "You are about to revert all changes made for this set of records for this time period. <br />"+
+					"Click to confirm or cancel.",
+			buttons:[{
+				label: 'Confirm',
+				cssClass: 'btn-success',
+				autospin: true,
+				draggable: true,
+				action: function(dref) {
+					self.deleteRecords(dref);
+				}
+			},{
+				label: 'Cancel',
+				cssClass: 'btn-default',
+				autospin: true,
+				draggable: true,
+				action: function(dref) {
+					dref.close();
+				}
+			}]
+		});
+	});
+	
 	this.showDialog = function(msg){
 		BootstrapDialog.show({
 			title: 'Confirm Action',
